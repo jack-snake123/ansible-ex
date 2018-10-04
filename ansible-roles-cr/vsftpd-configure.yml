@@ -1,0 +1,54 @@
+---
+- name: vsftpd inst conf
+  hosts: ftpservers
+  vars:
+    - vsftpd_anon_root: /mnt/share/
+    - vsftpd_local_root: /mnt/share/
+
+  become: true
+
+  roles:
+    - ansible-vsftpd
+
+  tasks:
+    - name: /dev/vdb1 
+      command: >
+        creates=/dev/vdb1
+        parted --script /dev/vdb mklabel gpt mkpart primary 1MiB 100%
+
+    - name: XFS file
+      filesystem:
+        dev: /dev/vdb1
+        fstype: xfs
+        force: no
+
+    - name: root mount
+      file:
+        path: "{{ vsftpd_anon_root }}"
+        state: directory
+
+    - name: amounted
+      mount:
+        name: "{{ vsftpd_anon_root }}"
+        src: /dev/vdb1
+        fstype: xfs
+        state: mounted
+        dump: '1'
+        passno: '2'
+      notify: restart vsftpd
+
+    - name: permissions
+      file:
+        path: "{{ vsftpd_anon_root }}"
+        owner: root
+        group: root
+        mode: '0755'
+        setype: "{{ vsftpd_setype }}"
+        state: directory
+    
+    - name: copy root
+      copy:
+        dest: '{{ vsftpd_anon_root }}/README'
+        content: "Welcome to the FTP server at {{ ansible_fqdn }}\n"
+        setype: "{{ vsftpd_setype }}"
+

@@ -1,0 +1,14 @@
+---
+- name: Install 
+  hosts: webserver
+
+  tasks:
+    - name: Install
+      yum:
+        name: "{{ ansible_local.custom.general.package }}"
+        state: latest
+
+    - name: Start
+      service:
+        name: "{{ ansible_local.custom.general.service }}"
+        state: "{{ ansible_local.custom.general.state }}"

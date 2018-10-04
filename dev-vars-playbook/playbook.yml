@@ -1,0 +1,52 @@
+---
+ - name: Deploy
+   hosts: webserver
+   vars:
+     web_pkg: httpd
+     firewall_pkg: firewalld
+     web_service: httpd
+     firewall_service: firewalld
+     python_pkg: python-httplib2
+     rule: http
+
+   tasks:
+     - name: Req
+       yum:
+         name:
+           - "{{ web_pkg }}"
+           - "{{ firewall_pkg }}"
+           - "{{ python_pkg }}"
+         state: latest
+
+     - name: The {{ firewall_service  }}
+       service:
+         name: "{{ firewall_service  }}"
+         enabled: true
+         state: started
+
+     - name: The {{ web_service  }}
+       service:
+         name: "{{ web_service  }}"
+         enabled: true
+         state: started
+
+     - name: Web
+       copy:
+         content: "Example web content"
+         dest: /var/www/html/index.html
+
+     - name: "{{ rule }}"
+       firewalld:
+         service: "{{ rule }}"
+         permanent: true
+         immediate: true
+         state: enabled
+
+ - name: verify
+   hosts: localhost
+   become: false
+   tasks:
+     - name: Ensure
+       uri:
+         url: http://servera.lab.example.com
+         status_code: 200

@@ -1,0 +1,6 @@
+---
+- name: myenv
+  hosts: all
+  roles:
+    - role: student.myenv
+      myenv_user: student

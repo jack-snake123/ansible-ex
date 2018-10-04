@@ -1,0 +1,56 @@
+---
+ - name: 1.internet.yml
+   hosts: serverb.lab.example.com
+   become: yes
+
+   tasks:
+     - name: 1.
+       yum:
+         name:
+           - httpd
+           - firewalld
+           - mariadb-server
+           - php
+           - php-mysql
+         state: latest
+
+     - name: 2.
+       service:
+        name: firewalld
+        enabled: true
+        state: started
+
+     - name: 3.
+       firewalld:
+         service: http
+         permanent: true
+         state: enabled
+         immediate: yes
+
+     - name: 4.
+       service:
+         name: httpd
+         enabled: true
+         state: started
+
+     - name: 5.
+       service:
+         name: mariadb
+         enabled: true
+         state: started
+
+     - name: 6.
+       get_url:
+         url: http://materials.example.com/grading/var/www/html/index.php
+         dest: /var/www/html/index.php
+         mode: 0644
+
+ - name: test
+   hosts: localhost
+   become: no
+
+   tasks:
+     - name: 1.
+       uri:
+         url: http://serverb.lab.example.com
+         status_code: 200

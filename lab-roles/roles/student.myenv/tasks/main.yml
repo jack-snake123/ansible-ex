@@ -1,0 +1,26 @@
+---
+# tasks file for student.myenv
+
+- name: check myenv
+  fail:
+    msg: variable 'myenv_user'
+  when: "myenv_user == ''"
+
+- name: instsall pac
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ myenv_packages }}"
+  
+- name: copy pro pic
+  copy:
+    src: profile.png
+    dest: "~{{ myenv_user }}/profile.png"
+
+- name: temp func
+  template:
+    src: mkcd.sh.j2
+    dest: /etc/profile.d/mkcd.sh
+    owner: root
+    group: root
+    mode: 0644

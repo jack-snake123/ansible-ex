@@ -1,0 +1,39 @@
+---
+- name: Con webserver
+  hosts: webserver
+  vars:
+    rule: http
+
+  tasks:
+    - name: Include yaml
+      include_vars: vars/variables.yml
+
+    - name: Include env
+      include: tasks/environment.yml 
+      vars:
+        package: httpd
+        service: httpd
+        svc_state: started
+
+    - name: Instakll firewall
+      yum:
+        name: "{{ firewall_pkg }}"
+        state: latest
+
+    - name: Start firewall
+      service:
+        name: firewalld
+        state: started
+        enabled: true
+
+    - name: open "{{ rule }}"
+      firewalld:
+        service: "{{ rule }}"
+        immediate: true
+        permanent: true
+        state: enabled
+
+    - name: Crate
+      copy:
+        content: "{{ ansible_fqdn }} has been customized using Ansible on the {{ ansible_date_time.date }}\n"
+        dest: /var/www/html/index.html

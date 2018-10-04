@@ -1,0 +1,10 @@
+---
+- name: ftp play
+  hosts: ftpclients
+  become: true
+
+  tasks:
+    - name: ftpc check
+      yum:
+        name: lftp
+        state: latest

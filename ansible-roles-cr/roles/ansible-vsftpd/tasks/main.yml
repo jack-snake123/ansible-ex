@@ -1,0 +1,41 @@
+---
+- name: pack inst
+  yum:
+    name: "{{ vsftpd_packages }}"
+    state: installed
+
+- name: start vsftpd enable
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  with_items: "{{ vsftpd_service }}"
+
+- name: vsftpd setup
+  template:
+    src: templates/vsftpd.conf.j2
+    dest: "{{ vsftpd_config_file }}"
+    owner: root
+    group: root
+    mode: '0600'
+    setype: etc_t
+  notify: restart vsftpd
+    
+- name: firewalld inst
+  yum:
+    name: firewalld
+    state: present
+
+- name: start vsftpd enable
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+
+- name: firewall set
+  firewalld:
+    service: ftp
+    permanent: true
+    state: enabled
+    immediate: yes
+

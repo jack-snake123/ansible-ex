@@ -1,0 +1,26 @@
+---
+- name: inst http
+  yum:
+    name: httpd
+    state: latest
+
+- name: start httpd
+  service:
+    name: httpd
+    state: started
+    enabled: true
+
+- name: deliver html
+  copy:
+    src: html/
+    dest: "/var/www/vhosts/{{ ansible_hostname }}"
+
+- name: temp vhost
+  template:
+    src: vhost.conf.j2
+    dest: /etc/httpd/conf.d/vhost.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart httpd

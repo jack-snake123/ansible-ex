@@ -1,0 +1,14 @@
+---
+- name: play
+  hosts: webservers
+
+  pre_tasks:
+    - debug:
+        msg: 'Begin'
+
+  roles:
+    - myvhost
+
+  post_tasks:
+    - debug:
+        msg: 'web'

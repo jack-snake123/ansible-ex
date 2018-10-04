@@ -1,0 +1,78 @@
+---
+- name: Inst conf httpd
+  hosts: all
+  remote_user: devops
+  become: true
+
+  tasks:
+    - name: Inst httpd
+      yum:
+        name: httpd
+        state: installed
+    - name: start httpd
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Inst fire
+      yum:
+        name: firewalld
+        state: installed
+    - name: start firewalld
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+
+    - name:
+      firewalld:
+        zone: public
+        service: http
+        permanent: true
+        state: enabled
+        immediate: true
+
+    - name: temp conf
+      template:
+        src: "templates/{{ inventory_hostname }}-httpd.conf.j2"
+        dest: /etc/httpd/conf.d/myconfig.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify:
+        - restart httpd
+
+  handlers:
+    - name: restart httpd
+      service:
+        name: httpd
+        state: restarted
+
+- name: deploy proxy
+  hosts: webservers
+  remote_user: devops
+  become: true
+
+  tasks:
+    - name: stop proxy
+      service:
+        name: httpd
+        state: stopped
+      delegate_to: "{{ item }}"
+      with_items: "{{ groups['proxyservers'] }}"
+    - name: dep webpage
+      template:
+        src: templates/index.html.j2
+        dest: /var/www/html/index.html
+        owner: apache
+        group: apache
+        mode: 0644
+
+    - name: start proxy
+      service:
+        name: httpd
+        state: started
+      delegate_to: "{{ item }}"
+      with_items: "{{ groups['proxyservers'] }}"
+

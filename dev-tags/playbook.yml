@@ -1,0 +1,24 @@
+---
+- hosts: all
+
+  tasks:
+  - name: inc
+    include:
+      configure_mail.yml
+    when: inventory_hostname in groups['mailservers']
+
+  handlers:
+    - name: start_postfix
+      service:
+        name: postfix
+        state: started
+
+    - name: start_dovecot
+      service:
+        name: dovecot
+        state: started
+
+    - name: restart_postfix
+      service:
+        name: postfix
+        state: restarted

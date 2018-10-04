@@ -1,0 +1,59 @@
+---
+- name: upgrade webserv
+  hosts: webservers
+  remote_user: devops
+  become: yes
+  serial: 1
+
+  tasks:
+    - name: disable haproxy
+      haproxy:
+        state: disabled
+        backend: app
+        host: "{{ inventory_hostname }}"
+        socket: /var/lib/haproxy/stats 
+        wait: yes
+      delegate_to: "{{ item }}"
+      with_items: "{{ groups.lbserver }}"
+
+    - name: upgr page
+      template:
+        src: "templates/index-ver1.html.j2"
+        dest: "/var/www/html/index.html"
+      register: pageupgrade
+
+    - name: restart machine
+      command: shutdown -r +1 "Ansible updates triggered"
+      async: 1
+      poll: 0
+      ignore_errors: true
+      when: pageupgrade.changed
+
+    - name: wait web restart
+      wait_for:
+        host: "{{ inventory_hostname }}"
+        port: 22
+        state: started
+        delay: 80
+        timeout: 200
+      become: False
+      delegate_to: 127.0.0.1
+      when: pageupgrade.changed
+
+    - name: wait web come
+      wait_for:
+        host: "{{ inventory_hostname }}"
+        port: 80
+        state: started
+        timeout: 20
+
+    - name: enabled haproxy
+      haproxy:
+        state: enabled
+        backend: app
+        host: "{{ inventory_hostname }}"
+        socket: /var/lib/haproxy/stats
+        wait: yes
+      delegate_to: "{{ item }}"
+      with_items: "{{ groups.lbserver }}"
+                                                                

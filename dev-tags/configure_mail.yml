@@ -1,0 +1,27 @@
+---
+- name: inst pos
+  yum:
+    name: postfix
+    state: latest
+  tags:
+    - server
+  notify:
+    - start_postfix
+
+- name: inst dov
+  yum:
+    name: dovecot
+    state: latest
+  tags:
+    - client
+  notify:
+    - start_dovecot
+
+- name: down
+  get_url:
+    url: http://materials.example.com/task_control/main.cf
+    dest: /etc/postfix/main.cf
+  tags:
+    - server
+  notify:
+    - restart_postfix
