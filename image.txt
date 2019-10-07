@@ -1,22 +1,146 @@
-curl -X POST http://xxx.xxx.xxx.xxx:8080/job/JP1JOB/job/JP1TEST01/build --user jenkins:0a9d4c4529624478e1bd166cb669a3e1 --form json='{"parameter": [{"name":"JP1EVENTID", "value":"EVID"}, {"name":"JP1EVENTHOST", "value":"h1b70041"}, {"name":"JP1EVENTMESSAGE", "value":"未対処,エラー,2019/09/15 10:08:57,h1730044,00004107,\"KAVS0265-E ジョ ブ(AJSROOT1:/1YGG100000/1LZG200000/1LPG300000/1LPR4B70000/1LPN5B70100/1LPJ6B70101:@5T2384)が異常終了しました(status: a, code: 1, host: h1b81041, JOBID:216907)\""}, {"name":"JP1EVENTDATE", "value":"2019/09/30"}, {"name":"JP1EVENTTIME", "value":"11:11:11"}]}'
+#!/bin/sh
+#set -x
+######################################################################
+#
+#                                           by T.Ogata
+######################################################################
+# 〈ﾊﾟﾗﾒｰﾀｲﾒｰｼﾞ1:IMPPRM〉
+#　HOST名 KEYMESSAGE YML
+#　h1130045 ORA-11111 1F40h1130045ORA-11111
+#　h1130045 ORA-22222 1F40h1130045ORA-22222
+#　automa01t001 ORA-11111 1F40automa01t001ORA-11111
+######################################################################
+# 〈ﾊﾟﾗﾒｰﾀｲﾒｰｼﾞ2:REIGAI.csv〉
+#　HOST名 STARTTIME ENDTIME MESSAGE
+#　h1130045 201904010000 201904012359 message
+#　h1130046 201904010000 202004010000 message
+#　h1130047 201904010000 209904012359 message
+######################################################################
+#　JP1取り込み情報
+#  $1 = HOSTANME
+##  $2 = JP1MESSAGE
+#  $2 = JP1STARTDATE
+#  $3 = JP1STARTTIME
+######################################################################
+INprm=`ls sh/*IMPPRM`
+INprm2=`ls sh/*REIGAI.csv`
 
----
-- hosts: localhost
-  gather_facts: false
+JP1DATE=`echo "$2""$3" | sed -e 's/\///g' | sed -e 's/://g' | sed -e 's/..$//g'`
+JP1DATE2=`date '+%Y%m%d%H%M%S'`
 
-  vars_files:
-  - secret.yml
+JP1MES=`cat /tmp/jp1test/jp1mes.txt`
 
-  vars:
-  - ansible_user: "{{ linux_user }}"
-  - ansible_password: "{{ linux_pass }}"
+SETPRM1()
+{
+     PRM1=`echo ${LINE} | awk '{print$1}'`
+     PRM2=`echo ${LINE} | awk '{print$2}'`
+     PRM3=`echo ${LINE} | awk '{print$3}'`
+     PRM4=`echo ${LINE} | awk '{print$4}'`
+}
 
-  tasks:
-  - name: 0.messageget
-    shell: cat /tmp/jp1test/jp1mes.txt
-    register: message
+SETPRM2()
+{
+     PRM5=`echo ${LINE2} | awk '{print$1}'`
+     PRM6=`echo ${LINE2} | awk '{print$2}'`
+     PRM7=`echo ${LINE2} | awk '{print$3}'`
+     PRM8=`echo ${LINE2} | awk '{print$4}'`
+}
 
-  - name: 1.lineinfile
-    lineinfile:
-      dest: /tmp/jp1test/jp1mail.txt
-      line: '{{ JP1DATE }}_{{ message.stdout }}'
+IFS='
+'
+
+for LINE in `cat ${INprm} | grep "$1"`
+do
+     SETPRM1
+       echo "$JP1MES" | grep -E "${PRM2}" > /dev/null 2>&1
+       if [ $? = 0 ]
+         then
+         case "${PRM3}" in
+         *)
+         for LINE2 in `cat ${INprm2} | grep "$1"`
+         do
+           SETPRM2
+           if [ ${JP1DATE} -ge ${PRM6} ]
+             then
+             if [ ${JP1DATE} -lt ${PRM7} ]
+               then
+               echo "$JP1MES" | grep -E "${PRM8}" > /dev/null 2>&1
+               if [ $? = 0 ]
+                 then
+                 echo "非監視イベントです。"
+                 exit 0
+               fi
+             fi
+           fi
+         done
+         for LINE2 in `cat ${INprm2} | grep -E ^"\*"`
+         do
+           SETPRM2
+           if [ ${JP1DATE} -ge ${PRM6} ]
+             then
+             if [ ${JP1DATE} -lt ${PRM7} ]
+               then
+               echo "$JP1MES" | grep -E "${PRM8}" > /dev/null 2>&1
+               if [ $? = 0 ]
+                 then
+                 echo "非監視イベントです。"
+                 exit 0
+               fi
+             fi
+           fi
+         done
+         ansible-playbook -i hosts/hosts yml/${PRM3} -vv --extra-vars "JP1DATE=$JP1DATE2" --vault-password-file ~/ansible/.vault_password
+         exit 0
+         ;;
+         esac
+       fi
+done
+
+for LINE in `cat ${INprm} | grep -E ^"\*"`
+do
+     SETPRM1
+       echo "$JP1MES" | grep -E "${PRM2}" > /dev/null 2>&1
+       if [ $? = 0 ]
+         then
+         case "${PRM3}" in
+         *)
+         for LINE2 in `cat ${INprm2} | grep "$1"`
+         do
+           SETPRM2
+           if [ ${JP1DATE} -ge ${PRM6} ]
+             then
+             if [ ${JP1DATE} -lt ${PRM7} ]
+               then
+               echo "$JP1MES" | grep -E "${PRM8}" > /dev/null 2>&1
+               if [ $? = 0 ]
+                 then
+                 echo "非監視イベントです。"
+                 exit 0
+               fi
+             fi
+           fi
+         done
+         for LINE2 in `cat ${INprm2} | grep -E ^"\*"`
+         do
+           SETPRM2
+           if [ ${JP1DATE} -ge ${PRM6} ]
+             then
+             if [ ${JP1DATE} -lt ${PRM7} ]
+               then
+               echo "$JP1MES" | grep -E "${PRM8}" > /dev/null 2>&1
+               if [ $? = 0 ]
+                 then
+                 echo "非監視イベントです。"
+                 exit 0
+               fi
+             fi
+           fi
+         done
+         ansible-playbook -i hosts/hosts yml/${PRM3} -vv --extra-vars "JP1DATE=$JP1DATE2" --vault-password-file ~/ansible/.vault_password
+         exit 0
+         ;;
+         esac
+       fi
+done
+echo "対応不要イベントです。"
+exit 0
