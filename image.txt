@@ -1,1 +1,22 @@
 curl -X POST http://xxx.xxx.xxx.xxx:8080/job/JP1JOB/job/JP1TEST01/build --user jenkins:0a9d4c4529624478e1bd166cb669a3e1 --form json='{"parameter": [{"name":"JP1EVENTID", "value":"EVID"}, {"name":"JP1EVENTHOST", "value":"h1b70041"}, {"name":"JP1EVENTMESSAGE", "value":"未対処,エラー,2019/09/15 10:08:57,h1730044,00004107,\"KAVS0265-E ジョ ブ(AJSROOT1:/1YGG100000/1LZG200000/1LPG300000/1LPR4B70000/1LPN5B70100/1LPJ6B70101:@5T2384)が異常終了しました(status: a, code: 1, host: h1b81041, JOBID:216907)\""}, {"name":"JP1EVENTDATE", "value":"2019/09/30"}, {"name":"JP1EVENTTIME", "value":"11:11:11"}]}'
+
+---
+- hosts: localhost
+  gather_facts: false
+
+  vars_files:
+  - secret.yml
+
+  vars:
+  - ansible_user: "{{ linux_user }}"
+  - ansible_password: "{{ linux_pass }}"
+
+  tasks:
+  - name: 0.messageget
+    shell: cat /tmp/jp1test/jp1mes.txt
+    register: message
+
+  - name: 1.lineinfile
+    lineinfile:
+      dest: /tmp/jp1test/jp1mail.txt
+      line: '{{ JP1DATE }}_{{ message.stdout }}'
