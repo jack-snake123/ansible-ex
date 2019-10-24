@@ -1,146 +1,467 @@
-#!/bin/sh
-#set -x
-######################################################################
-#
-#                                           by T.Ogata
-######################################################################
-# 〈ﾊﾟﾗﾒｰﾀｲﾒｰｼﾞ1:IMPPRM〉
-#　HOST名 KEYMESSAGE YML
-#　h1130045 ORA-11111 1F40h1130045ORA-11111
-#　h1130045 ORA-22222 1F40h1130045ORA-22222
-#　automa01t001 ORA-11111 1F40automa01t001ORA-11111
-######################################################################
-# 〈ﾊﾟﾗﾒｰﾀｲﾒｰｼﾞ2:REIGAI.csv〉
-#　HOST名 STARTTIME ENDTIME MESSAGE
-#　h1130045 201904010000 201904012359 message
-#　h1130046 201904010000 202004010000 message
-#　h1130047 201904010000 209904012359 message
-######################################################################
-#　JP1取り込み情報
-#  $1 = HOSTANME
-##  $2 = JP1MESSAGE
-#  $2 = JP1STARTDATE
-#  $3 = JP1STARTTIME
-######################################################################
-INprm=`ls sh/*IMPPRM`
-INprm2=`ls sh/*REIGAI.csv`
+[root@h0064113 tmp]# mkdir /media/cdrom
+[root@h0064113 tmp]# mount -o loop -t iso9660 /tmp/DWSA3C0N11.ISO /media/cdrom
+mount: /dev/loop0 is write-protected, mounting read-only
+[root@h0064113 tmp]# df -k
+ファイルシス          1K-ブロック     使用   使用可 使用% マウント位置
+/dev/mapper/vg00-root    32387868 11099900 19619668   37% /
+devtmpfs                  3989884        0  3989884    0% /dev
+tmpfs                     4005384        0  4005384    0% /dev/shm
+tmpfs                     4005384   197664  3807720    5% /run
+tmpfs                     4005384        0  4005384    0% /sys/fs/cgroup
+/dev/sda1                  487634   150011   307927   33% /boot
+tmpfs                      801080       12   801068    1% /run/user/42
+overlay                  32387868 11099900 19619668   37% /var/lib/docker/overlay2/0477d0b996651cc1d788b329246ad6fbdd86a3ec84a21bae43086279d90a2348/merged
+shm                         65536        0    65536    0% /var/lib/docker/containers/0e2d36f58aad0dff0efde4768bf807728b808dfe14cf7e739723af07ba5034a6/mounts/shm
+overlay                  32387868 11099900 19619668   37% /var/lib/docker/overlay2/4910fa468aade92d6228e09ed1a6042ee34a2940abc7d6a0f58c26020a7b2983/merged
+shm                         65536        4    65532    1% /var/lib/docker/containers/cf00bb32005cddde3697f4d23eef6c83064b31997f8fd0fd46483c183329c5fa/mounts/shm
+tmpfs                      801080        0   801080    0% /run/user/0
+[root@h0064113 tmp]# /media/cdrom/linux/setup
+.ICE-unix/                                                                    JP1SETUPV11.5/
+.Test-unix/                                                                   systemd-private-88ea44cc2f13412f8a4ac4deb64e9406-chronyd.service-9SPihG/
+.X0-lock                                                                      systemd-private-88ea44cc2f13412f8a4ac4deb64e9406-colord.service-YauMUb/
+.X11-unix/                                                                    systemd-private-88ea44cc2f13412f8a4ac4deb64e9406-cups.service-a0kvEw/
+.XIM-unix/                                                                    systemd-private-88ea44cc2f13412f8a4ac4deb64e9406-rtkit-daemon.service-54oUVA/
+.font-unix/                                                                   systemd-private-88ea44cc2f13412f8a4ac4deb64e9406-vgauthd.service-lFhJCv/
+DWSA3C0N11.ISO                                                                systemd-private-88ea44cc2f13412f8a4ac4deb64e9406-vmtoolsd.service-BuiJlq/
+[root@h0064113 tmp]# /media/cdrom/linux/setup /media/cdrom/
 
-JP1DATE=`echo "$2""$3" | sed -e 's/\///g' | sed -e 's/://g' | sed -e 's/..$//g'`
-JP1DATE2=`date '+%Y%m%d%H%M%S'`
+       PP-No.               VR        PP-NAME
+<@>001 P-CC812C-9MBL        115004    [RHEL] JP1/IM - Manager
+   002 P-CC9W2C-9MBL        115004    [SLES] JP1/IM - Manager
 
-JP1MES=`cat /tmp/jp1test/jp1mes.txt`
 
-SETPRM1()
-{
-     PRM1=`echo ${LINE} | awk '{print$1}'`
-     PRM2=`echo ${LINE} | awk '{print$2}'`
-     PRM3=`echo ${LINE} | awk '{print$3}'`
-     PRM4=`echo ${LINE} | awk '{print$4}'`
-}
 
-SETPRM2()
-{
-     PRM5=`echo ${LINE2} | awk '{print$1}'`
-     PRM6=`echo ${LINE2} | awk '{print$2}'`
-     PRM7=`echo ${LINE2} | awk '{print$3}'`
-     PRM8=`echo ${LINE2} | awk '{print$4}'`
-}
 
-IFS='
-'
 
-for LINE in `cat ${INprm} | grep "$1"`
-do
-     SETPRM1
-       echo "$JP1MES" | grep -E "${PRM2}" > /dev/null 2>&1
-       if [ $? = 0 ]
-         then
-         case "${PRM3}" in
-         *)
-         for LINE2 in `cat ${INprm2} | grep "$1"`
-         do
-           SETPRM2
-           if [ ${JP1DATE} -ge ${PRM6} ]
-             then
-             if [ ${JP1DATE} -lt ${PRM7} ]
-               then
-               echo "$JP1MES" | grep -E "${PRM8}" > /dev/null 2>&1
-               if [ $? = 0 ]
-                 then
-                 echo "非監視イベントです。"
-                 exit 0
-               fi
-             fi
-           fi
-         done
-         for LINE2 in `cat ${INprm2} | grep -E ^"\*"`
-         do
-           SETPRM2
-           if [ ${JP1DATE} -ge ${PRM6} ]
-             then
-             if [ ${JP1DATE} -lt ${PRM7} ]
-               then
-               echo "$JP1MES" | grep -E "${PRM8}" > /dev/null 2>&1
-               if [ $? = 0 ]
-                 then
-                 echo "非監視イベントです。"
-                 exit 0
-               fi
-             fi
-           fi
-         done
-         ansible-playbook -i hosts/hosts yml/${PRM3} -vv --extra-vars "JP1DATE=$JP1DATE2" --vault-password-file ~/ansible/.vault_password
-         exit 0
-         ;;
-         esac
-       fi
-done
 
-for LINE in `cat ${INprm} | grep -E ^"\*"`
-do
-     SETPRM1
-       echo "$JP1MES" | grep -E "${PRM2}" > /dev/null 2>&1
-       if [ $? = 0 ]
-         then
-         case "${PRM3}" in
-         *)
-         for LINE2 in `cat ${INprm2} | grep "$1"`
-         do
-           SETPRM2
-           if [ ${JP1DATE} -ge ${PRM6} ]
-             then
-             if [ ${JP1DATE} -lt ${PRM7} ]
-               then
-               echo "$JP1MES" | grep -E "${PRM8}" > /dev/null 2>&1
-               if [ $? = 0 ]
-                 then
-                 echo "非監視イベントです。"
-                 exit 0
-               fi
-             fi
-           fi
-         done
-         for LINE2 in `cat ${INprm2} | grep -E ^"\*"`
-         do
-           SETPRM2
-           if [ ${JP1DATE} -ge ${PRM6} ]
-             then
-             if [ ${JP1DATE} -lt ${PRM7} ]
-               then
-               echo "$JP1MES" | grep -E "${PRM8}" > /dev/null 2>&1
-               if [ $? = 0 ]
-                 then
-                 echo "非監視イベントです。"
-                 exit 0
-               fi
-             fi
-           fi
-         done
-         ansible-playbook -i hosts/hosts yml/${PRM3} -vv --extra-vars "JP1DATE=$JP1DATE2" --vault-password-file ~/ansible/.vault_password
-         exit 0
-         ;;
-         esac
-       fi
-done
-echo "対応不要イベントです。"
-exit 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+F) Forward B) Backward J) Down K) Up Space) Select/Unselect I) Install Q) Quit
+Installing.[25%] P-CC812C-9MBL        [RHEL] JP1/IM - Manager
+
+Please wait a few minutes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Hitachi PP Installer  05-31
+
+
+    L) List Installed Software.
+    I) Install Software.
+    D) Delete  Software.
+    Q) Quit.
+
+
+    Select Procedure ===>
+
+
+    +----------------------------------------------------------------------+
+      CAUTION!
+      YOU SHALL INSTALL AND USE THE SOFTWARE PRODUCT LISTED IN THE
+      "List Installed Software." UNDER THE TERMS AND CONDITION OF
+      THE SOFTWARE LICENSE AGREEMENT ATTACHED TO SUCH SOFTWARE PRODUCT.
+    +----------------------------------------------------------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  All Rights Reserved. Copyright (C) 1994, 2019, Hitachi, Ltd.
+Reading PP information. Please wait a few minutes.
+
+  Hitachi PP Installer  05-31
+
+
+    L) List Installed Software.
+    I) Install Software.
+    D) Delete  Software.
+    Q) Quit.
+
+
+    Select Procedure ===>
+
+
+    +----------------------------------------------------------------------+
+      CAUTION!
+      YOU SHALL INSTALL AND USE THE SOFTWARE PRODUCT LISTED IN THE
+      "List Installed Software." UNDER THE TERMS AND CONDITION OF
+      THE SOFTWARE LICENSE AGREEMENT ATTACHED TO SUCH SOFTWARE PRODUCT.
+    +----------------------------------------------------------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  All Rights Reserved. Copyright (C) 1994, 2019, Hitachi, Ltd.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[root@h0064113 tmp]#
+/dev/loop0                 579760   579760        0  100% /media/cdrom
+[root@h0064113 tmp]# umount /media/cdrom/
+[root@h0064113 tmp]# df -k
+ファイルシス          1K-ブロック     使用   使用可 使用% マウント位置
+/dev/mapper/vg00-root    32387868 11099920 19619648   37% /
+devtmpfs                  3989884        0  3989884    0% /dev
+tmpfs                     4005384        0  4005384    0% /dev/shm
+tmpfs                     4005384   197664  3807720    5% /run
+tmpfs                     4005384        0  4005384    0% /sys/fs/cgroup
+/dev/sda1                  487634   150011   307927   33% /boot
+tmpfs                      801080       12   801068    1% /run/user/42
+overlay                  32387868 11099920 19619648   37% /var/lib/docker/overlay2/0477d0b996651cc1d788b329246ad6fbdd86a3ec84a21bae43086279d90a2348/merged
+shm                         65536        0    65536    0% /var/lib/docker/containers/0e2d36f58aad0dff0efde4768bf807728b808dfe14cf7e739723af07ba5034a6/mounts/shm
+overlay                  32387868 11099920 19619648   37% /var/lib/docker/overlay2/4910fa468aade92d6228e09ed1a6042ee34a2940abc7d6a0f58c26020a7b2983/merged
+shm                         65536        4    65532    1% /var/lib/docker/containers/cf00bb32005cddde3697f4d23eef6c83064b31997f8fd0fd46483c183329c5fa/mounts/shm
+tmpfs                      801080        0   801080    0% /run/user/0
+[root@h0064113 tmp]#
+
+[root@h0064113 tmp]# cp /etc/services /etc/services.20191023
+[root@h0064113 tmp]# ls /etc/services*
+/etc/services  /etc/services.20190620  /etc/services.20190703  /etc/services.20191023  /etc/services.OLD
+[root@h0064113 tmp]# tail -20 /etc/services
+
+jp1imevt                11148/tcp       #JP1/IM Event
+jp1imevtapi             11149/tcp       #JP1/IM Event API
+jp1imrt         11151/tcp       #JP1/Base
+jp1imcmda               11152/tcp       #JP1/Base Remote command exec for Client
+jp1imcmdc               11153/tcp       #JP1/Base Remote command exec for Daemon
+jp1bsuser               11154/tcp       #JP1/Base Authorization Server
+jp1bsplugin             11651/tcp       #JP1/Base plugin
+jp1bscom                13074/tcp       #JP1/Base interprocess communication
+jp1imevtcon             20115/tcp       #JP1/Console
+jp1imcss                20305/tcp       #JP1/Scope
+jp1imeds                23045/tcp       #JP1/Console Incident Registration Service
+jp1imegs                20383/tcp       #JP1/Console Event Generation Service
+jp1imfcs                20701/tcp       #JP1/Console Event Flow Control Service
+jp1imcf         20702/tcp       #JP1/IM - CF
+[root@h0064113 tmp]# vi /etc/services
+[root@h0064113 tmp]# tail -20 /etc/services
+
+jp1imevt                11148/tcp       #JP1/IM Event
+jp1imevtapi             11149/tcp       #JP1/IM Event API
+jp1imrt         11151/tcp       #JP1/Base
+jp1imcmda               11152/tcp       #JP1/Base Remote command exec for Client
+jp1imcmdc               11153/tcp       #JP1/Base Remote command exec for Daemon
+jp1bsuser               11154/tcp       #JP1/Base Authorization Server
+jp1bsplugin             11651/tcp       #JP1/Base plugin
+jp1bscom                13074/tcp       #JP1/Base interprocess communication
+jp1imevtcon             11150/tcp       #JP1/Console
+#jp1imcss               20305/tcp       #JP1/Scope
+#jp1imeds               23045/tcp       #JP1/Console Incident Registration Service
+#jp1imegs               20383/tcp       #JP1/Console Event Generation Service
+jp1imfcs                13075/tcp       #JP1/Console Event Flow Control Service
+#jp1imcf                20702/tcp       #JP1/IM - CF
+[root@h0064113 ~]# /opt/jp1imm/bin/imdb/jcfdbsetup -f /etc/opt/jp1imm/conf/imdb/
+KNAN11005-I IMデータベースサービスをセットアップします
+KNAN11006-I IMデータベースサービスのサイズ : S
+KNAN11007-I IMデータベースサービスのデータ格納ディレクトリ : /var/opt/jp1imm/dat
+KNAN11008-I IMデータベースサービスのポート番号 : 20700
+KNAN11066-I IMデータベースサービスのインストールディレクトリ : /var/opt/jp1imm/d
+KNAN11009-Q 処理を続行しますか？ (Y/N) : y
+KNAN11010-I セットアップを開始します
+KNAN11028-I しばらくお待ちください
+KNAN11013-I IMデータベースサービスをインストールします
+KNAN11014-I IMデータベースサービスをインストールしました
+KNAN11016-I IMデータベースサービスのシステムDB領域を作成します
+KNAN11017-I IMデータベースサービスのシステムDB領域を作成しました
+KNAN11074-I IMデータベースサービスのIM構成管理DB領域を作成します
+KNAN11075-I IMデータベースサービスのIM構成管理DB領域を作成しました
+KNAN11012-I セットアップは正常に終了しました
+[root@h0064113 ~]# /opt/jp1cons/bin/jcodbsetup -f /etc/opt/jp1imm/conf/imdb/setu
+KNAN11005-I IMデータベースサービスをセットアップします
+KNAN11006-I IMデータベースサービスのサイズ : S
+KNAN11007-I IMデータベースサービスのデータ格納ディレクトリ : /var/opt/jp1imm/dat
+KNAN11008-I IMデータベースサービスのポート番号 : 20700
+KNAN11066-I IMデータベースサービスのインストールディレクトリ : /var/opt/jp1imm/d
+KNAN11009-Q 処理を続行しますか？ (Y/N) : y
+KNAN11010-I セットアップを開始します
+KNAN11028-I しばらくお待ちください
+KNAN11015-I IMデータベースサービスは既にインストールされています
+KNAN11018-I IMデータベースサービスのシステムDB領域は既に作成されています
+KNAN11019-I IMデータベースサービスの統合監視DB領域を作成します
+KNAN11020-I IMデータベースサービスの統合監視DB領域を作成しました
+KNAN11012-I セットアップは正常に終了しました
+[root@h0064113 ~]# /opt/jp1cons/bin/jco_spmd
+[root@h0064113 ~]# /opt/jp1cons/bin/jco_spmd_status
+KAVB3690-I JP1_CONS の状態通知処理を開始します
+稼働中のプロセスを表示します
+プロセス名称 プロセスID
+      evflow      21398
+     jcamain      21484
+      evtcon      21485
+     jcfmain      21399
+KAVB3691-I プロセスは全て起動しています
+[root@h0064113 ~]# /opt/jp1cons/bin/jcoimdef -hostmap ON
+F_TIME_TO_GO_BACK=-1
+F_EVENT_CONNECT_RETRY_INTERVAL=10
+F_DISPATCH_CONNECT_RETRY_COUNT=30
+F_DISPATCH_CONNECT_RETRY_INTERVAL=2
+F_DISPATCH_TIME_OUT=60
+F_DISPATCH_RETRY_COUNT=3
+F_DISPATCH_RETRY_INTERVAL=0
+F_CS=OFF
+A_REEXECUTE_RUNNING_ACTION=OFF
+S_EGS=OFF
+A_RULE=OFF
+A_RULE_HOST=
+A_RULE_USER=
+S_RESEVENT=OFF
+S_MEMO=OFF
+S_CHANGE_SEVERITY=OFF
+S_DB=ON
+S_DBNTC=OFF
+S_DBNTCPOS=80
+S_CF=ON
+S_CMDBTN=ON
+S_HOSTMAP=ON
+S_BIZMONMODE=OFF
+S_IGNORECASEHOST=OFF
+S_STORM=OFF
+[root@h0064113 ~]# /opt/jp1cons/bin/jcoimdef -cmdbtn ON
+F_TIME_TO_GO_BACK=-1
+F_EVENT_CONNECT_RETRY_INTERVAL=10
+F_DISPATCH_CONNECT_RETRY_COUNT=30
+F_DISPATCH_CONNECT_RETRY_INTERVAL=2
+F_DISPATCH_TIME_OUT=60
+F_DISPATCH_RETRY_COUNT=3
+F_DISPATCH_RETRY_INTERVAL=0
+F_CS=OFF
+A_REEXECUTE_RUNNING_ACTION=OFF
+S_EGS=OFF
+A_RULE=OFF
+A_RULE_HOST=
+A_RULE_USER=
+S_RESEVENT=OFF
+S_MEMO=OFF
+S_CHANGE_SEVERITY=OFF
+S_DB=ON
+S_DBNTC=OFF
+S_DBNTCPOS=80
+S_CF=ON
+S_CMDBTN=ON
+S_HOSTMAP=ON
+S_BIZMONMODE=OFF
+S_IGNORECASEHOST=OFF
+S_STORM=OFF
+[root@h0064113 ~]# /opt/jp1cons/bin/jco_spmd_status
+KAVB3690-I JP1_CONS の状態通知処理を開始します
+稼働中のプロセスを表示します
+プロセス名称 プロセスID
+      evflow      21398
+     jcamain      21484
+      evtcon      21485
+     jcfmain      21399
+KAVB3691-I プロセスは全て起動しています
+[root@h0064113 ~]# 
+[root@h0064113 ~]# cp /etc/opt/jp1cons/jco_start.model /etc/opt/jp1cons/jco_start
+[root@h0064113 ~]# ls -l /etc/opt/jp1cons/jco_start*
+-r-x------ 1 root root 6803 10月 23 17:19 /etc/opt/jp1cons/jco_start
+-r-x------ 1 root root 6803  2月  4  2019 /etc/opt/jp1cons/jco_start.cluster
+-r-x------ 1 root root 6803  2月  4  2019 /etc/opt/jp1cons/jco_start.model
+[root@h0064113 ~]# vi /etc/opt/jp1cons/jco_start
+[root@h0064113 ~]# cat /etc/opt/jp1cons/jco_start | grep LANG
+LANG=ja_JP.UTF-8
+export PATH LANG SHLIB_PATH LD_LIBRARY_PATH HCCLIBCNF
+[root@h0064113 ~]#
+[root@h0064113 ~]# cp /etc/opt/jp1cons/jco_stop.model /etc/opt/jp1cons/jco_stop
+[root@h0064113 ~]# ls -l /etc/opt/jp1cons/jco_stop*
+-r-x------ 1 root root 4052 10月 23 17:25 /etc/opt/jp1cons/jco_stop
+-r-x------ 1 root root 4052  2月  4  2019 /etc/opt/jp1cons/jco_stop.cluster
+-r-x------ 1 root root 4052  2月  4  2019 /etc/opt/jp1cons/jco_stop.model
+[root@h0064113 ~]# vi /etc/opt/jp1cons/jco_stop
+[root@h0064113 ~]# cat /etc/opt/jp1cons/jco_stop | grep LANG
+LANG=ja_JP.UTF-8
+export PATH LANG SHLIB_PATH LD_LIBRARY_PATH HCCLIBCNF
+
+[root@h0064113 ~]# cat /etc/opt/jp1cons/conf/jp1co_env.conf
+HCCLIBCNF=/opt/jp1/hcclibcnf
+PATH=/opt/jp1cons/bin:/opt/jp1base/bin:<-PATH->
+LD_LIBRARY_PATH=/opt/jp1cons/lib:/opt/jp1base/lib:/opt/hitachi/common/lib:<-LD_LIBRARY_PATH->
+[root@h0064113 ~]# cat /etc/opt/jp1cons/default/action.conf
+[JP1_DEFAULT\JP1CONSOLEMANAGER\ACTION]
+"ACTIONINFSIZE"=dword:00001000
+"EVENTALIVEPERIOD"=dword:0000003c
+"ACTIONEXECUSER"=""
+"ACTIONDEFFILE"="actdef.conf"
+"HOSTINEVENT"="remote"
+"ACTIONINFFILE"="actinf.log"
+"ACTIONLIMIT"=dword:0000000a
+"SENDABLE_EVENT"="20A0 20A3 20A4"
+"ACTIONPRIORITY"="DEFAULT"
+
+[JP1_DEFAULT\JP1CONSOLEMANAGER\LOG_CONTROL\JCAMAIN]
+"LOGSIZE"=dword:00500000
+
+
+[root@h0064113 ~]# cat /etc/opt/jp1cons/default/console.conf
+[JP1_DEFAULT\JP1CONSOLEMANAGER\EVCONS]
+"COM_SO_TIMEOUT"=dword:0000EA60
+
+[JP1_DEFAULT\JP1CONSOLE_CMD]
+"COM_SO_TIMEOUT"=dword:0000EA60
+"COM_RETRY_COUNT"=dword:00000003
+"COM_RETRY_INTERVAL"=dword:00000BB8
+"COM_RMI_TIMEOUT"=dword:0000EA60
+[root@h0064113 ~]#
