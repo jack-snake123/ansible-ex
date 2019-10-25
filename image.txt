@@ -313,7 +313,7 @@ jp1imevtcon             11150/tcp       #JP1/Console
 #jp1imegs               20383/tcp       #JP1/Console Event Generation Service
 jp1imfcs                13075/tcp       #JP1/Console Event Flow Control Service
 #jp1imcf                20702/tcp       #JP1/IM - CF
-[root@h0064113 ~]# /opt/jp1imm/bin/imdb/jcfdbsetup -f /etc/opt/jp1imm/conf/imdb/
+[root@h0064113 ~]# /opt/jp1imm/bin/imdb/jcfdbsetup -f /etc/opt/jp1imm/conf/imdb/setup/jimdbsetupinfo.conf
 KNAN11005-I IMデータベースサービスをセットアップします
 KNAN11006-I IMデータベースサービスのサイズ : S
 KNAN11007-I IMデータベースサービスのデータ格納ディレクトリ : /var/opt/jp1imm/dat
@@ -329,7 +329,7 @@ KNAN11017-I IMデータベースサービスのシステムDB領域を作成し�
 KNAN11074-I IMデータベースサービスのIM構成管理DB領域を作成します
 KNAN11075-I IMデータベースサービスのIM構成管理DB領域を作成しました
 KNAN11012-I セットアップは正常に終了しました
-[root@h0064113 ~]# /opt/jp1cons/bin/jcodbsetup -f /etc/opt/jp1imm/conf/imdb/setu
+[root@h0064113 ~]# /opt/jp1cons/bin/jcodbsetup -f /etc/opt/jp1imm/conf/imdb/setup/jimdbsetupinfo.conf
 KNAN11005-I IMデータベースサービスをセットアップします
 KNAN11006-I IMデータベースサービスのサイズ : S
 KNAN11007-I IMデータベースサービスのデータ格納ディレクトリ : /var/opt/jp1imm/dat
@@ -464,4 +464,36 @@ LD_LIBRARY_PATH=/opt/jp1cons/lib:/opt/jp1base/lib:/opt/hitachi/common/lib:<-LD_L
 "COM_RETRY_COUNT"=dword:00000003
 "COM_RETRY_INTERVAL"=dword:00000BB8
 "COM_RMI_TIMEOUT"=dword:0000EA60
+[root@h0064113 ~]#
+
+[root@h0064113 ~]# cat /etc/opt/jp1base/conf/event/servers/default/forward
+#------------------------------------------------------------------------------
+# JP1/Base - Event Server Forwarding Setting
+#------------------------------------------------------------------------------
+to-upper
+E.SEVERITY IN Error
+end-to
+[root@h0064113 ~]# vi /etc/opt/jp1base/conf/event/servers/default/forward
+[root@h0064113 ~]# cat /etc/opt/jp1base/conf/event/servers/default/forward
+#------------------------------------------------------------------------------
+# JP1/Base - Event Server Forwarding Setting
+#------------------------------------------------------------------------------
+to-upper
+E.SEVERITY IN Error
+B.SOURCESERVER IN h0064113
+end-to
+[root@h0064113 ~]# /opt/jp1base/bin/jevreload
+[root@h0064113 ~]# cat /etc/opt/jp1cons/conf/action/actdef.conf
+DESC_VERSION=4
+
+cmn
+        sta false
+end-cmn
+[root@h0064113 ~]# vi /etc/opt/jp1cons/conf/action/actdef.conf
+[root@h0064113 ~]# cat /etc/opt/jp1cons/conf/action/actdef.conf
+DESC_VERSION=3
+
+cmn
+        sta false
+end-cmn
 [root@h0064113 ~]#
