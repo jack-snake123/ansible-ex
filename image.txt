@@ -18,3 +18,22 @@ end-to
 to h0064113
 E.SEVERITY IN Warning Error Critical Alert Emergency Emergence Information
 end-to
+
+
+[root@h0064113 ~]# cat /jp1/jp1api.sh
+#!/bin/sh
+
+#jp1自動アクションコマンド
+#/jp1/jp1api.sh "${EVID}" "${EVHOST}" "${EVMSG}" "${EVDATE}" "${EVTIME}"
+
+#JP1メッセージ"エスケープ処理
+mes=`echo "$3" | sed -e 's/\"/\\\"/g'`
+
+#APIコマンド生成
+echo "curl -X POST http://10.120.64.113:8080/job/JP1JOB/job/JP1TEST01/build --user jenkins:67e955a4e1027a17c0ebf7112449293b --form json='{\"parameter\": [{\"name\":\"JP1EVENTID\", \"value\":\""$1"\"}, {\"name\":\"JP1EVSEQNO\", \"value\":\"""$RANDOM""\"}, {\"name\":\"JP1EVENTHOST\", \"value\":\"""$2""\"}, {\"name\":\"JP1EVENTMESSAGE\", \"value\":\"""$mes""\"}, {\"name\":\"JP1EVENTDATE\", \"value\":\"""$4""\"}, {\"name\":\"JP1EVENTTIME\", \"value\":\"""$5""\"}]}'" > /jp1/curl.txt
+
+#APIコマンド実行
+source /jp1/curl.txt
+
+#+0 * ,,,/----E---/ :d=h0064113 /jp1/jp1api.sh "${EVID}" "${EVHOST}" "${EVMSG}" "${EVDATE}" "${EVTIME}"
++0 * /JP1TEST001/,/^.* .* .* .* .* h0064113/,, :d=h0064113 /jp1/jp1api.sh "${EVID}" "${EVHOST}" "${EVMSG}" "${EVDATE}" "${EVTIME}"
