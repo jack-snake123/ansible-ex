@@ -1,15 +1,13 @@
-#!/bin/sh
+Import os
 
-#jp1自動アクションコマンド
-#/jp1/jp1api.sh "${EVID}" "${EVHOST}" "${EVMSG}" "${EVDATE}" "${EVTIME}"
+mailbody_dir = ‘メールボディがあるディレクトリ’
+mailbody_ptn = ‘mailbody.txt_’
 
-#JP1メッセージ"エスケープ処理
-mes=`echo "$3" | sed -e 's/\"/\\\"/g'`
+#----- ディレクリ内ファイルやディレクトを全てリスト化
+dir_lst = os.listdir(mailbody_dir)
 
-#APIコマンド生成
-echo "curl -X POST http://xxx.xxx.xxx.xxx:8080/job/JP1JOB/job/JP1TEST01/build --user jenkins:0a9d4c4529624478e1bd166cb669a3e1 --form json='{\"parameter\": [{
-\"name\":\"JP1EVENTID\", \"value\":\""$1"\"}, {\"name\":\"JP1EVENTHOST\", \"value\":\"""$2""\"}, {\"name\":\"JP1EVENTMESSAGE\", \"value\":\"""$mes""\"}, {\"n
-ame\":\"JP1EVENTDATE\", \"value\":\"""$4""\"}, {\"name\":\"JP1EVENTTIME\", \"value\":\"""$5""\"}]}'" > /jp1/curl.txt
+##----- 検索文字で抽出されたファイルやディレクトリ名をリスト化
+mlbody_lst = [line for line in dir_list if mailbody_ptn in line]
 
-#APIコマンド実行
-source /jp1/curl.txt
+for mlbody in mlbody_lst:
+             メール送信処理
