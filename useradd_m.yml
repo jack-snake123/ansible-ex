@@ -1,5 +1,13 @@
 ---
 - hosts: localhost
+  gather_facts: false
+
+  vars_files:
+  - secret.yml
+
+  vars:
+  - ansible_user: "{{ linux_user }}"
+  - ansible_password: "{{ linux_pass }}"
 
   tasks:
     - name: Road User
@@ -16,20 +24,3 @@
     - name: Add Wheel
       shell: usermod -G wheel "{{ item }}"
       with_items: "{{ username.stdout_lines }}"
-
----
-- hosts: windows
-
-  tasks:
-    - name: Road User
-      win_shell: Get-ContentC:\Work\userlist
-      register: username
-
-    - name: Add User
-      win_user:
-        name: "{{ item }}"
-        password: "{{ item | password_hash('sha512') }}"
-        groups:
-        - Administrators
-      with_items: "{{ username.stdout_lines }}"
-
