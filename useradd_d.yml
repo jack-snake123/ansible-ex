@@ -1,0 +1,30 @@
+---
+- hosts: localhost
+
+  tasks:
+    - name: Road User
+      shell: cat /tmp/userlist
+      register: username
+
+    - name: Add User
+      user:
+        name: "{{ item }}"
+        password: "{{ item | password_hash('sha512') }}"
+        update_password: on_create
+      with_items: "{{ username.stdout_lines }}"
+
+- hosts: windows
+
+  tasks:
+    - name: Road User
+      win_shell: Get-ContentC:\Work\userlist
+      register: username
+
+    - name: Add User
+      win_user:
+        name: "{{ item }}"
+        password: "{{ item | password_hash('sha512') }}"
+        groups:
+        - Users
+        - Remote Desktop Users
+      with_items: "{{ username.stdout_lines }}"
