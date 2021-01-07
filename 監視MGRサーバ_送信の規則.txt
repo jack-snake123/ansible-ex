@@ -1,0 +1,96 @@
+名前	グループ	プロファイル	有効	操作	優先	プログラム	ローカル アドレス	リモート アドレス	プロトコル	ローカル ポート	リモート ポート	承認されているコンピューター	承認されたローカル プリンシパル	ローカル ユーザー オーナー	アプリケーション パッケージ	
+20201211_セグメント切替テスト		すべて	いいえ	ブロック	いいえ	任意	任意	10.191.1.2-10.191.1.30, 192.168.8.2-192.168.8.14, 202.32.74.3	任意	任意	任意	任意	任意	任意	任意	
+AllJoyn ルーター (TCP 送信)	AllJoyn ルーター	ドメイン, プライベート	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
+AllJoyn ルーター (UDP 送信)	AllJoyn ルーター	ドメイン, プライベート	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	UDP	任意	任意	任意	任意	任意	任意	
+BranchCache コンテンツ取得 (HTTP-送信)	BranchCache - コンテンツ取得 (HTTP を使用)	すべて	いいえ	許可	いいえ	SYSTEM	任意	任意	TCP	任意	80	任意	任意	任意	任意	
+BranchCache ピア検出 (WSD-送信)	BranchCache - ピア検出 (WSD を使用)	すべて	いいえ	許可	いいえ	%systemroot%\system32\svchost.exe	任意	ローカル サブネット	UDP	任意	3702	任意	任意	任意	任意	
+BranchCache ホスト型キャッシュ クライアント (HTTP-送信)	BranchCache - ホスト型キャッシュ クライアント (HTTPS を使用)	すべて	いいえ	許可	いいえ	SYSTEM	任意	任意	TCP	任意	80, 443	任意	任意	任意	任意	
+BranchCache ホスト型キャッシュ サーバー (HTTP-送信)	BranchCache - ホスト型キャッシュ サーバー (HTTPS を使用)	すべて	いいえ	許可	いいえ	SYSTEM	任意	任意	TCP	80, 443	任意	任意	任意	任意	任意	
+Connected User Experiences and Telemetry	DiagTrack	すべて	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	TCP	任意	443	任意	任意	任意	任意	
+iSCSI サービス (TCP 送信)	iSCSI サービス	すべて	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
+mDNS (UDP 送信)	mDNS	プライベート	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	ローカル サブネット	UDP	任意	5353	任意	任意	任意	任意	
+mDNS (UDP 送信)	mDNS	ドメイン	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	UDP	任意	5353	任意	任意	任意	任意	
+mDNS (UDP 送信)	mDNS	パブリック	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	ローカル サブネット	UDP	任意	5353	任意	任意	任意	任意	
+SNMP サービス (UDP 送信)	SNMP サービス	ドメイン	はい	許可	いいえ	%SystemRoot%\system32\snmp.exe	任意	任意	UDP	任意	161	任意	任意	任意	任意	
+SNMP サービス (UDP 送信)	SNMP サービス	プライベート, パブリック	はい	許可	いいえ	%SystemRoot%\system32\snmp.exe	任意	ローカル サブネット	UDP	任意	161	任意	任意	任意	任意	
+TPM 仮想スマートカード管理 (TCP 送信)	TPM 仮想スマートカード管理	ドメイン	いいえ	許可	いいえ	%SystemRoot%\system32\RmtTpmVscMgrSvr.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
+TPM 仮想スマートカード管理 (TCP 送信)	TPM 仮想スマートカード管理	プライベート, パブリック	いいえ	許可	いいえ	%SystemRoot%\system32\RmtTpmVscMgrSvr.exe	任意	ローカル サブネット	TCP	任意	任意	任意	任意	任意	任意	
+Windows Management Instrumentation (WMI 送信)	Windows Management Instrumentation (WMI)	すべて	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
+Windows Media Player (TCP 送信)	Windows Media Player	すべて	いいえ	許可	いいえ	%ProgramFiles%\Windows Media Player\wmplayer.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
+Windows Media Player (UDP 送信)	Windows Media Player	すべて	いいえ	許可	いいえ	%ProgramFiles%\Windows Media Player\wmplayer.exe	任意	任意	UDP	任意	任意	任意	任意	任意	任意	
+Windows Media Player x86 (TCP 送信)	Windows Media Player	すべて	いいえ	許可	いいえ	%ProgramFiles(x86)%\Windows Media Player\wmplayer.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
+Windows Media Player x86 (UDP 送信)	Windows Media Player	すべて	いいえ	許可	いいえ	%ProgramFiles(x86)%\Windows Media Player\wmplayer.exe	任意	任意	UDP	任意	任意	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (HTTP ストリーミング送信)	Windows Media Player ネットワーク共有サービス	ドメイン	いいえ	許可	いいえ	System	任意	任意	TCP	任意	10243	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (HTTP ストリーミング送信)	Windows Media Player ネットワーク共有サービス	プライベート, パブリック	いいえ	許可	いいえ	System	任意	ローカル サブネット	TCP	任意	10243	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (qWave TCP 送信)	Windows Media Player ネットワーク共有サービス	プライベート, パブリック	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	ローカル サブネット	TCP	任意	2177	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (qWave TCP 送信)	Windows Media Player ネットワーク共有サービス	ドメイン	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	TCP	任意	2177	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (qWave UDP 送信)	Windows Media Player ネットワーク共有サービス	ドメイン	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	UDP	任意	2177	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (qWave UDP 送信)	Windows Media Player ネットワーク共有サービス	プライベート, パブリック	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	ローカル サブネット	UDP	任意	2177	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (SSDP 送信)	Windows Media Player ネットワーク共有サービス	すべて	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	ローカル サブネット	UDP	任意	1900	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (TCP 送信)	Windows Media Player ネットワーク共有サービス	ドメイン	いいえ	許可	いいえ	%PROGRAMFILES%\Windows Media Player\wmpnetwk.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (TCP 送信)	Windows Media Player ネットワーク共有サービス	プライベート, パブリック	いいえ	許可	いいえ	%PROGRAMFILES%\Windows Media Player\wmpnetwk.exe	任意	ローカル サブネット	TCP	任意	任意	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (UDP 送信)	Windows Media Player ネットワーク共有サービス	プライベート, パブリック	いいえ	許可	いいえ	%PROGRAMFILES%\Windows Media Player\wmpnetwk.exe	任意	ローカル サブネット	UDP	任意	任意	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (UDP 送信)	Windows Media Player ネットワーク共有サービス	ドメイン	いいえ	許可	いいえ	%PROGRAMFILES%\Windows Media Player\wmpnetwk.exe	任意	任意	UDP	任意	任意	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (UPnP 送信)	Windows Media Player ネットワーク共有サービス	すべて	いいえ	許可	いいえ	System	任意	ローカル サブネット	TCP	任意	任意	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (UPnPHost 送信)	Windows Media Player ネットワーク共有サービス	すべて	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	ローカル サブネット	TCP	任意	任意	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (ストリーミング TCP 送信)	Windows Media Player ネットワーク共有サービス	ドメイン	いいえ	許可	いいえ	%PROGRAMFILES%\Windows Media Player\wmplayer.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (ストリーミング TCP 送信)	Windows Media Player ネットワーク共有サービス	プライベート, パブリック	いいえ	許可	いいえ	%PROGRAMFILES%\Windows Media Player\wmplayer.exe	任意	ローカル サブネット	TCP	任意	任意	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (ストリーミング UDP 送信)	Windows Media Player ネットワーク共有サービス	プライベート, パブリック	いいえ	許可	いいえ	%PROGRAMFILES%\Windows Media Player\wmplayer.exe	任意	ローカル サブネット	UDP	任意	任意	任意	任意	任意	任意	
+Windows Media Player ネットワーク共有サービス (ストリーミング UDP 送信)	Windows Media Player ネットワーク共有サービス	ドメイン	いいえ	許可	いいえ	%PROGRAMFILES%\Windows Media Player\wmplayer.exe	任意	任意	UDP	任意	任意	任意	任意	任意	任意	
+Windows デバイス管理証明書インストーラー (TCP 送信)	Windows デバイスの管理	すべて	はい	許可	いいえ	%SystemRoot%\system32\dmcertinst.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
+Windows デバイス管理登録サービス (TCP 送信)	Windows デバイスの管理	すべて	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
+Windows デバイス管理同期クライアント (TCP 送信)	Windows デバイスの管理	すべて	はい	許可	いいえ	%SystemRoot%\system32\omadmclient.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - DNS (UDP 送信)	コア ネットワーク	すべて	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	UDP	任意	53	任意	任意	任意	任意	
+コア ネットワーク - IPHTTPS (TCP-送信)	コア ネットワーク	すべて	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	TCP	任意	IPHTTPS	任意	任意	任意	任意	
+コア ネットワーク - IPv6 (IPv6 送信)	コア ネットワーク	すべて	はい	許可	いいえ	System	任意	任意	IPv6	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - IPv6 用動的ホスト構成プロトコル (DHCPV6-送信)	コア ネットワーク	すべて	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	UDP	546	547	任意	任意	任意	任意	
+コア ネットワーク - Teredo (UDP 送信)	コア ネットワーク	すべて	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	UDP	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - インターネット グループ管理プロトコル (IGMP 送信)	コア ネットワーク	すべて	はい	許可	いいえ	System	任意	任意	IGMP	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - グループ ポリシー (LSASS 送信)	コア ネットワーク	ドメイン	はい	許可	いいえ	%SystemRoot%\system32\lsass.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - グループ ポリシー (NP 送信)	コア ネットワーク	ドメイン	はい	許可	いいえ	System	任意	任意	TCP	任意	445	任意	任意	任意	任意	
+コア ネットワーク - グループ ポリシー (TCP 送信)	コア ネットワーク	ドメイン	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - パケットが大きすぎます (ICMPv6 送信)	コア ネットワーク	すべて	はい	許可	いいえ	System	任意	任意	ICMPv6	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - パラメーターの問題 (ICMPv6 送信)	コア ネットワーク	すべて	はい	許可	いいえ	System	任意	任意	ICMPv6	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - マルチキャスト リスナー クエリ (ICMPv6 送信)	コア ネットワーク	すべて	はい	許可	いいえ	System	任意	ローカル サブネット	ICMPv6	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - マルチキャスト リスナー レポート (ICMPv6 送信)	コア ネットワーク	すべて	はい	許可	いいえ	System	任意	ローカル サブネット	ICMPv6	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - マルチキャスト リスナー レポート v2 (ICMPv6 送信)	コア ネットワーク	すべて	はい	許可	いいえ	System	任意	ローカル サブネット	ICMPv6	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - マルチキャスト リスナー完了 (ICMPv6 送信)	コア ネットワーク	すべて	はい	許可	いいえ	System	任意	ローカル サブネット	ICMPv6	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - ルーター アドバタイズ (ICMPv6 送信)	コア ネットワーク	すべて	はい	許可	いいえ	System	fe80::/64	ローカル サブネット, ff02::1, fe80::/64	ICMPv6	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - ルーター要請 (ICMPv6 送信)	コア ネットワーク	すべて	はい	許可	いいえ	System	任意	ローカル サブネット, ff02::2, fe80::/64	ICMPv6	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - 近隣探索アドバタイズ (ICMPv6 送信)	コア ネットワーク	すべて	はい	許可	いいえ	System	任意	任意	ICMPv6	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - 近隣探索要請 (ICMPv6 送信)	コア ネットワーク	すべて	はい	許可	いいえ	System	任意	任意	ICMPv6	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - 時間超過 (ICMPv6 送信)	コア ネットワーク	すべて	はい	許可	いいえ	System	任意	任意	ICMPv6	任意	任意	任意	任意	任意	任意	
+コア ネットワーク - 動的ホスト構成プロトコル (DHCP 送信)	コア ネットワーク	すべて	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	任意	UDP	68	67	任意	任意	任意	任意	
+デバイス キャスト ストリーミング サーバー (RTP ストリーミング送信)	デバイス キャスト機能	ドメイン	はい	許可	いいえ	%SystemRoot%\system32\mdeserver.exe	任意	任意	UDP	任意	任意	任意	任意	任意	任意	
+デバイス キャスト ストリーミング サーバー (RTP ストリーミング送信)	デバイス キャスト機能	プライベート	はい	許可	いいえ	%SystemRoot%\system32\mdeserver.exe	任意	ローカル サブネット	UDP	任意	任意	任意	任意	任意	任意	
+デバイス キャスト ストリーミング サーバー (RTP ストリーミング送信)	デバイス キャスト機能	パブリック	はい	許可	いいえ	%SystemRoot%\system32\mdeserver.exe	任意	PlayTo レンダラー	UDP	任意	任意	任意	任意	任意	任意	
+デバイス キャスト機能 (qWave TCP 送信)	デバイス キャスト機能	プライベート, パブリック	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	PlayTo レンダラー	TCP	任意	2177	任意	任意	任意	任意	
+デバイス キャスト機能 (qWave UDP 送信)	デバイス キャスト機能	プライベート, パブリック	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	PlayTo レンダラー	UDP	任意	2177	任意	任意	任意	任意	
+ネットワーク探索 (LLMNR UDP 送信)	ネットワーク探索	すべて	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	ローカル サブネット	UDP	任意	5355	任意	任意	任意	任意	
+ネットワーク探索 (NB データグラム送信)	ネットワーク探索	すべて	いいえ	許可	いいえ	System	任意	任意	UDP	任意	138	任意	任意	任意	任意	
+ネットワーク探索 (NB 名送信)	ネットワーク探索	すべて	いいえ	許可	いいえ	System	任意	任意	UDP	任意	137	任意	任意	任意	任意	
+ネットワーク探索 (Pub WSD 送信)	ネットワーク探索	すべて	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	ローカル サブネット	UDP	任意	3702	任意	任意	任意	任意	
+ネットワーク探索 (SSDP 送信)	ネットワーク探索	すべて	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	ローカル サブネット	UDP	任意	1900	任意	任意	任意	任意	
+ネットワーク探索 (UPnP 送信)	ネットワーク探索	すべて	いいえ	許可	いいえ	System	任意	任意	TCP	任意	2869	任意	任意	任意	任意	
+ネットワーク探索 (UPnPHost 送信)	ネットワーク探索	すべて	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	ローカル サブネット	TCP	任意	2869	任意	任意	任意	任意	
+ネットワーク探索 (WSD EventsSecure 送信)	ネットワーク探索	すべて	いいえ	許可	いいえ	System	任意	任意	TCP	任意	5358	任意	任意	任意	任意	
+ネットワーク探索 (WSD イベント送信)	ネットワーク探索	すべて	いいえ	許可	いいえ	System	任意	任意	TCP	任意	5357	任意	任意	任意	任意	
+ネットワーク探索 (WSD 送信)	ネットワーク探索	すべて	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	ローカル サブネット	UDP	任意	3702	任意	任意	任意	任意	
+ファイルとプリンターの共有 (LLMNR UDP 送信)	ファイルとプリンターの共有	パブリック	はい	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	ローカル サブネット	UDP	任意	5355	任意	任意	任意	任意	
+ファイルとプリンターの共有 (LLMNR UDP 送信)	ファイルとプリンターの共有	ドメイン, プライベート	いいえ	許可	いいえ	%SystemRoot%\system32\svchost.exe	任意	ローカル サブネット	UDP	任意	5355	任意	任意	任意	任意	
+ファイルとプリンターの共有 (NB データグラム送信)	ファイルとプリンターの共有	パブリック	はい	許可	いいえ	System	任意	任意	UDP	任意	138	任意	任意	任意	任意	
+ファイルとプリンターの共有 (NB データグラム送信)	ファイルとプリンターの共有	ドメイン, プライベート	いいえ	許可	いいえ	System	任意	任意	UDP	任意	138	任意	任意	任意	任意	
+ファイルとプリンターの共有 (NB 名送信)	ファイルとプリンターの共有	ドメイン, プライベート	いいえ	許可	いいえ	System	任意	任意	UDP	任意	137	任意	任意	任意	任意	
+ファイルとプリンターの共有 (NB 名送信)	ファイルとプリンターの共有	パブリック	はい	許可	いいえ	System	任意	任意	UDP	任意	137	任意	任意	任意	任意	
+ファイルとプリンターの共有 (NB-Session 送信)	ファイルとプリンターの共有	パブリック	はい	許可	いいえ	System	任意	任意	TCP	任意	139	任意	任意	任意	任意	
+ファイルとプリンターの共有 (NB-Session 送信)	ファイルとプリンターの共有	ドメイン, プライベート	いいえ	許可	いいえ	System	任意	任意	TCP	任意	139	任意	任意	任意	任意	
+ファイルとプリンターの共有 (SMB 送信)	ファイルとプリンターの共有	ドメイン, プライベート	いいえ	許可	いいえ	System	任意	任意	TCP	任意	445	任意	任意	任意	任意	
+ファイルとプリンターの共有 (SMB 送信)	ファイルとプリンターの共有	パブリック	はい	許可	いいえ	System	任意	任意	TCP	任意	445	任意	任意	任意	任意	
+ファイルとプリンターの共有 (エコー要求 - ICMPv4 送信)	ファイルとプリンターの共有	ドメイン, プライベート	いいえ	許可	いいえ	System	任意	任意	ICMPv4	任意	任意	任意	任意	任意	任意	
+ファイルとプリンターの共有 (エコー要求 - ICMPv4 送信)	ファイルとプリンターの共有	パブリック	はい	許可	いいえ	System	任意	任意	ICMPv4	任意	任意	任意	任意	任意	任意	
+ファイルとプリンターの共有 (エコー要求 - ICMPv6 送信)	ファイルとプリンターの共有	ドメイン, プライベート	いいえ	許可	いいえ	System	任意	任意	ICMPv6	任意	任意	任意	任意	任意	任意	
+ファイルとプリンターの共有 (エコー要求 - ICMPv6 送信)	ファイルとプリンターの共有	パブリック	はい	許可	いいえ	System	任意	任意	ICMPv6	任意	任意	任意	任意	任意	任意	
+ルーティングとリモート アクセス (GRE 送信)	ルーティングとリモート アクセス	すべて	いいえ	許可	いいえ	System	任意	任意	GRE	任意	任意	任意	任意	任意	任意	
+ルーティングとリモート アクセス (L2TP 送信)	ルーティングとリモート アクセス	すべて	いいえ	許可	いいえ	System	任意	任意	UDP	任意	1701	任意	任意	任意	任意	
+ルーティングとリモート アクセス (PPTP 送信)	ルーティングとリモート アクセス	すべて	いいえ	許可	いいえ	System	任意	任意	TCP	任意	1723	任意	任意	任意	任意	
+分散トランザクション コーディネーター (TCP 送信)	分散トランザクション コーディネーター	すべて	いいえ	許可	いいえ	%SystemRoot%\system32\msdtc.exe	任意	任意	TCP	任意	任意	任意	任意	任意	任意	
