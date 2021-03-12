@@ -1,0 +1,44 @@
+[root@n0193071 jenkins]# ls -lh access_log jenkins.log
+-rw-r--r-- 1 root root 317K  3ŒŽ 12 16:16 access_log
+-rw-r--r-- 1 root root  29K  3ŒŽ 12 16:10 jenkins.log
+
+[root@n0193071 jenkins]# tail /var/log/jenkins/access_log
+127.0.0.1 - - [12/3/2021:14:50:21 +0900] "GET /job/001/job/001-06/job/01.mailsend/11640/timestamps/ HTTP/1.1" 200 46162 "-" "curl/7.29.0"
+127.0.0.1 - - [12/3/2021:15:00:22 +0900] "GET /job/001/job/001-06/job/01.mailsend/11641/timestamps/ HTTP/1.1" 200 40663 "-" "curl/7.29.0"
+127.0.0.1 - - [12/3/2021:15:10:22 +0900] "GET /job/001/job/001-06/job/01.mailsend/11642/timestamps/ HTTP/1.1" 200 32967 "-" "curl/7.29.0"
+127.0.0.1 - - [12/3/2021:15:20:22 +0900] "GET /job/001/job/001-06/job/01.mailsend/11643/timestamps/ HTTP/1.1" 200 32215 "-" "curl/7.29.0"
+127.0.0.1 - - [12/3/2021:15:30:22 +0900] "GET /job/001/job/001-06/job/01.mailsend/11644/timestamps/ HTTP/1.1" 200 31233 "-" "curl/7.29.0"
+127.0.0.1 - - [12/3/2021:15:40:22 +0900] "GET /job/001/job/001-06/job/01.mailsend/11645/timestamps/ HTTP/1.1" 200 54100 "-" "curl/7.29.0"
+127.0.0.1 - - [12/3/2021:15:50:22 +0900] "GET /job/001/job/001-06/job/01.mailsend/11646/timestamps/ HTTP/1.1" 200 35655 "-" "curl/7.29.0"
+127.0.0.1 - - [12/3/2021:16:00:22 +0900] "GET /job/001/job/001-06/job/01.mailsend/11647/timestamps/ HTTP/1.1" 200 40209 "-" "curl/7.29.0"
+127.0.0.1 - - [12/3/2021:16:10:21 +0900] "GET /job/001/job/001-06/job/01.mailsend/11648/timestamps/ HTTP/1.1" 200 48060 "-" "curl/7.29.0"
+10.173.4.130 - - [12/3/2021:16:14:31 +0900] "GET /job/xxx/job/xxx-01/job/01.mailsend/36/wfapi/changesets HTTP/1.1" 200 1087 "https://10.170.193.71:8080/job/xxx/job/xxx-01/job/01.mailsend/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+
+[root@n0193071 jenkins]# tail /var/log/jenkins/jenkins.log
+2021-03-12 06:03:04.770+0000 [id=3385892]       INFO    hudson.util.Retrier#start: Attempted the action check updates server for 1 time(s) with no success
+2021-03-12 06:03:04.770+0000 [id=3385892]       SEVERE  hudson.PluginManager#doCheckUpdatesServer: Error checking update sites for 1 attempt(s). Last exception was: UnknownHostException: updates.jenkins.io
+2021-03-12 06:03:04.771+0000 [id=3385892]       INFO    hudson.model.AsyncPeriodicWork#lambda$doRun$0: Finished Download metadata. 3 ms
+2021-03-12 06:10:22.847+0000 [id=3386010]       INFO    o.j.p.workflow.job.WorkflowRun#finish: 001/001-06/01.mailsend #11642 completed: SUCCESS
+2021-03-12 06:20:23.387+0000 [id=3386143]       INFO    o.j.p.workflow.job.WorkflowRun#finish: 001/001-06/01.mailsend #11643 completed: SUCCESS
+2021-03-12 06:30:22.920+0000 [id=3386276]       INFO    o.j.p.workflow.job.WorkflowRun#finish: 001/001-06/01.mailsend #11644 completed: SUCCESS
+2021-03-12 06:40:23.117+0000 [id=3386409]       INFO    o.j.p.workflow.job.WorkflowRun#finish: 001/001-06/01.mailsend #11645 completed: SUCCESS
+2021-03-12 06:50:22.891+0000 [id=3386542]       INFO    o.j.p.workflow.job.WorkflowRun#finish: 001/001-06/01.mailsend #11646 completed: SUCCESS
+2021-03-12 07:00:23.099+0000 [id=3386675]       INFO    o.j.p.workflow.job.WorkflowRun#finish: 001/001-06/01.mailsend #11647 completed: SUCCESS
+2021-03-12 07:10:22.678+0000 [id=3386814]       INFO    o.j.p.workflow.job.WorkflowRun#finish: 001/001-06/01.mailsend #11648 completed: SUCCESS
+
+
+[root@n0193071 jenkins]# ls -lh /var/log/gitlab/nginx/gitlab_access.log
+-rw-r--r-- 1 root root 239K  3ŒŽ 12 16:14 /var/log/gitlab/nginx/gitlab_access.log
+
+[root@n0193071 jenkins]# tail /var/log/gitlab/nginx/gitlab_access.log
+10.173.4.130 - - [12/Mar/2021:16:14:35 +0900] "GET / HTTP/2.0" 200 11332 "" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+10.173.4.130 - - [12/Mar/2021:16:14:35 +0900] "GET /assets/highlight/themes/white-3144068cf4f603d290f553b653926358ddcd02493b9728f62417682657fc58c0.css HTTP/2.0" 200 864 "https://10.170.193.71:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+10.173.4.130 - - [12/Mar/2021:16:14:35 +0900] "GET /assets/application-aeddf31361633b3d1196c6483f25c484855e0f243e7f7e62686a4de9e10ec03b.css HTTP/2.0" 200 148862 "https://10.170.193.71:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+10.173.4.130 - - [12/Mar/2021:16:14:35 +0900] "GET /assets/locale/ja/app-60c1ed71b2db9c93124f29ac878627ab720394e6340a9677b894e56847fbd930.js HTTP/2.0" 200 147592 "https://10.170.193.71:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+10.173.4.130 - - [12/Mar/2021:16:14:35 +0900] "GET /assets/webpack/runtime.bc55c125.bundle.js HTTP/2.0" 200 2129 "https://10.170.193.71:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+10.173.4.130 - - [12/Mar/2021:16:14:35 +0900] "GET /assets/webpack/pages.root.4ddcb42e.chunk.js HTTP/2.0" 200 1542 "https://10.170.193.71:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+10.173.4.130 - - [12/Mar/2021:16:14:35 +0900] "GET /assets/print-74c3df10dad473d66660c828e3aa54ca3bfeac6d8bb708643331403fe7211e60.css HTTP/2.0" 200 382 "https://10.170.193.71:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+10.173.4.130 - - [12/Mar/2021:16:14:35 +0900] "GET /assets/icons-e91700f3f1ecff110fc2c35aa62aec8f2aad69d1bfb35844186a11175a79e25f.svg HTTP/2.0" 200 25939 "https://10.170.193.71:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+10.173.4.130 - - [12/Mar/2021:16:14:35 +0900] "GET /assets/webpack/main.4fe360c0.chunk.js HTTP/2.0" 200 829029 "https://10.170.193.71:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+10.173.4.130 - - [12/Mar/2021:16:14:35 +0900] "GET /assets/fontawesome-webfont-2adefcbc041e7d18fcf2d417879dc5a09997aa64d675b7a3c4b6ce33da13f3fe.woff2 HTTP/2.0" 200 77160 "https://10.170.193.71:8000/assets/application-aeddf31361633b3d1196c6483f25c484855e0f243e7f7e62686a4de9e10ec03b.css" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+
