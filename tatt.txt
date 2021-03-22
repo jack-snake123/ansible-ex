@@ -1,19 +1,2 @@
-vi /togounyo/logtrap/seclogtrp.conf
-
-FILETYPE=SEQ2
-RECTYPE =VAR '\n'
-MARKSTR ="Failed to allocate internet-domain X11 display socket"
-ACTDEF  =<Error>00000001 "ERROR"
-ACTDEF  =<Error>00000001 "Error"
-ACTDEF  =<Error>00000001 "error"
-ACTDEF  =<Error>00000001 "err"
-                         !"interrupt"
-ACTDEF  =<Error>00000001 "pam_unix(su-l:session): session opened for user root"
-
-アプリケーション固有 のアクセス許可の設定では、CLSID 
-{8D8F4F83-3594-4F07-8369-FC3C3CAE4919}
- および APPID 
-{F72671A9-012C-4725-9D2F-2A4D32D65169}
- の COM サーバー アプリケーションに対するローカルアクティブ化のアクセス許可を、アプリケーション コンテナー 利用不可 SID (利用不可) で実行中のアドレス LocalHost (LRPC 使用) のユーザー NT AUTHORITY\SYSTEM SID (S-1-5-18) に与えることはできません。このセキュリティ アクセス許可は、コンポーネント サービス管理ツールを使って変更できます。
- 
-10016
+2021/03/19 16:07:27_928 [checkstatus(10830)] WARNING: 架電ID null の状態取得に失敗しました。(Not found - Requested resource is not found (404))
+2021/03/19 16:07:27_931 [checkstatus(10830)] WARNING: 架電ID null がKompira Cloud側に見つからない為架電IDファイルを削除します。
