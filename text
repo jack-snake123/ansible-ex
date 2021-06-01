@@ -1,2 +1,0 @@
-Invoke-WebRequest 'https://hisys-ps.cloud.kompira.jp/api/apps/pigeon/callflows' -Method GET -Headers @{ "accept"="application/json"; "X-Authorization"="Token dmxZzn0DD1+qQwfoENljnTp3xByATmMOj/4FelAr" }  | Format-table -AutoSize -Wrap
-Invoke-WebRequest 'https://hisys-ps.cloud.kompira.jp/api/apps/pigeon/contacts' -Method GET -Headers @{ "accept"="application/json"; "X-Authorization"="Token dmxZzn0DD1+qQwfoENljnTp3xByATmMOj/4FelAr" } | Format-table -AutoSize -Wrap
