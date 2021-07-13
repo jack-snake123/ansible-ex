@@ -1,0 +1,257 @@
+mkdir /jenkins
+mkdir /gitlabmk
+
+[root@n0193071 rpm]# cd /tmp/rpm
+[root@n0193071 rpm]# yum localinstall --nogpgcheck ./*.rpm
+
+完了しました!
+[root@n0193071 rpm]# easy_install -z xlsx2csv-0.7.6.tar.gz
+Processing xlsx2csv-0.7.6.tar.gz
+Writing /tmp/easy_install-DwOGOK/xlsx2csv-0.7.6/setup.cfg
+Running xlsx2csv-0.7.6/setup.py -q bdist_egg --dist-dir /tmp/easy_install-DwOGOK/xlsx2csv-0.7.6/egg-dist-tmp-MYgseC
+zip_safe flag not set; analyzing archive contents...
+Adding xlsx2csv 0.7.6 to easy-install.pth file
+Installing xlsx2csv script to /usr/bin
+
+Installed /usr/lib/python2.7/site-packages/xlsx2csv-0.7.6-py2.7.egg
+Processing dependencies for xlsx2csv==0.7.6
+Finished processing dependencies for xlsx2csv==0.7.6
+
+[root@n0193071 rpm]# cp /etc/ansible/ansible.cfg /etc/ansible/ansible.cfg_20210713.bk
+[root@n0193071 rpm]# vi /etc/ansible/ansible.cfg
+[root@n0193071 rpm]# cat /etc/ansible/ansible.cfg | grep ssh_args
+#ssh_args = -C -o ControlMaster=auto -o ControlPersist=60s
+ssh_args = -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+[root@n0193071 rpm]# cd /root/
+[root@n0193071 ~]# mkdir /root/ansible
+[root@n0193071 ~]# vi /root/ansible/.vault_password
+[root@n0193071 ~]# cat /root/ansible/.vault_password
+Au7E8xqC$sm!
+[root@n0193071 ~]# ll
+合計 44
+-rw-------. 1 root root 2305  6月 26 10:11 anaconda-ks.cfg
+drwxr-xr-x  2 root root 4096  8月 11 14:04 ansible
+-rw-r--r--. 1 root root 2398  6月 26 10:18 initial-setup-ks.cfg
+drwxr-xr-x. 2 root root 4096  6月 26 10:18 ダウンロード
+drwxr-xr-x. 2 root root 4096  6月 26 10:18 テンプレート
+drwxr-xr-x. 2 root root 4096  6月 26 10:18 デスクトップ
+drwxr-xr-x. 2 root root 4096  6月 26 10:18 ドキュメント
+drwxr-xr-x. 2 root root 4096  6月 26 10:18 ビデオ
+drwxr-xr-x. 2 root root 4096  6月 26 10:18 音楽
+drwxr-xr-x. 2 root root 4096  6月 26 10:18 画像
+drwxr-xr-x. 2 root root 4096  6月 26 10:18 公開
+[root@n0193071 ~]# cd ansible/
+[root@n0193071 ansible]# ls -la
+合計 12
+drwxr-xr-x   2 root root 4096  8月 11 14:04 .
+dr-xr-x---. 15 root root 4096  8月 11 14:04 ..
+-rw-r--r--   1 root root    9  8月 11 14:04 .vault_password
+[root@n0193071 ansible]# chmod 600 .vault_password
+[root@n0193071 ansible]# ls -la
+合計 12
+drwxr-xr-x   2 root root 4096  8月 11 14:04 .
+dr-xr-x---. 15 root root 4096  8月 11 14:04 ..
+-rw-------   1 root root    9  8月 11 14:04 .vault_password
+[root@n0193071 ansible]#
+
+
+[root@n0193071 tmp]# cp /etc/gitlab/gitlab.rb /etc/gitlab/gitlab.rb_20210713.bk
+[root@n0193071 tmp]# cp /tmp/conf/gitlab.rb /etc/gitlab/gitlab.rb
+[root@n0193071 tmp]# cat /etc/gitlab/gitlab.rb | grep external_url
+##! For more details on configuring external_url see:
+external_url 'https://10.170.193.71:8000'
+# registry_external_url 'https://registry.example.com'
+# pages_external_url "http://pages.example.com/"
+# gitlab_pages['artifacts_server_url'] = nil # Defaults to external_url + '/api/v4'
+# gitlab_pages['auth_redirect_uri'] = nil # Defaults to projects subdomain of pages_external_url and + '/auth'
+# gitlab_pages['gitlab_server'] = nil # Defaults to external_url
+# mattermost_external_url 'http://mattermost.example.com'
+# When the registry is automatically enabled using the same domain as `external_url`,
+# For example, if external_url is the same for two secondaries, you must specify
+# If it is blank, it defaults to external_url.
+
+
+[root@n0193071 rpm]# mkdir /etc/gitlab/ssl
+[root@n0193071 rpm]# cd /etc/gitlab/ssl
+[root@n0193071 ssl]# openssl genrsa -aes256 2048 > 192.168.1.12.key
+Generating RSA private key, 2048 bit long modulus
+..........................+++
+..........................................................+++
+e is 65537 (0x10001)
+Enter pass phrase:Au7E8xqC$sm!
+Verifying - Enter pass phrase:Au7E8xqC$sm!
+[root@n0193071 ssl]# openssl req -new -sha256 -key 192.168.1.12.key > 192.168.1.12.csr
+Enter pass phrase for 10.170.193.71.key:
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:JP
+State or Province Name (full name) []:Saitama
+Locality Name (eg, city) [Default City]:Saitama
+Organization Name (eg, company) [Default Company Ltd]:TEPCO
+Organizational Unit Name (eg, section) []:
+Common Name (eg, your name or your server's hostname) []:10.170.193.71
+Email Address []:
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+[root@n0193071 ssl]#
+[root@n0193071 ssl]# openssl x509 -in 192.168.1.12.csr -sha256 -days 3650 -req -signkey 192.168.1.12.key > 192.168.1.12.crt
+Signature ok
+subject=/C=JP/ST=Saitama/L=Saitama/O=TEPCO/CN=10.170.193.71
+Getting Private key
+Enter pass phrase for 10.170.193.71.key:Au7E8xqC$sm!
+[root@n0193071 ssl]# mv 192.168.1.12.key 192.168.1.12.key.bak
+[root@n0193071 ssl]# openssl rsa -in 192.168.1.12.key.bak > 192.168.1.12.key
+Enter pass phrase for 10.170.193.71.key.bak:Au7E8xqC$sm!
+writing RSA key
+[root@n0193071 ssl]# git config --global http.sslVerify false
+
+############################################################
+############################################################
+
+[root@n0193071 ssl]# gitlab-ctl reconfigure
+
+Running handlers:
+Running handlers complete
+Chef Client finished, 547/1459 resources updated in 02 minutes 50 seconds
+gitlab Reconfigured!
+[root@n0193071 ssl]# 
+[root@n0193071 sdc]# mkdir -p /var/lib/jenkins/.ssl
+[root@n0193071 sdc]# cd /var/lib/jenkins/.ssl
+[root@n0193071 .ssl]# keytool -genkey -alias jenkins-ssl-cert -keyalg RSA -keystore jenkins_keystore.jks -validity 3650
+キーストアのパスワードを入力してください:Au7E8xqC$sm!
+新規パスワードを再入力してください:Au7E8xqC$sm!
+姓名は何ですか。
+  [Unknown]:  10.170.193.71
+組織単位名は何ですか。
+  [Unknown]:
+組織名は何ですか。
+  [Unknown]:  TEPCO
+都市名または地域名は何ですか。
+  [Unknown]:  Saitama
+都道府県名または州名は何ですか。
+  [Unknown]:  Saitama
+この単位に該当する2文字の国コードは何ですか。
+  [Unknown]:  JP
+CN=10.170.193.71, OU=Unknown, O=TEPCO, L=Saitama, ST=Saitama, C=JPでよろしいですか。
+  [いいえ]:  y
+
+<jenkins-ssl-cert>の鍵パスワードを入力してください
+        (キーストアのパスワードと同じ場合はRETURNを押してください):
+[root@n0193071 .ssl]# cp /etc/sysconfig/jenkins /etc/sysconfig/jenkins_20200831.bk
+[root@n0193071 .ssl]# cp /tmp/conf/jenkins /etc/sysconfig/jenkins
+[root@n0193071 .ssl]# systemctl start jenkins
+[root@n0193071 .ssl]# systemctl start jenkins
+[root@n0193071 .ssl]# systemctl status jenkins
+● jenkins.service - LSB: Jenkins Automation Server
+   Loaded: loaded (/etc/rc.d/init.d/jenkins; bad; vendor preset: disabled)
+   Active: active (running) since 月 2020-08-31 15:05:36 JST; 5s ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 13709 ExecStart=/etc/rc.d/init.d/jenkins start (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/jenkins.service
+           mq13736 /etc/alternatives/java -Dcom.sun.akuma.Daemon=daemonized -Djava.awt.headless=true -DJENKINS_HOME=/var/lib/jenkins -jar /usr/lib/jenkins...
+
+ 8月 31 15:05:36 n0193071 systemd[1]: Starting LSB: Jenkins Automation Server...
+ 8月 31 15:05:36 n0193071 runuser[13716]: pam_unix(runuser:session): session opened for user root by (uid=0)
+ 8月 31 15:05:36 n0193071 runuser[13716]: pam_unix(runuser:session): session closed for user root
+ 8月 31 15:05:36 n0193071 jenkins[13709]: Starting Jenkins [  OK  ]
+ 8月 31 15:05:36 n0193071 systemd[1]: Started LSB: Jenkins Automation Server.
+[root@n0193071 .ssl]# cat /var/lib/jenkins/secrets/initialAdminPassword
+fe40eaeeb02648ce9fe04204e4538500
+[root@n0193071 .ssl]# mv /tmp/jpi/* /var/lib/jenkins/plugins/
+[root@n0193071 .ssl]# ls /var/lib/jenkins/plugins/
+ace-editor.jpi                          cloudbees-bitbucket-branch-source.jpi  junit.jpi                             scm-api.jpi
+ant.jpi                                 cloudbees-folder.jpi                   ldap.jpi                              script-security.jpi
+antisamy-markup-formatter.jpi           command-launcher.jpi                   lockable-resources.jpi                snakeyaml-api.jpi
+apache-httpcomponents-client-4-api.jpi  credentials-binding.jpi                mailer.jpi                            sse-gateway.jpi
+authentication-tokens.jpi               credentials.jpi                        mapdb-api.jpi                         ssh-credentials.jpi
+blueocean-autofavorite.jpi              display-url-api.jpi                    matrix-auth.jpi                       ssh-slaves.jpi
+blueocean-bitbucket-pipeline.jpi        docker-commons.jpi                     matrix-project.jpi                    structs.jpi
+blueocean-commons.jpi                   docker-workflow.jpi                    mercurial.jpi                         subversion.jpi
+blueocean-config.jpi                    durable-task.jpi                       metrics.jpi                           throttle-concurrents.hpi
+blueocean-core-js.jpi                   email-ext.jpi                          momentjs.jpi                          timestamper.jpi
+blueocean-dashboard.jpi                 external-monitor-job.jpi               okhttp-api.jpi                        token-macro.jpi
+blueocean-display-url.jpi               favorite.jpi                           pam-auth.jpi                          trilead-api.jpi
+blueocean-events.jpi                    git-client.jpi                         pipeline-build-step.jpi               variant.jpi
+blueocean-git-pipeline.jpi              git-server.jpi                         pipeline-github-lib.jpi               windows-slaves.jpi
+blueocean-github-pipeline.jpi           git.jpi                                pipeline-graph-analysis.jpi           workflow-aggregator.jpi
+blueocean-i18n.jpi                      github-api.jpi                         pipeline-input-step.jpi               workflow-api.jpi
+blueocean-jira.jpi                      github-branch-source.jpi               pipeline-milestone-step.jpi           workflow-basic-steps.jpi
+blueocean-jwt.jpi                       github.jpi                             pipeline-model-api.jpi                workflow-cps-global-lib.jpi
+blueocean-personalization.jpi           gradle.jpi                             pipeline-model-declarative-agent.jpi  workflow-cps.jpi
+blueocean-pipeline-api-impl.jpi         handlebars.jpi                         pipeline-model-definition.jpi         workflow-durable-task-step.jpi
+blueocean-pipeline-editor.jpi           handy-uri-templates-2-api.jpi          pipeline-model-extensions.jpi         workflow-job.jpi
+blueocean-pipeline-scm-api.jpi          htmlpublisher.jpi                      pipeline-rest-api.jpi                 workflow-multibranch.jpi
+blueocean-rest-impl.jpi                 icon-shim.jpi                          pipeline-stage-step.jpi               workflow-scm-step.jpi
+blueocean-rest.jpi                      jackson2-api.jpi                       pipeline-stage-tags-metadata.jpi      workflow-step-api.jpi
+blueocean-web.jpi                       jdk-tool.jpi                           pipeline-stage-view.jpi               workflow-support.jpi
+blueocean.jpi                           jenkins-design-language.jpi            plain-credentials.jpi                 ws-cleanup.jpi
+bouncycastle-api.jpi                    jira.jpi                               pubsub-light.jpi
+branch-api.jpi                          jquery-detached.jpi                    resource-disposer.jpi
+build-timeout.jpi                       jsch.jpi                               role-strategy.jpi
+[root@n0193071 .ssl]#
+[root@n0193071 .ssl]# cd /var/lib/
+[root@n0193071 lib]# mv jenkins/* /jenkins/sdc/
+[root@n0193071 lib]# mv jenkins/.[^\.]* /jenkins/sdc/
+[root@n0193071 lib]# ll | grep jenkins
+drwxr-xr-x  11 jenkins        jenkins        4096  8月 31 15:09 jenkins
+[root@n0193071 lib]# rm -rf jenkins
+[root@n0193071 lib]# ll | grep jenkins
+[root@n0193071 lib]# ln -s /jenkins/sdc/ jenkins
+[root@n0193071 lib]# ll | grep jenkins
+lrwxrwxrwx  1 root           root             13  8月 31 15:12 jenkins -> /jenkins/sdc/
+[root@n0193071 lib]# systemctl start jenkins
+[root@n0193071 lib]# systemctl status jenkins
+● jenkins.service - LSB: Jenkins Automation Server
+   Loaded: loaded (/etc/rc.d/init.d/jenkins; bad; vendor preset: disabled)
+   Active: active (running) since 月 2020-08-31 15:13:06 JST; 6s ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 14660 ExecStop=/etc/rc.d/init.d/jenkins stop (code=exited, status=0/SUCCESS)
+  Process: 15335 ExecStart=/etc/rc.d/init.d/jenkins start (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/jenkins.service
+           mq15361 /etc/alternatives/java -Dcom.sun.akuma.Daemon=daemonized -Djava.awt.headless=true -DJENKINS_HOME=/var/lib/jenkins -jar /usr/lib/jenkins...
+
+ 8月 31 15:13:06 n0193071 systemd[1]: Starting LSB: Jenkins Automation Server...
+ 8月 31 15:13:06 n0193071 runuser[15342]: pam_unix(runuser:session): session opened for user root by (uid=0)
+ 8月 31 15:13:06 n0193071 jenkins[15335]: Starting Jenkins [  OK  ]
+ 8月 31 15:13:06 n0193071 systemd[1]: Started LSB: Jenkins Automation Server.
+[root@n0193071 lib]#
+[root@n0193071 lib]# git config --global user.name "root"
+[root@n0193071 lib]# git config --global user.email "root@example.com"
+[root@n0193071 lib]# cd /tmp/
+[root@n0193071 tmp]# git clone https://10.170.193.71:8000/root/testproject.git
+Cloning into 'testproject'...
+Username for 'https://10.170.193.71:8000': root
+Password for 'https://root@10.170.193.71:8000':
+warning: You appear to have cloned an empty repository.
+[root@n0193071 tmp]# cd testproject/
+[root@n0193071 testproject]# cp -p /tmp/testproject/* ./
+[root@n0193071 testproject]# git add ./
+[root@n0193071 testproject]# git commit -m "ver.20200831-1"
+[master (root-commit) 670faae] ver.20200831-1
+ 6 files changed, 78 insertions(+)
+ create mode 100644 Jenkinsfile
+ create mode 100644 hosts
+ create mode 100644 secret.yml
+ create mode 100644 test.txt
+ create mode 100644 test_linux.yml
+ create mode 100644 test_win.yml
+[root@n0193071 testproject]# git push -u origin master
+Username for 'https://10.170.193.71:8000': root
+Password for 'https://root@10.170.193.71:8000':
+Counting objects: 8, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (8/8), 1.29 KiB | 0 bytes/s, done.
+Total 8 (delta 1), reused 0 (delta 0)
+To https://10.170.193.71:8000/root/testproject.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+[root@n0193071 testproject]#
