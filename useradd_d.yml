@@ -2,21 +2,15 @@
 - hosts: localhost
   gather_facts: false
 
-  vars_files:
-  - secret.yml
-
-  vars:
-  - ansible_user: "{{ linux_user }}"
-  - ansible_password: "{{ linux_pass }}"
-
   tasks:
     - name: Road User
-      shell: cat /tmp/userlist_d
+      shell: cat /tmp/adduserlist_d
       register: username
 
     - name: Add User
       user:
         name: "{{ item }}"
+        groups: ""
         password: "{{ item | password_hash('sha512') }}"
         update_password: on_create
       with_items: "{{ username.stdout_lines }}"
