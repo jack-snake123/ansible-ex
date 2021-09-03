@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Road User
+      shell: cat /tmp/deluserlist
+      register: username
+
+    - name: Add User
+      user:
+        name: "{{ item }}"
+        state: absent
+        remove: yes
+      with_items: "{{ username.stdout_lines }}"
