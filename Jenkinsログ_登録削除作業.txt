@@ -1,0 +1,210 @@
+上流プロジェクト"002/002-16/01.ios-shinsei"の#9が実行　
+元の原因: 
+ ユーザーjenkinsが実行
+Obtained Jenkinsfile-sdc from git https://10.170.193.71:8000/002/002-16_ios-shinsei.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/002/002-16/02.ios-shinsei
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+using credential 4efdbbe5-0b87-41ed-86e7-2c0cde507599
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://10.170.193.71:8000/002/002-16_ios-shinsei.git # timeout=10
+Fetching upstream changes from https://10.170.193.71:8000/002/002-16_ios-shinsei.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials gitlab認証
+ > git fetch --tags --progress https://10.170.193.71:8000/002/002-16_ios-shinsei.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision a4daddcf1cf74a657db95e7645eb2800c822324e (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a4daddcf1cf74a657db95e7645eb2800c822324e # timeout=10
+Commit message: "Update Jenkinsfile-sdc"
+ > git rev-list --no-walk 6abe08c1f74372e94a6738417985808b35e28f9f # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (playbook)
+[Pipeline] sh
+00:00:01.847  + rm -fr work/register_result.txt
+00:00:01.848  + sh/ios-shinsei-check.bash
+00:00:02.400  ++ grep -c register_csv /tmp/ios-shinsei/file-list.yml
+00:00:02.400  + '[' 1 -gt 0 ']'
+00:00:02.400  + ansible-playbook -i hosts/hosts yml/ios-shinsei-register.yml -vv -e @/tmp/ios-shinsei/file-list.yml --vault-password-file /root/ansible/.vault_password
+00:00:02.650  ansible-playbook 2.9.4
+00:00:02.650    config file = /etc/ansible/ansible.cfg
+00:00:02.650    configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+00:00:02.650    ansible python module location = /usr/lib/python2.7/site-packages/ansible
+00:00:02.650    executable location = /bin/ansible-playbook
+00:00:02.650    python version = 2.7.5 (default, May  3 2017, 07:55:04) [GCC 4.8.5 20150623 (Red Hat 4.8.5-14)]
+00:00:02.650  Using /etc/ansible/ansible.cfg as config file
+00:00:02.901  
+00:00:02.901  PLAYBOOK: ios-shinsei-register.yml *********************************************
+00:00:02.901  1 plays in yml/ios-shinsei-register.yml
+00:00:02.901  
+00:00:02.901  PLAY [LDAPSV] ******************************************************************
+00:00:02.901  META: ran handlers
+00:00:02.901  
+00:00:02.901  TASK [0.ツールの実行] ****************************************************************
+00:00:02.901  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-register.yml:18
+00:00:04.244  changed: [10.129.0.132] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "echo `date +%Y%m%d`", "delta": "0:00:00.007675", "end": "2021-01-19 15:22:50.588873", "rc": 0, "start": "2021-01-19 15:22:50.581198", "stderr": "", "stderr_lines": [], "stdout": "20210119", "stdout_lines": ["20210119"]}
+00:00:04.244  
+00:00:04.244  TASK [1.作業ファイルのコピー(登録用ディレクトリ)] *************************************************
+00:00:04.244  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-register.yml:22
+00:00:06.106  changed: [10.129.0.132] => (item=ios-shinsei-Tepco-mobileloginok_register_20210119_152247.csv) => {"ansible_loop_var": "item", "changed": true, "checksum": "b12d1c6422971122aca056160b3ec76be2f3d579", "dest": "/infra/rp/input/ldapModUserAttr_register/ios-shinsei-Tepco-mobileloginok_register_20210119_152247.csv", "gid": 10180, "group": "prrpz", "item": "ios-shinsei-Tepco-mobileloginok_register_20210119_152247.csv", "md5sum": "0a53048dc22d527ac8d6f74a00e50a7b", "mode": "0644", "owner": "prrpz000", "size": 60, "src": "/home/prrpz000/.ansible/tmp/ansible-tmp-1611037370.12-138383309066830/source", "state": "file", "uid": 10800}
+00:00:07.449  changed: [10.129.0.132] => (item=ios-shinsei-Tepco-mobileloginok_registerid_20210119_152247.txt) => {"ansible_loop_var": "item", "changed": true, "checksum": "47612a62cfe9345d9e508e4229f3ad108c9bd14f", "dest": "/infra/rp/input/ldapModUserAttr_register/ios-shinsei-Tepco-mobileloginok_registerid_20210119_152247.txt", "gid": 10180, "group": "prrpz", "item": "ios-shinsei-Tepco-mobileloginok_registerid_20210119_152247.txt", "md5sum": "171be7b8c07a49f74c18f19e108bd610", "mode": "0644", "owner": "prrpz000", "size": 27, "src": "/home/prrpz000/.ansible/tmp/ansible-tmp-1611037371.81-120009165881557/source", "state": "file", "uid": 10800}
+00:00:07.449  
+00:00:07.449  TASK [2.ツールの実行(登録)] ************************************************************
+00:00:07.449  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-register.yml:30
+00:00:08.360  changed: [10.129.0.132] => (item=ios-shinsei-Tepco-mobileloginok_register_20210119_152247.csv) => {"ansible_loop_var": "item", "changed": true, "cmd": "./rp-ldapModUserAttrAdd.pl \"/infra/rp/input/ldapModUserAttr_register/ios-shinsei-Tepco-mobileloginok_register_20210119_152247.csv\"", "delta": "0:00:00.349405", "end": "2021-01-19 15:22:54.666994", "failed_when_result": false, "item": "ios-shinsei-Tepco-mobileloginok_register_20210119_152247.csv", "rc": 0, "start": "2021-01-19 15:22:54.317589", "stderr": "", "stderr_lines": [], "stdout": "LDAP運用ツール（登録用）処理　開始\nInput => /infra/rp/input/ldapModUserAttr_register/ios-shinsei-Tepco-mobileloginok_register_20210119_152247.csv\n登録：T1111021 Tepco-mobileloginok=>1 \n登録：T1111022 Tepco-mobileloginok=>1 \n登録：T1111023 Tepco-mobileloginok=>1 \n【処理結果】 登録：3 エラー：0\nLDAP運用ツール（登録用）処理　正常終了", "stdout_lines": ["LDAP運用ツール（登録用）処理　開始", "Input => /infra/rp/input/ldapModUserAttr_register/ios-shinsei-Tepco-mobileloginok_register_20210119_152247.csv", "登録：T1111021 Tepco-mobileloginok=>1 ", "登録：T1111022 Tepco-mobileloginok=>1 ", "登録：T1111023 Tepco-mobileloginok=>1 ", "【処理結果】 登録：3 エラー：0", "LDAP運用ツール（登録用）処理　正常終了"]}
+00:00:08.360  
+00:00:08.360  TASK [3.INPUTデータの移動確認(登録)] *****************************************************
+00:00:08.360  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-register.yml:38
+00:00:09.271  changed: [10.129.0.132] => (item=ios-shinsei-Tepco-mobileloginok_register_20210119_152247.csv) => {"ansible_loop_var": "item", "changed": true, "cmd": "ls -lrt ios-shinsei-Tepco-mobileloginok_register_20210119_152247.csv", "delta": "0:00:00.010008", "end": "2021-01-19 15:22:55.437880", "item": "ios-shinsei-Tepco-mobileloginok_register_20210119_152247.csv", "rc": 0, "start": "2021-01-19 15:22:55.427872", "stderr": "", "stderr_lines": [], "stdout": "-rw-r--r-- 1 prrpz000 prrpz 60  1月 19 15:22 2021 ios-shinsei-Tepco-mobileloginok_register_20210119_152247.csv", "stdout_lines": ["-rw-r--r-- 1 prrpz000 prrpz 60  1月 19 15:22 2021 ios-shinsei-Tepco-mobileloginok_register_20210119_152247.csv"]}
+00:00:09.271  
+00:00:09.271  TASK [4.id確認] ******************************************************************
+00:00:09.271  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-register.yml:45
+00:00:09.822  changed: [10.129.0.132] => {"changed": true, "cmd": "id", "delta": "0:00:00.009573", "end": "2021-01-19 15:22:56.183203", "rc": 0, "start": "2021-01-19 15:22:56.173630", "stderr": "", "stderr_lines": [], "stdout": "uid=10800(prrpz000) gid=10180(prrpz) 所属グループ=10180(prrpz)", "stdout_lines": ["uid=10800(prrpz000) gid=10180(prrpz) 所属グループ=10180(prrpz)"]}
+00:00:09.822  
+00:00:09.822  TASK [debug] *******************************************************************
+00:00:09.822  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-register.yml:49
+00:00:09.822  ok: [10.129.0.132] => {
+00:00:09.822      "msg": "uid=10800(prrpz000) gid=10180(prrpz) 所属グループ=10180(prrpz)"
+00:00:09.822  }
+00:00:09.822  
+00:00:09.822  TASK [5.uname確認] ***************************************************************
+00:00:09.822  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-register.yml:51
+00:00:10.733  changed: [10.129.0.132] => {"changed": true, "cmd": "uname -n", "delta": "0:00:00.008319", "end": "2021-01-19 15:22:56.978655", "rc": 0, "start": "2021-01-19 15:22:56.970336", "stderr": "", "stderr_lines": [], "stdout": "v9000132", "stdout_lines": ["v9000132"]}
+00:00:10.733  
+00:00:10.733  TASK [6.作業フォルダ作成] **************************************************************
+00:00:10.733  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-register.yml:55
+00:00:11.644  ok: [10.129.0.132] => {"changed": false, "gid": 10180, "group": "prrpz", "mode": "0755", "owner": "prrpz000", "path": "/tmp/OAG/20210119", "size": 4096, "state": "directory", "uid": 10800}
+00:00:11.644  
+00:00:11.644  TASK [7.作業ファイルのコピー] ************************************************************
+00:00:11.644  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-register.yml:60
+00:00:12.987  changed: [10.129.0.132] => (item=ios-shinsei-Tepco-mobileloginok_registerid_20210119_152247.txt) => {"ansible_loop_var": "item", "changed": true, "checksum": "47612a62cfe9345d9e508e4229f3ad108c9bd14f", "dest": "/tmp/OAG/20210119/id_list", "gid": 10180, "group": "prrpz", "item": "ios-shinsei-Tepco-mobileloginok_registerid_20210119_152247.txt", "md5sum": "171be7b8c07a49f74c18f19e108bd610", "mode": "0644", "owner": "prrpz000", "size": 27, "src": "/home/prrpz000/.ansible/tmp/ansible-tmp-1611037377.42-159358211479573/source", "state": "file", "uid": 10800}
+00:00:12.987  
+00:00:12.987  TASK [8.確認シェル実行] ***************************************************************
+00:00:12.987  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-register.yml:66
+00:00:13.247  changed: [10.129.0.132] => {"changed": true, "rc": 0, "stderr": "Shared connection to 10.129.0.132 closed.\r\n", "stderr_lines": ["Shared connection to 10.129.0.132 closed."], "stdout": "", "stdout_lines": []}
+00:00:13.247  
+00:00:13.247  TASK [9.処理結果のFetch] ************************************************************
+00:00:13.247  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-register.yml:69
+00:00:14.158  changed: [10.129.0.132] => {"changed": true, "checksum": "01776c9f07cf816c6b15011450723ef1d9050f5b", "dest": "/jenkins/sdc/workspace/002/002-16/02.ios-shinsei/work/register_result.txt", "md5sum": "4f23a4dfa1b816809dc5c1b0da8a0fe1", "remote_checksum": "01776c9f07cf816c6b15011450723ef1d9050f5b", "remote_md5sum": null}
+00:00:14.158  META: ran handlers
+00:00:14.158  META: ran handlers
+00:00:14.158  
+00:00:14.158  PLAY RECAP *********************************************************************
+00:00:14.158  10.129.0.132               : ok=11   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+00:00:14.158  
+00:00:14.158  ++ grep -c delete_csv /tmp/ios-shinsei/file-list.yml
+00:00:14.158  + '[' 1 -gt 0 ']'
+00:00:14.158  + ansible-playbook -i hosts/hosts yml/ios-shinsei-delete.yml -vv -e @/tmp/ios-shinsei/file-list.yml --vault-password-file /root/ansible/.vault_password
+00:00:14.711  ansible-playbook 2.9.4
+00:00:14.711    config file = /etc/ansible/ansible.cfg
+00:00:14.711    configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+00:00:14.711    ansible python module location = /usr/lib/python2.7/site-packages/ansible
+00:00:14.711    executable location = /bin/ansible-playbook
+00:00:14.711    python version = 2.7.5 (default, May  3 2017, 07:55:04) [GCC 4.8.5 20150623 (Red Hat 4.8.5-14)]
+00:00:14.711  Using /etc/ansible/ansible.cfg as config file
+00:00:14.961  
+00:00:14.962  PLAYBOOK: ios-shinsei-delete.yml ***********************************************
+00:00:14.962  1 plays in yml/ios-shinsei-delete.yml
+00:00:14.962  
+00:00:14.962  PLAY [LDAPSV] ******************************************************************
+00:00:14.962  META: ran handlers
+00:00:14.962  
+00:00:14.962  TASK [0.ツールの実行] ****************************************************************
+00:00:14.962  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-delete.yml:18
+00:00:16.305  changed: [10.129.0.132] => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "changed": true, "cmd": "echo `date +%Y%m%d`", "delta": "0:00:00.010252", "end": "2021-01-19 15:23:02.497692", "rc": 0, "start": "2021-01-19 15:23:02.487440", "stderr": "", "stderr_lines": [], "stdout": "20210119", "stdout_lines": ["20210119"]}
+00:00:16.305  
+00:00:16.305  TASK [1.作業ファイルのコピー(削除用ディレクトリ)] *************************************************
+00:00:16.305  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-delete.yml:22
+00:00:17.652  changed: [10.129.0.132] => (item=ios-shinsei-Tepco-mobileloginok_delete_20210119_152247.csv) => {"ansible_loop_var": "item", "changed": true, "checksum": "4a97d19e0ce68e686df12194506edd441dc71de0", "dest": "/infra/rp/input/ldapModUserAttr_delete/ios-shinsei-Tepco-mobileloginok_delete_20210119_152247.csv", "gid": 10180, "group": "prrpz", "item": "ios-shinsei-Tepco-mobileloginok_delete_20210119_152247.csv", "md5sum": "15370b917f133a9c61fd10fa3263d436", "mode": "0644", "owner": "prrpz000", "size": 60, "src": "/home/prrpz000/.ansible/tmp/ansible-tmp-1611037382.03-188029794238488/source", "state": "file", "uid": 10800}
+00:00:18.995  changed: [10.129.0.132] => (item=ios-shinsei-Tepco-mobileloginok_deleteid_20210119_152247.txt) => {"ansible_loop_var": "item", "changed": true, "checksum": "2d684d344eb7ae0ded7306c586e4408029f35305", "dest": "/infra/rp/input/ldapModUserAttr_delete/ios-shinsei-Tepco-mobileloginok_deleteid_20210119_152247.txt", "gid": 10180, "group": "prrpz", "item": "ios-shinsei-Tepco-mobileloginok_deleteid_20210119_152247.txt", "md5sum": "2d831fe4df6c8eb2e6787b34fd1455fe", "mode": "0644", "owner": "prrpz000", "size": 27, "src": "/home/prrpz000/.ansible/tmp/ansible-tmp-1611037383.66-131357870284105/source", "state": "file", "uid": 10800}
+00:00:18.995  
+00:00:18.995  TASK [2.ツールの実行(削除)] ************************************************************
+00:00:18.995  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-delete.yml:30
+00:00:20.338  changed: [10.129.0.132] => (item=ios-shinsei-Tepco-mobileloginok_delete_20210119_152247.csv) => {"ansible_loop_var": "item", "changed": true, "cmd": "./rp-ldapModUserAttrDel.pl \"/infra/rp/input/ldapModUserAttr_delete/ios-shinsei-Tepco-mobileloginok_delete_20210119_152247.csv\"", "delta": "0:00:00.289686", "end": "2021-01-19 15:23:06.462992", "failed_when_result": false, "item": "ios-shinsei-Tepco-mobileloginok_delete_20210119_152247.csv", "rc": 0, "start": "2021-01-19 15:23:06.173306", "stderr": "", "stderr_lines": [], "stdout": "LDAP運用ツール（削除用）処理　開始\nInput => /infra/rp/input/ldapModUserAttr_delete/ios-shinsei-Tepco-mobileloginok_delete_20210119_152247.csv\n削除：T1111024 Tepco-mobileloginok \n削除：T1111025 Tepco-mobileloginok \n削除：T1111026 Tepco-mobileloginok \n【処理結果】 削除：3 エラー：0\nLDAP運用ツール（削除用）処理　正常終了", "stdout_lines": ["LDAP運用ツール（削除用）処理　開始", "Input => /infra/rp/input/ldapModUserAttr_delete/ios-shinsei-Tepco-mobileloginok_delete_20210119_152247.csv", "削除：T1111024 Tepco-mobileloginok ", "削除：T1111025 Tepco-mobileloginok ", "削除：T1111026 Tepco-mobileloginok ", "【処理結果】 削除：3 エラー：0", "LDAP運用ツール（削除用）処理　正常終了"]}
+00:00:20.338  
+00:00:20.338  TASK [3.INPUTデータの移動確認(削除)] *****************************************************
+00:00:20.338  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-delete.yml:38
+00:00:20.889  changed: [10.129.0.132] => (item=ios-shinsei-Tepco-mobileloginok_delete_20210119_152247.csv) => {"ansible_loop_var": "item", "changed": true, "cmd": "ls -lrt ios-shinsei-Tepco-mobileloginok_delete_20210119_152247.csv", "delta": "0:00:00.010235", "end": "2021-01-19 15:23:07.238874", "item": "ios-shinsei-Tepco-mobileloginok_delete_20210119_152247.csv", "rc": 0, "start": "2021-01-19 15:23:07.228639", "stderr": "", "stderr_lines": [], "stdout": "-rw-r--r-- 1 prrpz000 prrpz 60  1月 19 15:23 2021 ios-shinsei-Tepco-mobileloginok_delete_20210119_152247.csv", "stdout_lines": ["-rw-r--r-- 1 prrpz000 prrpz 60  1月 19 15:23 2021 ios-shinsei-Tepco-mobileloginok_delete_20210119_152247.csv"]}
+00:00:20.889  
+00:00:20.889  TASK [4.id確認] ******************************************************************
+00:00:20.889  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-delete.yml:45
+00:00:21.440  changed: [10.129.0.132] => {"changed": true, "cmd": "id", "delta": "0:00:00.007695", "end": "2021-01-19 15:23:07.953183", "rc": 0, "start": "2021-01-19 15:23:07.945488", "stderr": "", "stderr_lines": [], "stdout": "uid=10800(prrpz000) gid=10180(prrpz) 所属グループ=10180(prrpz)", "stdout_lines": ["uid=10800(prrpz000) gid=10180(prrpz) 所属グループ=10180(prrpz)"]}
+00:00:21.440  
+00:00:21.440  TASK [debug] *******************************************************************
+00:00:21.440  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-delete.yml:49
+00:00:21.691  ok: [10.129.0.132] => {
+00:00:21.691      "msg": "uid=10800(prrpz000) gid=10180(prrpz) 所属グループ=10180(prrpz)"
+00:00:21.691  }
+00:00:21.691  
+00:00:21.691  TASK [5.uname確認] ***************************************************************
+00:00:21.691  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-delete.yml:51
+00:00:22.242  changed: [10.129.0.132] => {"changed": true, "cmd": "uname -n", "delta": "0:00:00.005995", "end": "2021-01-19 15:23:08.702703", "rc": 0, "start": "2021-01-19 15:23:08.696708", "stderr": "", "stderr_lines": [], "stdout": "v9000132", "stdout_lines": ["v9000132"]}
+00:00:22.242  
+00:00:22.242  TASK [6.作業フォルダ作成] **************************************************************
+00:00:22.242  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-delete.yml:55
+00:00:23.153  ok: [10.129.0.132] => {"changed": false, "gid": 10180, "group": "prrpz", "mode": "0755", "owner": "prrpz000", "path": "/tmp/OAG/20210119", "size": 4096, "state": "directory", "uid": 10800}
+00:00:23.153  
+00:00:23.153  TASK [7.作業ファイルのコピー] ************************************************************
+00:00:23.153  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-delete.yml:60
+00:00:25.015  changed: [10.129.0.132] => (item=ios-shinsei-Tepco-mobileloginok_deleteid_20210119_152247.txt) => {"ansible_loop_var": "item", "changed": true, "checksum": "2d684d344eb7ae0ded7306c586e4408029f35305", "dest": "/tmp/OAG/20210119/id_list", "gid": 10180, "group": "prrpz", "item": "ios-shinsei-Tepco-mobileloginok_deleteid_20210119_152247.txt", "md5sum": "2d831fe4df6c8eb2e6787b34fd1455fe", "mode": "0644", "owner": "prrpz000", "size": 27, "src": "/home/prrpz000/.ansible/tmp/ansible-tmp-1611037389.2-57272817232500/source", "state": "file", "uid": 10800}
+00:00:25.015  
+00:00:25.015  TASK [8.確認シェル実行] ***************************************************************
+00:00:25.015  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-delete.yml:66
+00:00:25.265  changed: [10.129.0.132] => {"changed": true, "rc": 0, "stderr": "Shared connection to 10.129.0.132 closed.\r\n", "stderr_lines": ["Shared connection to 10.129.0.132 closed."], "stdout": "", "stdout_lines": []}
+00:00:25.265  
+00:00:25.265  TASK [9.処理結果のFetch] ************************************************************
+00:00:25.265  task path: /jenkins/sdc/workspace/002/002-16/02.ios-shinsei/yml/ios-shinsei-delete.yml:69
+00:00:26.176  changed: [10.129.0.132] => {"changed": true, "checksum": "e7e9863b052af93648de934593d57b0fc0f71d8f", "dest": "/jenkins/sdc/workspace/002/002-16/02.ios-shinsei/work/delete_result.txt", "md5sum": "09f1b390b777bb0d762fe98d1fd8fb1e", "remote_checksum": "e7e9863b052af93648de934593d57b0fc0f71d8f", "remote_md5sum": null}
+00:00:26.176  META: ran handlers
+00:00:26.176  META: ran handlers
+00:00:26.176  
+00:00:26.176  PLAY RECAP *********************************************************************
+00:00:26.176  10.129.0.132               : ok=11   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+00:00:26.176  
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+00:00:26.265  success
+[Pipeline] sh
+00:00:26.535  + nkf -s --overwrite work/delete_result.txt work/register_result.txt
+[Pipeline] archiveArtifacts
+00:00:26.556  成果物を保存中
+00:00:26.570  ファイル指紋の記録
+[Pipeline] sh
+00:00:26.864  + curl -k --user jenkins:11d6af5c17c9e90204ece0e1c9d355640e 'https://localhost:8080/job/002/job/002-16/job/01.ios-shinsei/10/timestamps/?time=HH:mm:ss&appendLog' -o job.log
+00:00:26.864    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+00:00:26.864                                   Dload  Upload   Total   Spent    Left  Speed
+00:00:26.864  
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100   495  100   495    0     0   4353      0 --:--:-- --:--:-- --:--:--  4380
+[Pipeline] sh
+00:00:27.145  + cat job.log
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
