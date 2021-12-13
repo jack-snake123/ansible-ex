@@ -1,5 +1,0 @@
-Last login: Mon Dec 13 14:15:07 2021 from 10.173.4.119
-[root@n0193071 ~]# find / -name "*log4j-*.jar"
-find: ‘/proc/29582’: そのようなファイルやディレクトリはありません
-/var/cache/jenkins/war/WEB-INF/lib/log4j-over-slf4j-1.7.26.jar
-[root@n0193071 ~]#
