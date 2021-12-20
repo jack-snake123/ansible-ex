@@ -1,1 +1,0 @@
-/opt/splunk/bin/splunk apply shcluster-bundle -target https://10.170.209.75:14098 -preserve-lookups true --answer-yes -auth admin:Splunk11
