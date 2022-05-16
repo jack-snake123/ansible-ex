@@ -1,0 +1,79 @@
+pipeline {
+  agent any
+  environment {
+    horiday_file='/tmp/horiday.txt'
+    execstage_file='execstage.flag'
+  }
+  stages {
+    stage('CALENDAR-CHECK') {
+      steps {
+        script {
+          sh(script: "if [ -e ${execstage_file} ]; then rm -f ${execstage_file}; fi", returnStatus:true)
+          horiday_chk1 = sh(script: "grep -c \"`date +%Y%m%d`\" ${horiday_file}", returnStatus:true)
+          horiday_chk2 = sh(script: "date +%u | grep -c -e \"[6|7]\"", returnStatus:true)
+          println "horiday_chk1 = ${horiday_chk1}"
+          println "horiday_chk2 = ${horiday_chk2}"
+          if (( horiday_chk1 == 0 ) | ( horiday_chk2 == 0 )) {
+            println "本日は休日です"
+          }else{
+            println "本日は平日です"
+            sh(script: "echo \"1\" > ${execstage_file}", returnStatus:true)
+          }
+        }
+      }
+    }
+
+    stage('JOB-BLOCK') {
+      when { allOf {
+        expression { return fileExists(execstage_file) }
+      } }
+      parallel {
+        stage('JOB-01') {
+          steps {
+            script {
+              try {
+                echo 'JOB-01'
+              }
+              catch(error) {
+                echo 'ここにエラー処理を記載'
+                error 'TEST ERROR'
+              }
+            }
+          }
+        }
+
+        stage('JOB-02') {
+          steps {
+            script {
+              try {
+                echo 'JOB-02'
+              }
+              catch(error) {
+                echo 'ここにエラー処理を記載'
+                error 'TEST ERROR'
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+    stage('JOB-03') {
+      when { allOf {
+        expression { return fileExists(execstage_file) }
+      } }
+      steps {
+        script {
+          try {
+            sh 'echo "ls hogehoge"'
+          }
+          catch(error) {
+            echo 'ここにエラー処理を記載'
+            error 'TEST ERROR'
+          }
+        }
+      }
+    }
+  }
+}
