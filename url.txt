@@ -1,2 +1,42 @@
 https://www.keycloak.org/docs/latest/server_installation/
 https://keycloak-documentation.openstandia.jp/master/ja_JP/server_installation/index.html#%E3%82%AC%E3%82%A4%E3%83%89%E3%81%AE%E6%A6%82%E8%A6%81
+
+[root@localhost tmp]# cd /opt
+
+[root@localhost opt]# tar xfpz keycloak-18.0.0.tar.gz
+
+[root@localhost opt]# ll
+合計 168540
+drwxr-xr-x. 7 root root       126  5月 23 15:55 keycloak-18.0.0
+-rw-r--r--. 1 root root 172582123  5月 23 13:15 keycloak-18.0.0.tar.gz
+drwxr-xr-x. 2 root root         6  6月 18  2018 rh
+[root@localhost opt]# cd keycloak-18.0.0/
+
+[root@localhost keycloak-18.0.0]# bin/kc.sh
+Error: A JNI error has occurred, please check your installation and try again
+Exception in thread "main" java.lang.UnsupportedClassVersionError: io/quarkus/bootstrap/runner/QuarkusEntryPoint has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+        at java.lang.ClassLoader.defineClass1(Native Method)
+        at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+        at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+        at java.net.URLClassLoader.defineClass(URLClassLoader.java:473)
+        at java.net.URLClassLoader.access$100(URLClassLoader.java:74)
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:369)
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:363)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:362)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:352)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+        at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:601)
+
+[root@localhost keycloak-18.0.0]# java -version
+openjdk version "1.8.0_332"
+OpenJDK Runtime Environment (build 1.8.0_332-b09)
+OpenJDK 64-Bit Server VM (build 25.332-b09, mixed mode)
+
+[root@localhost keycloak-18.0.0]# rpm -qa | grep java
+javapackages-tools-3.4.1-11.el7.noarch
+java-1.8.0-openjdk-headless-1.8.0.332.b09-1.el7_9.x86_64
+java-1.8.0-openjdk-1.8.0.332.b09-1.el7_9.x86_64
+python-javapackages-3.4.1-11.el7.noarch
+tzdata-java-2021e-1.el7.noarch
