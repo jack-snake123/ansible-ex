@@ -12,31 +12,74 @@ drwxr-xr-x. 7 root root       126  5月 23 15:55 keycloak-18.0.0
 drwxr-xr-x. 2 root root         6  6月 18  2018 rh
 [root@localhost opt]# cd keycloak-18.0.0/
 
-[root@localhost keycloak-18.0.0]# bin/kc.sh
-Error: A JNI error has occurred, please check your installation and try again
-Exception in thread "main" java.lang.UnsupportedClassVersionError: io/quarkus/bootstrap/runner/QuarkusEntryPoint has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0
-        at java.lang.ClassLoader.defineClass1(Native Method)
-        at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
-        at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
-        at java.net.URLClassLoader.defineClass(URLClassLoader.java:473)
-        at java.net.URLClassLoader.access$100(URLClassLoader.java:74)
-        at java.net.URLClassLoader$1.run(URLClassLoader.java:369)
-        at java.net.URLClassLoader$1.run(URLClassLoader.java:363)
-        at java.security.AccessController.doPrivileged(Native Method)
-        at java.net.URLClassLoader.findClass(URLClassLoader.java:362)
-        at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
-        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:352)
-        at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
-        at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:601)
-
-[root@localhost keycloak-18.0.0]# java -version
-openjdk version "1.8.0_332"
-OpenJDK Runtime Environment (build 1.8.0_332-b09)
-OpenJDK 64-Bit Server VM (build 25.332-b09, mixed mode)
-
 [root@localhost keycloak-18.0.0]# rpm -qa | grep java
+java-11-openjdk-11.0.8.10-1.el7.x86_64
 javapackages-tools-3.4.1-11.el7.noarch
 java-1.8.0-openjdk-headless-1.8.0.332.b09-1.el7_9.x86_64
 java-1.8.0-openjdk-1.8.0.332.b09-1.el7_9.x86_64
+java-11-openjdk-headless-11.0.8.10-1.el7.x86_64
 python-javapackages-3.4.1-11.el7.noarch
 tzdata-java-2021e-1.el7.noarch
+
+[root@localhost keycloak-18.0.0]# java -version
+openjdk version "11.0.8" 2020-07-14 LTS
+OpenJDK Runtime Environment 18.9 (build 11.0.8+10-LTS)
+OpenJDK 64-Bit Server VM 18.9 (build 11.0.8+10-LTS, mixed mode, sharing)
+
+[root@localhost keycloak-18.0.0]# bin/kc.sh
+Keycloak - Open Source Identity and Access Management
+
+Find more information at: https://www.keycloak.org/docs/latest
+
+Usage:
+
+kc.sh [OPTIONS] [COMMAND]
+
+Use this command-line tool to manage your Keycloak cluster.
+Make sure the command is available on your "PATH" or prefix it with "./" (e.g.:
+"./kc.sh") to execute from the current folder.
+
+Options:
+
+-cf, --config-file <file>
+                     Set the path to a configuration file. By default, configuration properties are
+                       read from the "keycloak.conf" file in the "conf" directory.
+-h, --help           This help message.
+-v, --verbose        Print out error details when running this command.
+-V, --version        Show version information
+
+Commands:
+
+  build                   Creates a new and optimized server image.
+  start                   Start the server.
+  start-dev               Start the server in development mode.
+  export                  Export data from realms to a file or directory.
+  import                  Import data from a directory or a file.
+  show-config             Print out the current configuration.
+  tools                   Utilities for use and interaction with the server.
+    completion            Generate bash/zsh completion script for kc.sh.
+
+Examples:
+
+  Start the server in development mode for local development or testing:
+
+      $ kc.sh start-dev
+
+  Building an optimized server runtime:
+
+      $ kc.sh build <OPTIONS>
+
+  Start the server in production mode:
+
+      $ kc.sh start <OPTIONS>
+
+  Enable auto-completion to bash/zsh:
+
+      $ source <(kc.sh tools completion)
+
+  Please, take a look at the documentation for more details before deploying in
+production.
+
+Use "kc.sh start --help" for the available options when starting the server.
+Use "kc.sh <command> --help" for more information about other commands.
+
