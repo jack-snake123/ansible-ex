@@ -26,60 +26,24 @@ openjdk version "11.0.8" 2020-07-14 LTS
 OpenJDK Runtime Environment 18.9 (build 11.0.8+10-LTS)
 OpenJDK 64-Bit Server VM 18.9 (build 11.0.8+10-LTS, mixed mode, sharing)
 
-[root@localhost keycloak-18.0.0]# bin/kc.sh
-Keycloak - Open Source Identity and Access Management
+[root@localhost keycloak-18.0.0]# bin/kc.sh start-dev
+Updating the configuration and installing your custom providers, if any. Please wait.
 
-Find more information at: https://www.keycloak.org/docs/latest
+2022-05-23 17:56:42,929 INFO  [io.quarkus.deployment.QuarkusAugmentor] (main) Quarkus augmentation completed in 8779ms
+2022-05-23 17:56:46,286 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: FrontEnd: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin: <request>, Port: -1, Proxied: false
+2022-05-23 17:56:47,472 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2022-05-23 17:56:47,514 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshalling is deprecated and planned for removal
+2022-05-23 17:56:47,542 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2022-05-23 17:56:47,874 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version: Infinispan 'Triskaidekaphobia' 13.0.8.Final
+2022-05-23 17:56:50,121 INFO  [org.keycloak.quarkus.runtime.storage.database.liquibase.QuarkusJpaUpdaterProvider] (main) Initializing database schema. Using changelog META-INF/jpa-changelog-master.xml
+2022-05-23 17:56:52,967 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_236345, Site name: null
+2022-05-23 17:56:53,066 INFO  [org.keycloak.services] (main) KC-SERVICES0050: Initializing master realm
+2022-05-23 17:56:55,029 INFO  [io.quarkus] (main) Keycloak 18.0.0 on JVM (powered by Quarkus 2.7.5.Final) started in 11.749s. Listening on: http://0.0.0.0:8080
+2022-05-23 17:56:55,030 INFO  [io.quarkus] (main) Profile dev activated.
+2022-05-23 17:56:55,030 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariadb, jdbc-mssql, jdbc-mysql, jdbc-oracle, jdbc-postgresql, keycloak, narayana-jta, reactive-routes, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, smallrye-metrics, vault, vertx]
+2022-05-23 17:56:55,035 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.
 
-Usage:
 
-kc.sh [OPTIONS] [COMMAND]
-
-Use this command-line tool to manage your Keycloak cluster.
-Make sure the command is available on your "PATH" or prefix it with "./" (e.g.:
-"./kc.sh") to execute from the current folder.
-
-Options:
-
--cf, --config-file <file>
-                     Set the path to a configuration file. By default, configuration properties are
-                       read from the "keycloak.conf" file in the "conf" directory.
--h, --help           This help message.
--v, --verbose        Print out error details when running this command.
--V, --version        Show version information
-
-Commands:
-
-  build                   Creates a new and optimized server image.
-  start                   Start the server.
-  start-dev               Start the server in development mode.
-  export                  Export data from realms to a file or directory.
-  import                  Import data from a directory or a file.
-  show-config             Print out the current configuration.
-  tools                   Utilities for use and interaction with the server.
-    completion            Generate bash/zsh completion script for kc.sh.
-
-Examples:
-
-  Start the server in development mode for local development or testing:
-
-      $ kc.sh start-dev
-
-  Building an optimized server runtime:
-
-      $ kc.sh build <OPTIONS>
-
-  Start the server in production mode:
-
-      $ kc.sh start <OPTIONS>
-
-  Enable auto-completion to bash/zsh:
-
-      $ source <(kc.sh tools completion)
-
-  Please, take a look at the documentation for more details before deploying in
-production.
-
-Use "kc.sh start --help" for the available options when starting the server.
-Use "kc.sh <command> --help" for more information about other commands.
-
+[root@localhost keycloak-18.0.0]# ps -ef | grep keycloak
+root     21679 21605  2 17:56 pts/0    00:00:30 java -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -Dkc.home.dir=/opt/keycloak-18.0.0/bin/../ -Djboss.server.config.dir=/opt/keycloak-18.0.0/bin/../conf -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Dquarkus-log-max-startup-records=10000 -cp /opt/keycloak-18.0.0/bin/../lib/quarkus-run.jar io.quarkus.bootstrap.runner.QuarkusEntryPoint --profile=dev start-dev --auto-build
+root     23178 22704  0 18:17 pts/1    00:00:00 grep --color=auto keycloak
