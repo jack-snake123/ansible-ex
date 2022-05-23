@@ -1,0 +1,2 @@
+https://www.keycloak.org/docs/latest/server_installation/
+https://keycloak-documentation.openstandia.jp/master/ja_JP/server_installation/index.html#%E3%82%AC%E3%82%A4%E3%83%89%E3%81%AE%E6%A6%82%E8%A6%81
