@@ -1,1 +1,9 @@
 jenkins:11fa49ebf607b27a4dcee0ade4a9bb3208
+
+
+
+curl --user jenkins:118b3951959ccb0de1d95b0be1aa60519a "
+
+http://localhost:8080/job/xxx/job/xxx-01/job/ID0001/config.xml
+
+" > jenkins_job.xml
