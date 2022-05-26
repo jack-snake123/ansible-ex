@@ -2,6 +2,20 @@ jenkins:11fa49ebf607b27a4dcee0ade4a9bb3208
 
 c933c4ac-8ee3-405e-8544-b0521c4ab6a8
 
+  <properties>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.2">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>1</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>true</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <hudson.plugins.jira.JiraProjectProperty plugin="jira@3.1.1"/>
+  </properties>
+
+
 [root@poc-auto-001 ~]# cat jenkins_job.xml
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.39">
