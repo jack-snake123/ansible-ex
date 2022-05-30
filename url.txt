@@ -1,3 +1,6 @@
+https://github.com/keycloak/keycloak/discussions/10180
+https://soundsessential.medium.com/keycloak-17-filemaker-installation-configuration-tutorial-part-4-starting-keycloak-17-next-7e4cc46027fa
+
 jenkins:11fa49ebf607b27a4dcee0ade4a9bb3208
 
 c933c4ac-8ee3-405e-8544-b0521c4ab6a8
