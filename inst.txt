@@ -1,51 +1,9 @@
-[root@keycloak-host keycloak-18.0.0]# keytool -genkey -alias keycloak-ssl-cert -keyalg RSA -keystore keycloak_keystore.jks -validity 10950
-[root@keycloak-host keycloak-18.0.0]# vi conf/keycloak.conf
-[root@keycloak-host keycloak-18.0.0]# cat conf/keycloak.conf
-hostname=192.168.1.13
-https-key-store-file=/opt/keycloak-18.0.0/keycloak_keystore.jks
-https-key-store-password=********
-https-port=8443
-[root@keycloak-host keycloak-18.0.0]# vi /etc/systemd/system/keycloak.service
-[root@keycloak-host keycloak-18.0.0]# cat /etc/systemd/system/keycloak.service
-[Unit]
-Description=The Quarkus Application Server
-After=syslog.target network.target
-Before=httpd.service
-
-[Service]
-SuccessExitStatus=0 143
-UMask=0027
-ExecStart=/opt/keycloak-18.0.0/bin/kc.sh start
-
-[Install]
-WantedBy=multi-user.target
-[root@keycloak-host keycloak-18.0.0]# bin/kc.sh build
-Updating the configuration and installing your custom providers, if any. Please wait.
-2022-06-03 12:28:12,291 INFO  [io.quarkus.deployment.QuarkusAugmentor] (main) Quarkus augmentation completed in 8817ms
-Server configuration updated and persisted. Run the following command to review the configuration:
-
-        kc.sh show-config
-
-[root@keycloak-host keycloak-18.0.0]# systemctl daemon-reload
-[root@keycloak-host keycloak-18.0.0]# systemctl start keycloak
-[root@keycloak-host keycloak-18.0.0]# systemctl status keycloak
-● keycloak.service - The Quarkus Application Server
-   Loaded: loaded (/etc/systemd/system/keycloak.service; enabled; vendor preset: disabled)
-   Active: active (running) since 金 2022-06-03 12:29:30 JST; 20s ago
- Main PID: 21347 (java)
-    Tasks: 37
-   CGroup: /system.slice/keycloak.service
-           mq21347 java -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -Dkc.home.dir=/opt/keycloak-18.0.0/bin/../ -...
-
- 6月 03 12:29:45 keycloak-host kc.sh[21347]: 2022-06-03 12:29:45,011 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname...ied: false
- 6月 03 12:29:45 keycloak-host kc.sh[21347]: 2022-06-03 12:29:45,930 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshallin...or removal
- 6月 03 12:29:46 keycloak-host kc.sh[21347]: 2022-06-03 12:29:46,119 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Inf...te enabled
- 6月 03 12:29:46 keycloak-host kc.sh[21347]: 2022-06-03 12:29:46,183 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user mars...arshaller'
- 6月 03 12:29:46 keycloak-host kc.sh[21347]: 2022-06-03 12:29:46,347 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version....0.8.Final
- 6月 03 12:29:47 keycloak-host kc.sh[21347]: 2022-06-03 12:29:47,434 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory...name: null
- 6月 03 12:29:48 keycloak-host kc.sh[21347]: 2022-06-03 12:29:48,275 INFO  [io.quarkus] (main) Keycloak 18.0.0 on JVM (powered by Quarkus 2.7.5.Final) sta...0.0.0:8443
- 6月 03 12:29:48 keycloak-host kc.sh[21347]: 2022-06-03 12:29:48,276 INFO  [io.quarkus] (main) Profile dev activated.
- 6月 03 12:29:48 keycloak-host kc.sh[21347]: 2022-06-03 12:29:48,276 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, jdbc-mariad...
- 6月 03 12:29:48 keycloak-host kc.sh[21347]: 2022-06-03 12:29:48,280 WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in develo...roduction.
-Hint: Some lines were ellipsized, use -l to show in full.
-[root@keycloak-host keycloak-18.0.0]#
+{
+  "realm": "jenkins",
+  "auth-server-url": "https://192.168.1.13:8443/",
+  "disable-trust-manager": true, 
+  "ssl-required": "external",
+  "resource": "myclient",
+  "public-client": true,
+  "confidential-port": 0
+}
