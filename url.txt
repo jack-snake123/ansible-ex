@@ -1,68 +1,180 @@
-https://github.com/keycloak/keycloak/discussions/10180
-https://soundsessential.medium.com/keycloak-17-filemaker-installation-configuration-tutorial-part-4-starting-keycloak-17-next-7e4cc46027fa
+[root@keycloak-host keycloak-18.0.0]# cat conf/keycloak.conf
+hostname=192.168.1.13
+https-key-store-file=/opt/keycloak-18.0.0/keycloak_keystore.jks
+https-key-store-password=Au7E8xqC$sm!
+https-port=8443
+https-protocols=TLSv1.3,TLSv1.2
+[root@keycloak-host keycloak-18.0.0]# echo | openssl s_client -connect 192.168.1.13:8443 -tls1
+---
+New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES256-SHA
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : ECDHE-RSA-AES256-SHA
+    Session-ID: C91F2339C2FB743D5C68B7B2A11FFFC2D9D86576A2F77407C4B600F881EF47B2
+    Session-ID-ctx:
+    Master-Key: 99F7CA51ECAE64067A0EA18405F1E26FF188CFFABF5FB5CAA5C0858D0B3E83A951CA00AF3637A02280F250B75F71974E
+    Key-Arg   : None
+    Krb5 Principal: None
+    PSK identity: None
+    PSK identity hint: None
+    Start Time: 1655203687
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self signed certificate)
+---
+DONE
+[root@keycloak-host keycloak-18.0.0]# echo | openssl s_client -connect 192.168.1.13:8443 -tls1_1
+---
+New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES256-SHA
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.1
+    Cipher    : ECDHE-RSA-AES256-SHA
+    Session-ID: 5F2A2653CE591B49FE60AD167D78D2AA114C328EF7003A3FD7543D8B6523EBA3
+    Session-ID-ctx:
+    Master-Key: 701F321D753A8DC55B432A82E79608C732FD60D25DE3E4C5AF64077D64D79FC202645B2215BA48607B16ED1FC51524CE
+    Key-Arg   : None
+    Krb5 Principal: None
+    PSK identity: None
+    PSK identity hint: None
+    Start Time: 1655203768
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self signed certificate)
+---
+DONE
+[root@keycloak-host keycloak-18.0.0]# echo | openssl s_client -connect 192.168.1.13:8443 -tls1_2
+---
+New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: B95F288F2A1982C3E0A0F270920D777B476487AB40B2C943C4780B4344A7B594
+    Session-ID-ctx:
+    Master-Key: 59E6A2DFADE32D8296FE3F00BD103A1D08131917F59A6163FEBDD5B55FAAC0917ADDA9A27FD932EACAA36F3022DB5D73
+    Key-Arg   : None
+    Krb5 Principal: None
+    PSK identity: None
+    PSK identity hint: None
+    Start Time: 1655203805
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self signed certificate)
+---
+DONE
+[root@keycloak-host keycloak-18.0.0]# cat /etc/systemd/system/keycloak.service
+[Unit]
+Description=The Quarkus Application Server
+After=syslog.target network.target
+Before=httpd.service
 
-jenkins:11fa49ebf607b27a4dcee0ade4a9bb3208
+[Service]
+SuccessExitStatus=0 143
+UMask=0027
+ExecStart=/opt/keycloak-18.0.0/bin/kc.sh start
+Environment="JAVA_OPTS=-Djdk.tls.client.protocols=TLSv1.2"
 
-c933c4ac-8ee3-405e-8544-b0521c4ab6a8
+[Install]
+WantedBy=multi-user.target
+[root@keycloak-host keycloak-18.0.0]# systemctl daemon-reload
+[root@keycloak-host keycloak-18.0.0]# systemctl restart keycloak
+[root@keycloak-host keycloak-18.0.0]# systemctl status keycloak
+● keycloak.service - The Quarkus Application Server
+   Loaded: loaded (/etc/systemd/system/keycloak.service; enabled; vendor preset: disabled)
+   Active: active (running) since 火 2022-06-14 19:53:14 JST; 5s ago
+ Main PID: 21697 (java)
+    Tasks: 29
+   CGroup: /system.slice/keycloak.service
+           mq21697 java -Djdk.tls.client.protocols=TLSv1.2 -Dkc.home.dir=/opt/keycloak-18.0.0/bin/../ -Djboss.server.config.dir=/opt/keycloak-18.0.0/bin/../conf -Dja...
 
-  <properties>
-    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.2">
-      <maxConcurrentPerNode>0</maxConcurrentPerNode>
-      <maxConcurrentTotal>1</maxConcurrentTotal>
-      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
-      <throttleEnabled>true</throttleEnabled>
-      <throttleOption>project</throttleOption>
-      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
-      <paramsToUseForLimit></paramsToUseForLimit>
-    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <hudson.plugins.jira.JiraProjectProperty plugin="jira@3.1.1"/>
-  </properties>
-
-
-[root@poc-auto-001 ~]# cat jenkins_job.xml
-<?xml version='1.1' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.39">
-  <actions>
-    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.7.1"/>
-    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.7.1">
-      <jobProperties/>
-      <triggers/>
-      <parameters/>
-      <options/>
-    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
-  </actions>
-  <description></description>
-  <keepDependencies>false</keepDependencies>
-  <properties>
-    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.2">
-      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
-      <throttleEnabled>false</throttleEnabled>
-      <throttleOption>project</throttleOption>
-      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
-      <paramsToUseForLimit></paramsToUseForLimit>
-    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <hudson.plugins.jira.JiraProjectProperty plugin="jira@3.1.1"/>
-  </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.82">
-    <scm class="hudson.plugins.git.GitSCM" plugin="git@4.2.2">
-      <configVersion>2</configVersion>
-      <userRemoteConfigs>
-        <hudson.plugins.git.UserRemoteConfig>
-          <url>https://192.168.1.12:8000/test-admin1/renkei_test.git</url>
-          <credentialsId>c933c4ac-8ee3-405e-8544-b0521c4ab6a8</credentialsId>
-        </hudson.plugins.git.UserRemoteConfig>
-      </userRemoteConfigs>
-      <branches>
-        <hudson.plugins.git.BranchSpec>
-          <name>*/master</name>
-        </hudson.plugins.git.BranchSpec>
-      </branches>
-      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-      <submoduleCfg class="list"/>
-      <extensions/>
-    </scm>
-    <scriptPath>Jenkinsfile</scriptPath>
-    <lightweight>true</lightweight>
-  </definition>
-  <triggers/>
-  <disabled>false</disabled>
+ 6月 14 19:53:14 keycloak-host systemd[1]: Started The Quarkus Application Server.
+ 6月 14 19:53:14 keycloak-host kc.sh[21697]: JAVA_OPTS already set in environment; overriding default settings with values: -Djdk.tls.client.protocols=TLSv1.2
+ 6月 14 19:53:17 keycloak-host kc.sh[21697]: 2022-06-14 19:53:17,943 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname...ied: false
+ 6月 14 19:53:19 keycloak-host kc.sh[21697]: 2022-06-14 19:53:19,548 WARN  [org.infinispan.PERSISTENCE] (keycloak-cache-init) ISPN000554: jboss-marshallin...or removal
+ 6月 14 19:53:19 keycloak-host kc.sh[21697]: 2022-06-14 19:53:19,591 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Inf...te enabled
+ 6月 14 19:53:19 keycloak-host kc.sh[21697]: 2022-06-14 19:53:19,619 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user mars...arshaller'
+ 6月 14 19:53:19 keycloak-host kc.sh[21697]: 2022-06-14 19:53:19,880 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000128: Infinispan version....0.8.Final
+ 6月 14 19:53:20 keycloak-host kc.sh[21697]: 2022-06-14 19:53:20,086 INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000078: Starting JGroups channel `ISPN`
+ 6月 14 19:53:20 keycloak-host kc.sh[21697]: 2022-06-14 19:53:20,086 INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000088: Unable to use any JG...iguration!
+Hint: Some lines were ellipsized, use -l to show in full.
+[root@keycloak-host keycloak-18.0.0]# echo | openssl s_client -connect 192.168.1.13:8443 -tls1
+---
+New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES256-SHA
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : ECDHE-RSA-AES256-SHA
+    Session-ID: C91F2339C2FB743D5C68B7B2A11FFFC2D9D86576A2F77407C4B600F881EF47B2
+    Session-ID-ctx:
+    Master-Key: 99F7CA51ECAE64067A0EA18405F1E26FF188CFFABF5FB5CAA5C0858D0B3E83A951CA00AF3637A02280F250B75F71974E
+    Key-Arg   : None
+    Krb5 Principal: None
+    PSK identity: None
+    PSK identity hint: None
+    Start Time: 1655203687
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self signed certificate)
+---
+DONE
+[root@keycloak-host keycloak-18.0.0]# echo | openssl s_client -connect 192.168.1.13:8443 -tls1_1
+---
+New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES256-SHA
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.1
+    Cipher    : ECDHE-RSA-AES256-SHA
+    Session-ID: 5F2A2653CE591B49FE60AD167D78D2AA114C328EF7003A3FD7543D8B6523EBA3
+    Session-ID-ctx:
+    Master-Key: 701F321D753A8DC55B432A82E79608C732FD60D25DE3E4C5AF64077D64D79FC202645B2215BA48607B16ED1FC51524CE
+    Key-Arg   : None
+    Krb5 Principal: None
+    PSK identity: None
+    PSK identity hint: None
+    Start Time: 1655203768
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self signed certificate)
+---
+DONE
+[root@keycloak-host keycloak-18.0.0]# echo | openssl s_client -connect 192.168.1.13:8443 -tls1_2
+---
+New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: B95F288F2A1982C3E0A0F270920D777B476487AB40B2C943C4780B4344A7B594
+    Session-ID-ctx:
+    Master-Key: 59E6A2DFADE32D8296FE3F00BD103A1D08131917F59A6163FEBDD5B55FAAC0917ADDA9A27FD932EACAA36F3022DB5D73
+    Key-Arg   : None
+    Krb5 Principal: None
+    PSK identity: None
+    PSK identity hint: None
+    Start Time: 1655203805
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self signed certificate)
+---
+DONE
+[root@keycloak-host keycloak-18.0.0]# 
