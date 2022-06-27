@@ -1,14 +1,1 @@
-systemctl start firewalld
-systemctl enable firewalld
-systemctl status firewalld
-
-firewall-cmd --direct --get-all-rules
-
-firewall-cmd --direct --permanent --add-rule ipv4 filter INPUT 1 -p ICMP --icmp-type timestamp-request -j DROP
-firewall-cmd --direct --permanent --add-rule ipv4 filter OUTPUT 1 -p icmp --icmp-type 14 -j DROP
-
-firewall-cmd --reload
-firewall-cmd --direct --get-all-rules
-
-
-firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="0.0.0.0/0" port port="8443" protocol="tcp" accept' --permanent
+job-console.tepcube.jp
