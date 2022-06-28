@@ -1,7 +1,39 @@
-cmsp-re01:
+cmspz-ap01:
   hosts:
-    192.168.1.13:
+    10.191.11.49:
   vars:
-    ansible_user: jobuser
+    ansible_user: cmspj001
+    ansible_port: 22
+    ansible_ssh_private_key_file: /root/.ssh/id_rsa
+
+cmspz-db01:
+  hosts:
+    10.191.11.50:
+  vars:
+    ansible_user: cmspj001
+    ansible_port: 22
+    ansible_ssh_private_key_file: /root/.ssh/id_rsa
+
+cmspz-apk1:
+  hosts:
+    10.191.11.51:
+  vars:
+    ansible_user: cmspj001
+    ansible_port: 22
+    ansible_ssh_private_key_file: /root/.ssh/id_rsa
+
+cmspz-dbk1:
+  hosts:
+    10.191.11.52:
+  vars:
+    ansible_user: cmspj001
+    ansible_port: 22
+    ansible_ssh_private_key_file: /root/.ssh/id_rsa
+
+cmspz-re01:
+  hosts:
+    10.191.2.89:
+  vars:
+    ansible_user: cmspj001
     ansible_port: 22
     ansible_ssh_private_key_file: /root/.ssh/id_rsa
