@@ -1,0 +1,11 @@
+ls -l /y/seclog/pyyiz001/config
+ls -l /renkei
+ls -l /log/rel
+ls -l /y/seclog/pyyiz001/hkn_inf
+ls -l /SDC_YI_M01
+ls -l /SDC_YI_S01
+ls -l /y/seclog/pyyiz001/yilm
+ls -l /y/seclog/pyyiz001/yilm/config/yisdef.txt
+ls -l /y/seclog/pyyiz001/yilm/sbin
+ls -l /log
+ls -l /togounyo/syslog/trace/yi
