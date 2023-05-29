@@ -1,0 +1,198 @@
+■注意
+サイバートラスト社のルート証明書、中間CA証明書が更新された場合「chain.pem、root.pem」も更新すること
+[root@sdc-job-004 .ssl]# ll certs/
+合計 8
+lrwxrwxrwx 1 root root    8  7月  5  2022 05429e4e.0 -> root.pem
+lrwxrwxrwx 1 root root    9  7月  5  2022 cd58d51e.0 -> chain.pem
+-rw-r--r-- 1 root root 1280  7月  5  2022 chain.pem
+-rw-r--r-- 1 root root 1796  7月  5  2022 root.pem
+
+
+■証明書更新手順
+[root@sdc-job-004 ~]# cd /var/lib/jenkins/.ssl/
+[root@sdc-job-004 .ssl]# /testssl.sh-3.0.7/testssl.sh localhost:8080 > /tmp/jenkins.txt
+[root@sdc-job-004 .ssl]# ll
+合計 28
+-rw-r--r-- 1 root root 2628  7月  5  2022 1286191.cer
+-rw-r--r-- 1 root root 2628  5月 29 14:55 1317580.cer
+drwxr-xr-x 2 root root   75  7月  5  2022 certs
+-rw-r--r-- 1 root root 6117  7月  5  2022 jenkins.keystore
+-rw-r--r-- 1 root root 5717  7月  5  2022 jenkins.p12
+-rw-r--r-- 1 root root 1041  6月 27  2022 job-console.tepcube.jp.csr
+-rw-r--r-- 1 root root 1766  6月 27  2022 job-console.tepcube.jp.key
+[root@sdc-job-004 .ssl]# mkdir 20230529BK
+[root@sdc-job-004 .ssl]# mv 1286191.cer 20230529BK/
+[root@sdc-job-004 .ssl]# mv jenkins.keystore 20230529BK/
+[root@sdc-job-004 .ssl]# mv jenkins.p12 20230529BK/
+[root@sdc-job-004 .ssl]# ll
+合計 28
+-rw-r--r-- 1 root root 2628  5月 29 14:55 1317580.cer
+drwxr-xr-x 2 root root   68  5月 29 14:56 20230529BK
+drwxr-xr-x 2 root root   75  7月  5  2022 certs
+-rw-r--r-- 1 root root 1041  6月 27  2022 job-console.tepcube.jp.csr
+-rw-r--r-- 1 root root 1766  6月 27  2022 job-console.tepcube.jp.key
+[root@sdc-job-004 .ssl]# ll 20230529BK/
+合計 20
+-rw-r--r-- 1 root root 2628  7月  5  2022 1286191.cer
+-rw-r--r-- 1 root root 6117  7月  5  2022 jenkins.keystore
+-rw-r--r-- 1 root root 5717  7月  5  2022 jenkins.p12
+[root@sdc-job-004 .ssl]# openssl pkcs12 -export -in 1317580.cer -inkey job-console.tepcube.jp.key -out jenkins.p12 -chain -CApath certs/
+Enter pass phrase for job-console.tepcube.jp.key:
+Enter Export Password:
+Verifying - Enter Export Password:
+[root@sdc-job-004 .ssl]# ll
+合計 20
+-rw-r--r-- 1 root root 2628  5月 29 14:55 1317580.cer
+drwxr-xr-x 2 root root   68  5月 29 14:56 20230529BK
+drwxr-xr-x 2 root root   75  7月  5  2022 certs
+-rw-r--r-- 1 root root 5717  5月 29 15:10 jenkins.p12
+-rw-r--r-- 1 root root 1041  6月 27  2022 job-console.tepcube.jp.csr
+-rw-r--r-- 1 root root 1766  6月 27  2022 job-console.tepcube.jp.key
+[root@sdc-job-004 .ssl]# keytool -importkeystore -destkeystore jenkins.keystore -srckeystore jenkins.p12 -srcstoretype pkcs12
+キーストアjenkins.p12をjenkins.keystoreにインポートしています...
+出力先キーストアのパスワードを入力してください:
+新規パスワードを再入力してください:
+ソース・キーストアのパスワードを入力してください:
+別名1のエントリのインポートに成功しました。
+インポート・コマンドが完了しました: 1件のエントリのインポートが成功しました。0件のエントリのインポートが失敗したか取り消されました
+[root@sdc-job-004 .ssl]# ll
+合計 28
+-rw-r--r-- 1 root root 2628  5月 29 14:55 1317580.cer
+drwxr-xr-x 2 root root   68  5月 29 14:56 20230529BK
+drwxr-xr-x 2 root root   75  7月  5  2022 certs
+-rw-r--r-- 1 root root 6255  5月 29 15:11 jenkins.keystore
+-rw-r--r-- 1 root root 5717  5月 29 15:10 jenkins.p12
+-rw-r--r-- 1 root root 1041  6月 27  2022 job-console.tepcube.jp.csr
+-rw-r--r-- 1 root root 1766  6月 27  2022 job-console.tepcube.jp.key
+[root@sdc-job-004 .ssl]# systemctl restart jenkins.service
+[root@sdc-job-004 .ssl]# systemctl status jenkins.service
+● jenkins.service - Jenkins Continuous Integration Server
+   Loaded: loaded (/usr/lib/systemd/system/jenkins.service; disabled; vendor pre                                                                                        set: disabled)
+  Drop-In: /etc/systemd/system/jenkins.service.d
+           mqoverride.conf
+   Active: active (running) since 月 2023-05-29 14:59:55 JST; 1min 37s ago
+ Main PID: 16422 (java)
+    Tasks: 45
+   CGroup: /system.slice/jenkins.service
+           mq16422 /usr/bin/java -Djava.awt.headless=true -jar /usr/share/jav...
+
+ 5月 29 14:59:57 sdc-job-004 jenkins[16422]: at hudson.model.UpdateSite.upd...)
+ 5月 29 14:59:57 sdc-job-004 jenkins[16422]: at hudson.PluginManager.checkU...)
+ 5月 29 14:59:57 sdc-job-004 jenkins[16422]: at hudson.util.Retrier.start(R...)
+ 5月 29 14:59:57 sdc-job-004 jenkins[16422]: at hudson.PluginManager.doChec...)
+ 5月 29 14:59:57 sdc-job-004 jenkins[16422]: at jenkins.DailyCheck.execute(...)
+ 5月 29 14:59:57 sdc-job-004 jenkins[16422]: at hudson.model.AsyncPeriodicW...)
+ 5月 29 14:59:57 sdc-job-004 jenkins[16422]: at java.base/java.lang.Thread....)
+ 5月 29 14:59:57 sdc-job-004 jenkins[16422]: 2023-05-29 05:59:57.217+0000 [...r
+ 5月 29 14:59:57 sdc-job-004 jenkins[16422]: 2023-05-29 05:59:57.219+0000 [...s
+ 5月 29 14:59:57 sdc-job-004 jenkins[16422]: 2023-05-29 05:59:57.221+0000 [...o
+Hint: Some lines were ellipsized, use -l to show in full.
+[root@sdc-job-004 .ssl]# /testssl.sh-3.0.7/testssl.sh localhost:8080 > /tmp/jenkins2.txt
+[root@sdc-job-004 .ssl]# diff /tmp/jenkins.txt  /tmp/jenkins2.txt
+18c18
+<  Start 2023-05-29 13:53:10        -->> 127.0.0.1:8080 (localhost) <<--
+---
+>  Start 2023-05-29 15:04:14        -->> 127.0.0.1:8080 (localhost) <<--
+75,77c75,77
+<  Serial                       69F0FC5EA8E3BBC994B176D2F6E11C02D5D2982D (OK: length 20)
+<  Fingerprints                 SHA1 28D258A67571AE71129125FEC165AA82DE8C4D2F
+<                               SHA256 86A2BA85FFFB70E91FE4D0437EA28C026578F75DE5C0D673CF02264F6E68BBD8
+---
+>  Serial                       2264C0FF4A1B5B8FF8954FB7541829B89AB2F141 (OK: length 20)
+>  Fingerprints                 SHA1 67FDCEFA1D40B2692BBB933AF550CC1DCA826F30
+>                               SHA256 17625CC57D0D95A2C9FDCB300920CFAC55A1336E52465861797FB070CD727629
+85c85
+<  Certificate Validity (UTC)   expires < 60 days (30) (2022-07-04 07:17 --> 2023-06-28 14:59)
+---
+>  Certificate Validity (UTC)   396 >= 60 days (2023-05-29 00:37 --> 2024-06-28 14:59)
+124c124
+<                                            https://censys.io/ipv4?q=86A2BA85FFFB70E91FE4D0437EA28C026578F75DE5C0D673CF02264F6E68BBD8 could help you to find out
+---
+>                                            https://censys.io/ipv4?q=17625CC57D0D95A2C9FDCB300920CFAC55A1336E52465861797FB070CD727629 could help you to find out
+184c184
+<  Done 2023-05-29 13:54:45 [ 133s] -->> 127.0.0.1:8080 (localhost) <<--
+---
+>  Done 2023-05-29 15:05:47 [ 131s] -->> 127.0.0.1:8080 (localhost) <<--
+[root@sdc-job-004 .ssl]#
+
+
+
+■証明書戻し手順
+[root@sdc-job-004 .ssl]# ll
+合計 28
+-rw-r--r-- 1 root root 2628  5月 29 14:55 1317580.cer
+drwxr-xr-x 2 root root   68  5月 29 14:56 20230529BK
+drwxr-xr-x 2 root root   75  7月  5  2022 certs
+-rw-r--r-- 1 root root 6255  5月 29 15:11 jenkins.keystore
+-rw-r--r-- 1 root root 5717  5月 29 15:10 jenkins.p12
+-rw-r--r-- 1 root root 1041  6月 27  2022 job-console.tepcube.jp.csr
+-rw-r--r-- 1 root root 1766  6月 27  2022 job-console.tepcube.jp.key
+[root@sdc-job-004 .ssl]# cp -p 20230529BK/* ./
+cp: `./jenkins.keystore' を上書きしますか? y
+cp: `./jenkins.p12' を上書きしますか? y
+[root@sdc-job-004 .ssl]# ll
+合計 32
+-rw-r--r-- 1 root root 2628  7月  5  2022 1286191.cer
+-rw-r--r-- 1 root root 2628  5月 29 14:55 1317580.cer
+drwxr-xr-x 2 root root   68  5月 29 14:56 20230529BK
+drwxr-xr-x 2 root root   75  7月  5  2022 certs
+-rw-r--r-- 1 root root 6117  7月  5  2022 jenkins.keystore
+-rw-r--r-- 1 root root 5717  7月  5  2022 jenkins.p12
+-rw-r--r-- 1 root root 1041  6月 27  2022 job-console.tepcube.jp.csr
+-rw-r--r-- 1 root root 1766  6月 27  2022 job-console.tepcube.jp.key
+[root@sdc-job-004 .ssl]# systemctl restart jenkins.service
+[root@sdc-job-004 .ssl]# systemctl status jenkins.service
+● jenkins.service - Jenkins Continuous Integration Server
+   Loaded: loaded (/usr/lib/systemd/system/jenkins.service; disabled; vendor preset: disabled)
+  Drop-In: /etc/systemd/system/jenkins.service.d
+           mqoverride.conf
+   Active: active (running) since 月 2023-05-29 15:19:23 JST; 18s ago
+ Main PID: 3917 (java)
+    Tasks: 48
+   CGroup: /system.slice/jenkins.service
+           mq3917 /usr/bin/java -Djava.awt.headless=true -jar /usr/share/java/jenkins.war --webroot=%C/jenkins/war --httpPort=-1 --httpsPort=8080 --httpsListenAddres...
+
+ 5月 29 15:19:24 sdc-job-004 jenkins[3917]: at hudson.model.UpdateSite.updateDirectlyNow(UpdateSite.java:213)
+ 5月 29 15:19:24 sdc-job-004 jenkins[3917]: at hudson.PluginManager.checkUpdatesServer(PluginManager.java:2111)
+ 5月 29 15:19:24 sdc-job-004 jenkins[3917]: at hudson.util.Retrier.start(Retrier.java:62)
+ 5月 29 15:19:24 sdc-job-004 jenkins[3917]: at hudson.PluginManager.doCheckUpdatesServer(PluginManager.java:2082)
+ 5月 29 15:19:24 sdc-job-004 jenkins[3917]: at jenkins.DailyCheck.execute(DailyCheck.java:93)
+ 5月 29 15:19:24 sdc-job-004 jenkins[3917]: at hudson.model.AsyncPeriodicWork.lambda$doRun$0(AsyncPeriodicWork.java:102)
+ 5月 29 15:19:24 sdc-job-004 jenkins[3917]: at java.base/java.lang.Thread.run(Thread.java:829)
+ 5月 29 15:19:24 sdc-job-004 jenkins[3917]: 2023-05-29 06:19:24.915+0000 [id=147]        INFO        hudson.util.Retrier#start: Calling the listener of th...tes server
+ 5月 29 15:19:24 sdc-job-004 jenkins[3917]: 2023-05-29 06:19:24.917+0000 [id=147]        INFO        hudson.util.Retrier#start: Attempted the action check...no success
+ 5月 29 15:19:24 sdc-job-004 jenkins[3917]: 2023-05-29 06:19:24.919+0000 [id=147]        SEVERE        hudson.PluginManager#doCheckUpdatesServer: Error ch...jenkins.io
+Hint: Some lines were ellipsized, use -l to show in full.
+[root@sdc-job-004 .ssl]# /testssl.sh-3.0.7/testssl.sh localhost:8080 > /tmp/jenkins3.txt
+[root@sdc-job-004 .ssl]# diff /tmp/jenkins2.txt  /tmp/jenkins3.txt
+18c18
+<  Start 2023-05-29 15:04:14        -->> 127.0.0.1:8080 (localhost) <<--
+---
+>  Start 2023-05-29 15:20:37        -->> 127.0.0.1:8080 (localhost) <<--
+75,77c75,77
+<  Serial                       2264C0FF4A1B5B8FF8954FB7541829B89AB2F141 (OK: length 20)
+<  Fingerprints                 SHA1 67FDCEFA1D40B2692BBB933AF550CC1DCA826F30
+<                               SHA256 17625CC57D0D95A2C9FDCB300920CFAC55A1336E52465861797FB070CD727629
+---
+>  Serial                       69F0FC5EA8E3BBC994B176D2F6E11C02D5D2982D (OK: length 20)
+>  Fingerprints                 SHA1 28D258A67571AE71129125FEC165AA82DE8C4D2F
+>                               SHA256 86A2BA85FFFB70E91FE4D0437EA28C026578F75DE5C0D673CF02264F6E68BBD8
+85c85
+<  Certificate Validity (UTC)   396 >= 60 days (2023-05-29 00:37 --> 2024-06-28 14:59)
+---
+>  Certificate Validity (UTC)   expires < 60 days (30) (2022-07-04 07:17 --> 2023-06-28 14:59)
+124c124
+<                                            https://censys.io/ipv4?q=17625CC57D0D95A2C9FDCB300920CFAC55A1336E52465861797FB070CD727629 could help you to find out
+---
+>                                            https://censys.io/ipv4?q=86A2BA85FFFB70E91FE4D0437EA28C026578F75DE5C0D673CF02264F6E68BBD8 could help you to find out
+184c184
+<  Done 2023-05-29 15:05:47 [ 131s] -->> 127.0.0.1:8080 (localhost) <<--
+---
+>  Done 2023-05-29 15:22:12 [ 132s] -->> 127.0.0.1:8080 (localhost) <<--
+[root@sdc-job-004 .ssl]#
+
+
+
+■Keycloak手順　※Jenkinsの手順をkeycloakに置き換えて実施
+作業ディレクトリ：/opt/keycloak-18.0.0/.ssl
+
