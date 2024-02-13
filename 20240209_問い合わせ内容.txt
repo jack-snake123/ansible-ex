@@ -1,0 +1,75 @@
+20240209_問い合わせ内容
+
+RHEL ご担当者様
+
+お世話になっております。
+
+
+rearにつきまして、バックアップファイルが取得できないことへの問い合わせとなります。
+バックアップファイルの取得に当たっての設定と実行するコマンドをご教示くださいませ。
+
+■環境：物理サーバの環境となります。
+
+■機種・スペック
+機種：
+---------------------------
+DL160 Gen10 Xeon Silver 4208 2.1GHz 1P8C
+ 16GBメモリ ホットプラグ 8SFF(2.5型) S100i 500W電源 ラックRPS対応GSモデル
+Intel Xeon Silver 4208/2.1 GHz/16384MB//ｲﾝｽﾄｰﾙOSなし
+---------------------------
+
+OS：Red Hat Enterprise Linux release 8.6 (Ootpa)
+CPU：4Core
+メモリ：16GB
+HDD：2TB
+※サーバが6台あり、サーバ事でRAID1,RAID5,RAID6のいずれかを設定しております。
+
+■rearパッケージならびに依存パッケージについては下記をインストールしております。
+---------------------------
+rear-2.6-4.el8.x86_64.rpm																		
+libburn-1.4.8-3.el8.x86_64.rpm																		
+libisoburn-1.4.8-4.el8.x86_64.rpm																		
+libisofs-1.4.8-3.el8.x86_64.rpm																		
+xorriso-1.4.8-4.el8.x86_64.rpm																		
+attr-2.4.48-3.el8.x86_64.rpm																		
+bc-1.07.1-5.el8.x86_64.rpm																		
+bind-export-libs-32:9.11.36-3.el8.x86_64.rpm																		
+binutils-2.30-113.el8.x86_64.rpm																		
+dhcp-client-12:4.3.6-47.el8.x86_64.rpm																		
+dhcp-common-12:4.3.6-47.el8.noarch.rpm																		
+dhcp-libs-12:4.3.6-47.el8.x86_64.rpm																		
+ipcalc-0.2.4-4.el8.x86_64.rpm																		
+mtools-4.0.18-14.el8.x86_64.rpm																		
+syslinux-6.04-5.el8.x86_64.rpm																		
+syslinux-nonlinux-6.04-5.el8.noarch.rpm																		
+---------------------------
+
+■編集したコンフィグ：/etc/rear/local.conf
+---------------------------
+OUTPUT=ISO
+OUTPUT_URL=file:///backup/
+SSH_ROOT_PASSWORD=W4jgzvS&
+---------------------------
+
+■実施したコマンド
+rear -v mkrescue
+
+■実行結果ログ
+---------------------------
+[2024-02-08 14:37:10.765] [root@pro-logmanager-01 system]# rear -v mkrescue
+[2024-02-08 14:44:05.337] ERROR: Failed to make bootable EFI image of GRUB2 (error during grub2-mkstandalone of /tmp/rear.fxyysU8Z8Y8gg4z/tmp/mnt/EFI/BOOT/BOOTX64.efi)
+[2024-02-08 14:44:05.337] Some latest log messages since the last called script 250_populate_efibootimg.sh:
+[2024-02-08 14:44:05.337]   mkdir: created directory '/tmp/rear.fxyysU8Z8Y8gg4z/tmp/mnt/EFI/BOOT/fonts'
+[2024-02-08 14:44:05.337]   mkdir: created directory '/tmp/rear.fxyysU8Z8Y8gg4z/tmp/mnt/EFI/BOOT/locale'
+[2024-02-08 14:44:05.337]   '/boot/efi/EFI/redhat/grubx64.efi' -> '/tmp/rear.fxyysU8Z8Y8gg4z/tmp/mnt/EFI/BOOT/BOOTX64.efi'
+[2024-02-08 14:44:05.337]   /usr/share/rear/lib/_input-output-functions.sh: line 476: type: grub-mkstandalone: not found
+[2024-02-08 14:44:05.337]   /usr/share/rear/lib/_input-output-functions.sh: line 476: type: grub-probe: not found
+[2024-02-08 14:44:05.337]   2024-02-08 14:43:35.164389112 grub2-mkstandalone may fail to make a bootable EFI image of GRUB2 (no /usr/*/grub*/x86_64-efi/moddep.lst file)
+[2024-02-08 14:44:05.337]   2024-02-08 14:43:35.166255569 GRUB2 modules to load: fat part_gpt xfs
+[2024-02-08 14:44:05.353]   grub2-mkstandalone: error: /usr/lib/grub/x86_64-efi/modinfo.sh doesn't exist. Please specify --target or --directory.
+[2024-02-08 14:44:05.370] Aborting due to an error, check /var/log/rear/rear-pro-logmanager-01.log for details
+[2024-02-08 14:44:05.370] Exiting rear mkrescue (PID 8552) and its descendant processes ...
+---------------------------
+
+以上となります。
+お手数をお掛け致しますが、よろしくお願い致します。
