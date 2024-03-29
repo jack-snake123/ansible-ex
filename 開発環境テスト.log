@@ -1,0 +1,56 @@
+[root@n0194029 yn]# /y/seclog/pyyiz001/yilm/sbin/yilmsear.sh
+    ip_addr    |  hst_name   |                         jpn_name                          | aply_date  | col_time_cd | log_ctg_cd |           log_dir           |            log_name            | sav_year | srv_place | entry_srv | entry_sh
+ |         time_stamp         | seq_value
+---------------+-------------+-----------------------------------------------------------+------------+-------------+------------+-----------------------------+--------------------------------+----------+-----------+-----------+---------
+-+----------------------------+-----------
+ 10.170.194.29 | h3740047_45 | 共通基盤（ネットワーク）　外部連携FW用syslogサーバ(SDC)#1 | 2024-03-25 |           2 | A          | /togounyo/syslog/access/yn/ | test-20120528-YYYYMMDD.txt.gz  |        5 | 2         | 3         | yilmaptr
+ | 2024-03-29 10:11:02.261455 |         1
+               | test        |                                                           |            |             |            |                             |                                |          |           |           |
+ |                            |         1
+ 10.170.194.29 | h3740047_46 | 共通基盤（ネットワーク）　外部連携FW用syslogサーバ(SDC)#1 | 2024-03-25 |           2 | A          | /togounyo/syslog/access/yn/ | togo-fw-1-YYYYMMDD.txt.gz      |        5 | 2         | 3         | yilmaptr
+ | 2024-03-29 10:11:02.296537 |         2
+ 10.170.194.29 | h3740047_47 | 共通基盤（ネットワーク）　外部連携FW用syslogサーバ(SDC)#1 | 2024-03-25 |           2 | A          | /togounyo/syslog/access/yn/ | test_20120528-YYYYMMDD.txt.gz  |        5 | 2         | 3         | yilmaptr
+ | 2024-03-29 10:46:16.165595 |         3
+ 10.170.194.29 | h3740047_48 | 共通基盤（ネットワーク）　外部連携FW用syslogサーバ(SDC)#1 | 2024-03-25 |           2 | A          | /togounyo/syslog/access/yn/ | test_0120528-YYYYMMDD.txt.gz   |        5 | 2         | 3         | yilmaptr
+ | 2024-03-29 10:53:12.456933 |         4
+ 10.170.194.29 | h3740047_49 | 共通基盤（ネットワーク）　外部連携FW用syslogサーバ(SDC)#1 | 2024-03-25 |           2 | A          | /togounyo/syslog/access/yn/ | test_99999999-YYYYMMDD.txt.gz  |        5 | 2         | 3         | yilmaptr
+ | 2024-03-29 11:02:05.685107 |         5
+ 10.170.194.29 | h3740047_50 | 共通基盤（ネットワーク）　外部連携FW用syslogサーバ(SDC)#1 | 2024-03-25 |           2 | A          | /togounyo/syslog/access/yn/ | test_99990331-YYYYMMDD.txt.gz  |        5 | 2         | 3         | yilmaptr
+ | 2024-03-29 11:02:05.719354 |         6
+ 10.170.194.29 | h3740047_51 | 共通基盤（ネットワーク）　外部連携FW用syslogサーバ(SDC)#1 | 2024-03-25 |           2 | A          | /togounyo/syslog/access/yn/ | test-99999999-YYYYMMDD.txt.gz  |        5 | 2         | 3         | yilmaptr
+ | 2024-03-29 11:11:26.791147 |         7
+ 10.170.194.29 | h3740047_52 | 共通基盤（ネットワーク）　外部連携FW用syslogサーバ(SDC)#1 | 2024-03-25 |           2 | A          | /togounyo/syslog/access/yn/ | test-999999999-YYYYMMDD.txt.gz |        5 | 2         | 3         | yilmaptr
+ | 2024-03-29 11:11:26.828816 |         8
+ 10.170.194.29 | h3740047_53 | 共通基盤（ネットワーク）　外部連携FW用syslogサーバ(SDC)#1 | 2024-03-25 |           2 | A          | /togounyo/syslog/access/yn/ | test_999999999-YYYYMMDD.txt.gz |        5 | 2         | 3         | yilmaptr
+ | 2024-03-29 11:16:14.231382 |         9
+(10 行)
+
+[root@n0194029 yn]# /tools/yi/bin/yilzstgi h3740047_53 20240328 A
+h3740047_53-20240328-A File not found
+[root@n0194029 yn]# /tools/yi/bin/yilzstgi h3740047_52 20240328 A
+h3740047_52-20240328-A File not found
+[root@n0194029 yn]# /tools/yi/bin/yilzstgi h3740047_51 20240328 A
+h3740047_51-20240328-A File not found
+[root@n0194029 yn]# /tools/yi/bin/yilzstgi h3740047_50 20240328 A
+h3740047_50-20240328-A File not found
+[root@n0194029 yn]# /tools/yi/bin/yilzstgi h3740047_49 20240328 A
+h3740047_49-20240328-A File not found
+[root@n0194029 yn]# /tools/yi/bin/yilzstgi h3740047_48 20240328 A
+^[[A/CDC_YI_M01/20240328/h3740047_48/access/test_0120528-20240328.txt.gz
+[root@n0194029 yn]# /tools/yi/bin/yilzstgi h3740047_47 20240328 A
+h3740047_47-20240328-A File not found
+[root@n0194029 yn]# /tools/yi/bin/yilzstgi h3740047_46 20240328 A
+/CDC_YI_M01/20240328/h3740047_46/access/togo-fw-1-20240328.txt.gz
+[root@n0194029 yn]# /tools/yi/bin/yilzstgi h3740047_45 20240328 A
+h3740047_45-20240328-A File not found
+[root@n0194029 yn]# ll /CDC_YI_M01/20240328/*/*/*
+-rw-r--r-- 1 root root 3802  3月 29 10:20 /CDC_YI_M01/20240328/h3740047_45/access/test-20120528-20240328.txt.gz
+-rw-r--r-- 1 root root 3802  3月 29 10:20 /CDC_YI_M01/20240328/h3740047_46/access/togo-fw-1-20240328.txt.gz
+-rw-r--r-- 1 root root 3802  3月 29 10:48 /CDC_YI_M01/20240328/h3740047_47/access/test_20120528-20240328.txt.gz
+-rw-r--r-- 1 root root 3802  3月 29 10:55 /CDC_YI_M01/20240328/h3740047_48/access/test_0120528-20240328.txt.gz
+-rw-r--r-- 1 root root 3802  3月 29 11:05 /CDC_YI_M01/20240328/h3740047_49/access/test_99999999-20240328.txt.gz
+-rw-r--r-- 1 root root 3802  3月 29 11:05 /CDC_YI_M01/20240328/h3740047_50/access/test_99990331-20240328.txt.gz
+-rw-r--r-- 1 root root 3802  3月 29 11:13 /CDC_YI_M01/20240328/h3740047_51/access/test-99999999-20240328.txt.gz
+-rw-r--r-- 1 root root 3802  3月 29 11:13 /CDC_YI_M01/20240328/h3740047_52/access/test-999999999-20240328.txt.gz
+-rw-r--r-- 1 root root 3802  3月 29 11:18 /CDC_YI_M01/20240328/h3740047_53/access/test_999999999-20240328.txt.gz
+[root@n0194029 yn]#
