@@ -1,0 +1,95 @@
+■ディレクトリのログ状況
+[root@n0194029 ~]# ftp 10.180.0.58
+Connected to 10.180.0.58 (10.180.0.58).
+220 FTP server ready.
+Name (10.180.0.58:root): pyyiz001
+331 Password required for pyyiz001.
+Password:
+230 User pyyiz001 logged in.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> cd /togounyo/syslog/access/lm/
+250 CWD command successful.
+ftp> ls
+227 Entering Passive Mode (10,180,0,58,182,151)
+150 Opening ASCII mode data connection for /bin/ls -lA.
+合計 4
+-rw-r--r-- 1 root    root       0  3月 19 17:17 LMaccess_CM_log-20240318.zip
+-rw-r--r-- 1 root    root       0  3月 21 10:12 LMaccess_CM_log-20240320.zip
+-rw-r--r-- 1 root    root       0  3月 22 12:08 LMaccess_CM_log-20240321.zip
+-rw-r--r-- 1 root    root       0  3月 28 03:30 LMaccess_CM_log-20240327.zip
+-rw-r--r-- 1 root    root       0  3月 29 03:30 LMaccess_CM_log-20240328.zip
+-rw-r--r-- 1 root    root       0  3月 30 03:30 LMaccess_CM_log-20240329.zip
+-rw-r--r-- 1 root    root       0  3月 31 03:30 LMaccess_CM_log-20240330.zip
+-rw-r--r-- 1 root    root       0  4月  1 03:30 LMaccess_CM_log-20240331.zip
+-rw-r--r-- 1 root    root       0  4月  2 03:30 LMaccess_CM_log-20240401.zip
+-rw-r--r-- 1 root    root       0  4月  3 03:30 LMaccess_CM_log-20240402.zip
+-rw-r--r-- 1 root    root       0  4月  4 03:30 LMaccess_CM_log-20240403.zip
+-rw-r--r-- 1 root    root       0  4月  5 03:30 LMaccess_CM_log-20240404.zip
+-rw-r--r-- 1 root    root       0  4月  6 03:30 LMaccess_CM_log-20240405.zip
+-rw-r--r-- 1 root    root       0  4月  7 03:30 LMaccess_CM_log-20240406.zip
+-rw-r--r-- 1 root    root       0  4月  8 03:30 LMaccess_CM_log-20240407.zip
+-rw-r--r-- 1 root    root       0  4月  9 03:30 LMaccess_CM_log-20240408.zip
+-rw-r--r-- 1 blender oinstall 411  3月 19 14:21 LMaccess_TF_OHA-20240318.log.zip
+-rw-r--r-- 1 root    root       0  3月 21 10:12 LMaccess_TF_OHA-20240320.log.zip
+-rw-r--r-- 1 root    root       0  3月 22 12:08 LMaccess_TF_OHA-20240321.log.zip
+-rw-r--r-- 1 root    root       0  3月 28 03:30 LMaccess_TF_OHA-20240327.log.zip
+-rw-r--r-- 1 root    root       0  3月 29 03:30 LMaccess_TF_OHA-20240328.log.zip
+-rw-r--r-- 1 root    root       0  3月 30 03:30 LMaccess_TF_OHA-20240329.log.zip
+-rw-r--r-- 1 root    root       0  3月 31 03:30 LMaccess_TF_OHA-20240330.log.zip
+-rw-r--r-- 1 root    root       0  4月  1 03:30 LMaccess_TF_OHA-20240331.log.zip
+-rw-r--r-- 1 root    root       0  4月  2 03:30 LMaccess_TF_OHA-20240401.log.zip
+-rw-r--r-- 1 root    root       0  4月  3 03:30 LMaccess_TF_OHA-20240402.log.zip
+-rw-r--r-- 1 root    root       0  4月  4 03:30 LMaccess_TF_OHA-20240403.log.zip
+-rw-r--r-- 1 root    root       0  4月  5 03:30 LMaccess_TF_OHA-20240404.log.zip
+-rw-r--r-- 1 root    root       0  4月  6 03:30 LMaccess_TF_OHA-20240405.log.zip
+-rw-r--r-- 1 root    root       0  4月  7 03:30 LMaccess_TF_OHA-20240406.log.zip
+-rw-r--r-- 1 root    root       0  4月  8 03:30 LMaccess_TF_OHA-20240407.log.zip
+-rw-r--r-- 1 root    root       0  4月  9 03:30 LMaccess_TF_OHA-20240408.log.zip
+-rw-r--r-- 1 root    root       0  3月 19 16:18 LMaccess_TF_SPT-20240318.log.zip
+-rw-r--r-- 1 root    root       0  3月 21 10:12 LMaccess_TF_SPT-20240320.log.zip
+-rw-r--r-- 1 root    root       0  3月 22 12:08 LMaccess_TF_SPT-20240321.log.zip
+-rw-r--r-- 1 root    root       0  3月 28 03:30 LMaccess_TF_SPT-20240327.log.zip
+-rw-r--r-- 1 root    root       0  3月 29 03:30 LMaccess_TF_SPT-20240328.log.zip
+-rw-r--r-- 1 root    root       0  3月 30 03:30 LMaccess_TF_SPT-20240329.log.zip
+-rw-r--r-- 1 root    root       0  3月 31 03:30 LMaccess_TF_SPT-20240330.log.zip
+-rw-r--r-- 1 root    root       0  4月  1 03:30 LMaccess_TF_SPT-20240331.log.zip
+-rw-r--r-- 1 root    root       0  4月  2 03:30 LMaccess_TF_SPT-20240401.log.zip
+-rw-r--r-- 1 root    root       0  4月  3 03:30 LMaccess_TF_SPT-20240402.log.zip
+-rw-r--r-- 1 root    root       0  4月  4 03:30 LMaccess_TF_SPT-20240403.log.zip
+-rw-r--r-- 1 root    root       0  4月  5 03:30 LMaccess_TF_SPT-20240404.log.zip
+-rw-r--r-- 1 root    root       0  4月  6 03:30 LMaccess_TF_SPT-20240405.log.zip
+-rw-r--r-- 1 root    root       0  4月  7 03:30 LMaccess_TF_SPT-20240406.log.zip
+-rw-r--r-- 1 root    root       0  4月  8 03:30 LMaccess_TF_SPT-20240407.log.zip
+-rw-r--r-- 1 root    root       0  4月  9 03:30 LMaccess_TF_SPT-20240408.log.zip
+226 Transfer complete.
+ftp> get LMaccess_TF_SPT-20240408.log.zip
+local: LMaccess_TF_SPT-20240408.log.zip remote: LMaccess_TF_SPT-20240408.log.zip
+227 Entering Passive Mode (10,180,0,58,180,185)
+150 Opening BINARY mode data connection for LMaccess_TF_SPT-20240408.log.zip (0 bytes).
+226 Transfer complete.
+ftp> get LMaccess_TF_OHA-20240408.log.zip
+local: LMaccess_TF_OHA-20240408.log.zip remote: LMaccess_TF_OHA-20240408.log.zip
+227 Entering Passive Mode (10,180,0,58,136,133)
+150 Opening BINARY mode data connection for LMaccess_TF_OHA-20240408.log.zip (0 bytes).
+226 Transfer complete.
+ftp> get LMaccess_CM_log-20240408.zip
+local: LMaccess_CM_log-20240408.zip remote: LMaccess_CM_log-20240408.zip
+227 Entering Passive Mode (10,180,0,58,147,115)
+150 Opening BINARY mode data connection for LMaccess_CM_log-20240408.zip (0 bytes).
+226 Transfer complete.
+ftp> by
+221 Goodbye.
+[root@n0194029 ~]# ls -l | grep 20240408
+-rw-r--r--  1 root root    0  4月  9 10:08 LMaccess_CM_log-20240408.zip
+-rw-r--r--  1 root root    0  4月  9 10:08 LMaccess_TF_OHA-20240408.log.zip
+-rw-r--r--  1 root root    0  4月  9 10:08 LMaccess_TF_SPT-20240408.log.zip
+[root@n0194029 ~]#
+
+
+
+■ログの取得結果
+[root@n0194029 ~]# ls -l /CDC_YI_M01/20240408/*/*/*
+-rw-r--r-- 1 root root 0  4月  9 12:06 /CDC_YI_M01/20240408/h3942041_1/access/LMaccess_TF_OHA-20240408.log.zip
+-rw-r--r-- 1 root root 0  4月  9 12:06 /CDC_YI_M01/20240408/h3942041_2/access/LMaccess_TF_SPT-20240408.log.zip
+-rw-r--r-- 1 root root 0  4月  9 12:06 /CDC_YI_M01/20240408/h3942041_3/access/LMaccess_CM_log-20240408.zip
