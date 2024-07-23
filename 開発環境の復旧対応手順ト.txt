@@ -1,0 +1,17 @@
+コンソールを確認してエマージェンシーモードになっていた場合の復旧手順
+# journalctl -xb
+　ログを確認して破損しているボリュームを確認する
+# vi /etc/fstab
+　破損しているボリュームをコメントアウトする
+# reboot
+# fsck /dev/mapper/vg00-root
+　ボリュームを回復させる
+  全て<y>を応答
+# fsck /dev/mapper/vg00-root
+  復旧したことを確認
+# mount -o remount,rw /
+　rootが破損していた場合のみこのコマンドで再マウントを行う
+# vi /etc/fstab
+　コメントアウトを外す
+# reboot
+  復旧していることを確認
