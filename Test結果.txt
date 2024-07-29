@@ -1,0 +1,18 @@
+[root@n0194029 rel]# ll /CDC_YI_M01/20240726/h368h04*/*/*
+-rw-r--r-- 1 root root 41  7ŒŽ 29 14:46 /CDC_YI_M01/20240726/h368h041_1/access/GZ-20240726-access.log.bz2
+-rw-r--r-- 1 root root 41  7ŒŽ 29 14:46 /CDC_YI_M01/20240726/h368h041_1/access/GZ-20240726-accessWpApp.log.bz2
+-rw-r--r-- 1 root root 41  7ŒŽ 29 14:46 /CDC_YI_M01/20240726/h368h041_2/access/GZ-20240726-accessWpApp.log.bz2
+-rw-r--r-- 1 root root 41  7ŒŽ 29 14:46 /CDC_YI_M01/20240726/h368h043_1/access/GZ-20240726-access.log.bz2
+-rw-r--r-- 1 root root 41  7ŒŽ 29 14:46 /CDC_YI_M01/20240726/h368h043_1/access/GZ-20240726-accessWpApp.log.bz2
+-rw-r--r-- 1 root root 41  7ŒŽ 29 14:46 /CDC_YI_M01/20240726/h368h043_2/access/GZ-20240726-accessTomcat.log.bz2
+[root@n0194029 rel]# /tools/yi/bin/yilzstgi h368h041_1 20240726 A
+/CDC_YI_M01/20240726/h368h041_1/access/GZ-20240726-access.log.bz2
+/CDC_YI_M01/20240726/h368h041_1/access/GZ-20240726-accessWpApp.log.bz2
+[root@n0194029 rel]# /tools/yi/bin/yilzstgi h368h041_2 20240726 A
+/CDC_YI_M01/20240726/h368h041_2/access/GZ-20240726-accessWpApp.log.bz2
+[root@n0194029 rel]# /tools/yi/bin/yilzstgi h368h043_1 20240726 A
+/CDC_YI_M01/20240726/h368h043_1/access/GZ-20240726-access.log.bz2
+/CDC_YI_M01/20240726/h368h043_1/access/GZ-20240726-accessWpApp.log.bz2
+[root@n0194029 rel]# /tools/yi/bin/yilzstgi h368h043_2 20240726 A
+/CDC_YI_M01/20240726/h368h043_2/access/GZ-20240726-accessTomcat.log.bz2
+
