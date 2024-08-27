@@ -1,0 +1,202 @@
+■ログ収集結果
+[root@n0194029 ~]# ll /CDC_YI_M01/20240823/*/*/*
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001189_1/access/yw-20240823-access_n1001189_messages.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001189_2/access/yw-20240823-access_n1001189_secure.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001189_3/access/yw-20240823-access_n1001189_access.log.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001190_1/access/yw-20240823-access_n1001190_messages.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001190_2/access/yw-20240823-access_n1001190_secure.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001190_3/access/yw-20240823-access_n1001190_access.log.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001191_1/access/yw-20240823-access_n1001191_messages.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001191_2/access/yw-20240823-access_n1001191_secure.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001191_3/access/yw-20240823-access_n1001191_access.log.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001191_4/access/yw-20240823-access_n1001191_av_sandbox.log.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001192_1/access/yw-20240823-access_n1001192_messages.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001192_2/access/yw-20240823-access_n1001192_secure.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001192_3/access/yw-20240823-access_n1001192_access.log.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001192_4/access/yw-20240823-access_n1001192_av_sandbox.log.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001193_1/access/yw-20240823-access_n1001193_messages.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001193_2/access/yw-20240823-access_n1001193_secure.gz
+配置ログファイル名誤り：yw-YYYYMMDD-access_n1001193_access.log.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001193_4/access/yw-20240823-access_n1001193_av_sandbox.log.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001194_1/access/yw-20240823-access_n1001194_messages.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001194_2/access/yw-20240823-access_n1001194_secure.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001194_3/access/yw-20240823-access_n1001194_access.log.gz
+配置ログファイル名誤り：yw-YYYYMMDD-access_n1001194_av_sandbox.log.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001195_1/access/yw-20240823-access_n1001195_messages.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001195_2/access/yw-20240823-access_n1001195_secure.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001195_3/access/yw-20240823-access_n1001195_access.log.gz
+配置ログファイル名誤り：yw-YYYYMMDD-access_n1001195_av_sandbox.log.gz
+アクセス不可：yw-YYYYMMDD-access_n1001196_messages.gz
+アクセス不可：yw-YYYYMMDD-access_n1001196_secure.gz
+アクセス不可：yw-YYYYMMDD-access_n1001196_access.log.gz
+アクセス不可：yw-YYYYMMDD-access_n1001196_av_sandbox.log.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001197_1/access/yw-20240823-access_n1001197_messages.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001197_2/access/yw-20240823-access_n1001197_secure.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001197_3/access/yw-20240823-access_n1001197_access.log.gz
+配置ログファイル名誤り：yw-YYYYMMDD-access_n1001197_av_sandbox.log.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001198_1/access/yw-20240823-access_n1001198_messages.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001198_2/access/yw-20240823-access_n1001198_secure.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001198_3/access/yw-20240823-access_n1001198_access.log.gz
+配置ログファイル名誤り：yw-YYYYMMDD-access_n1001198_av_sandbox.log.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001199_1/access/yw-20240823-access_n1001199_messages.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001199_2/access/yw-20240823-access_n1001199_secure.gz
+-rw-r--r-- 1 root root 0  8月 27 13:05 /CDC_YI_M01/20240823/n1001199_3/access/yw-20240823-access_n1001199_access.log.gz
+配置ログファイル名誤り：yw-YYYYMMDD-access_n1001199_av_sandbox.log.gz
+
+
+■ログ収集エラー対象サーバ確認結果
+[root@n0194029 ~]# ftp 10.180.1.193
+Connected to 10.180.1.193 (10.180.1.193).
+220 (vsFTPd 3.0.3)
+Name (10.180.1.193:root): pyyiz001
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> cd /togounyo/syslog/access/yw/
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (10,180,1,193,59,226).
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0               0 Aug 26 09:44 yw-20240823-access_n1001191_access.log.gz
+-rw-r--r--    1 0        0               0 Aug 26 09:45 yw-20240823-access_n1001193_av_sandbox.log.gz
+-rw-r--r--    1 0        0               0 Aug 26 09:45 yw-20240823-access_n1001193_messages.gz
+-rw-r--r--    1 0        0               0 Aug 26 09:45 yw-20240823-access_n1001193_secure.gz
+226 Directory send OK.
+ftp> by
+221 Goodbye.
+[root@n0194029 ~]# ftp 10.180.1.194
+Connected to 10.180.1.194 (10.180.1.194).
+220 (vsFTPd 3.0.3)
+Name (10.180.1.194:root): pyyiz001
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> cd /togounyo/syslog/access/yw/
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (10,180,1,194,163,113).
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0           34584 Aug 21 15:00 n1001194-20240821-thread.log
+-rw-r--r--    1 0        0             339 Aug 22 11:33 n1001194-20240822-access.log.gz
+-rw-r--r--    1 0        0             266 Aug 22 10:41 n1001194-20240822-av_sandbox.log.gz
+-rw-r--r--    1 0        0               0 Aug 21 14:54 yw-20240822-access-n1001194-access.log.gz
+-rw-r--r--    1 0        0               0 Aug 21 14:54 yw-20240822-access-n1001194-av_sandbox.log.gz
+-rw-r--r--    1 0        0          120350 Aug 22 08:00 yw-20240822-access-n1001194-messages.gz
+-rw-r--r--    1 0        0            4570 Aug 22 07:59 yw-20240822-access-n1001194-secure.gz
+-rw-r--r--    1 0        0               0 Aug 21 14:54 yw-20240823-access-n1001194-av_sandbox.log.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:04 yw-20240823-access_n1001194_access.log.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:04 yw-20240823-access_n1001194_messages.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:04 yw-20240823-access_n1001194_secure.gz
+226 Directory send OK.
+ftp> by
+221 Goodbye.
+[root@n0194029 ~]# ftp 10.180.1.195
+Connected to 10.180.1.195 (10.180.1.195).
+220 (vsFTPd 3.0.3)
+Name (10.180.1.195:root): pyyiz001
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> cd /togounyo/syslog/access/yw/
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (10,180,1,195,192,7).
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0           17640 Aug 21 15:00 n1001195-20240821-thread.log
+-rw-r--r--    1 0        0               0 Aug 21 14:54 yw-20240822-access-n1001195-access.log.gz
+-rw-r--r--    1 0        0               0 Aug 21 14:54 yw-20240822-access-n1001195-av_sandbox.log.gz
+-rw-r--r--    1 0        0           97473 Aug 22 11:45 yw-20240822-access-n1001195-messages.gz
+-rw-r--r--    1 0        0            4830 Aug 22 11:45 yw-20240822-access-n1001195-secure.gz
+-rw-r--r--    1 0        0               0 Aug 21 14:54 yw-20240823-access-n1001195-av_sandbox.log.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:07 yw-20240823-access_n1001195_access.log.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:05 yw-20240823-access_n1001195_messages.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:05 yw-20240823-access_n1001195_secure.gz
+226 Directory send OK.
+ftp> by
+221 Goodbye.
+[root@n0194029 ~]# ftp 10.180.1.196
+ftp: connect: 接続を拒否されました
+ftp> by
+[root@n0194029 ~]# ftp 10.180.1.197
+Connected to 10.180.1.197 (10.180.1.197).
+220 (vsFTPd 3.0.3)
+Name (10.180.1.197:root): pyyiz001
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> cd /togounyo/syslog/access/yw/
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (10,180,1,197,88,195).
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0           34536 Aug 21 15:00 n1001197-20240821-thread.log
+-rw-r--r--    1 0        0          374511 Aug 22 12:01 yw-20240822-access-n1001197-access.log.gz
+-rw-r--r--    1 0        0           57291 Aug 22 12:01 yw-20240822-access-n1001197-messages.gz
+-rw-r--r--    1 0        0            3438 Aug 22 12:01 yw-20240822-access-n1001197-secure.gz
+-rw-r--r--    1 0        0               0 Aug 26 09:49 yw-20240823-access-n1001197-av_sandbox.log.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:09 yw-20240823-access_n1001197_access.log.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:09 yw-20240823-access_n1001197_messages.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:09 yw-20240823-access_n1001197_secure.gz
+226 Directory send OK.
+ftp> by
+221 Goodbye.
+[root@n0194029 ~]# ftp 10.180.1.198
+Connected to 10.180.1.198 (10.180.1.198).
+220 (vsFTPd 3.0.3)
+Name (10.180.1.198:root): pyyiz001
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> cd /togounyo/syslog/access/yw/
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (10,180,1,198,139,113).
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0           20040 Aug 21 15:00 n1001198-20240821-thread.log
+-rw-r--r--    1 0        0          371822 Aug 22 12:03 yw-20240822-access-n1001198-access.log.gz
+-rw-r--r--    1 0        0          125771 Aug 22 12:03 yw-20240822-access-n1001198-messages.gz
+-rw-r--r--    1 0        0            4106 Aug 22 12:03 yw-20240822-access-n1001198-secure.gz
+-rw-r--r--    1 0        0               0 Aug 26 09:50 yw-20240823-access-n1001198-av_sandbox.log.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:13 yw-20240823-access_n1001198_access.log.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:13 yw-20240823-access_n1001198_messages.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:13 yw-20240823-access_n1001198_secure.gz
+226 Directory send OK.
+ftp> by
+221 Goodbye.
+[root@n0194029 ~]# ftp 10.180.1.199
+Connected to 10.180.1.199 (10.180.1.199).
+220 (vsFTPd 3.0.3)
+Name (10.180.1.199:root): pyyiz001
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> cd /togounyo/syslog/access/yw/
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (10,180,1,199,237,32).
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0           34560 Aug 21 15:00 n1001199-20240821-thread.log
+-rw-r--r--    1 0        0               0 Aug 21 14:54 yw-20240821-access-n1001199-access.log.gz
+-rw-r--r--    1 0        0               0 Aug 21 14:54 yw-20240821-access-n1001199-av_sandbox.log.gz
+-rw-r--r--    1 0        0           56662 Aug 22 12:03 yw-20240821-access-n1001199-messages.gz
+-rw-r--r--    1 0        0            2822 Aug 22 12:03 yw-20240821-access-n1001199-secure.gz
+-rw-r--r--    1 0        0               0 Aug 26 09:50 yw-20240823-access-n1001199-av_sandbox.log.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:13 yw-20240823-access_n1001199_access.log.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:13 yw-20240823-access_n1001199_messages.gz
+-rw-r--r--    1 0        0               0 Aug 22 05:13 yw-20240823-access_n1001199_secure.gz
+226 Directory send OK.
+ftp> by
+221 Goodbye.
+[root@n0194029 ~]#
