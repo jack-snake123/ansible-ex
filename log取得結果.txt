@@ -1,0 +1,98 @@
+[root@n0194029 ~]# ll /CDC_YI_M01/20250108/*/*/*
+-rw-r--r-- 1 root root     671  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_10/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root    1993  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_11/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     547  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_12/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root   51825  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_13/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root   11926  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_14/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root    1063  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_15/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root    4162  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_16/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     333  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_17/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     334  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_18/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root    4735  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_19/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     815  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_20/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root   29677  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_21/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root    1836  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_22/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     875  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_23/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     337  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_24/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     333  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_25/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root    3152  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_26/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     552  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_27/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     745  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_28/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root  864969  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_29/operation/S7H-20250108-operate.log.tar.gz
+-rw-r--r-- 1 root root   14811  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_3/ninshou/S7H-20250108-ninshou.log.tar.gz
+-rw-r--r-- 1 root root    3831  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_30/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     552  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_31/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root  355880  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_32/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     335  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_4/ninshou/S7H-20250108-ninshou.log.tar.gz
+-rw-r--r-- 1 root root    3054  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_5/ninshou/S7H-20250108-ninshou.log.tar.gz
+-rw-r--r-- 1 root root    6958  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_6/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root    9569  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_63/ninshou/S7H-20250108-ninshou.log.tar.gz
+-rw-r--r-- 1 root root     331  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_64/ninshou/S7H-20250108-ninshou.log.tar.gz
+-rw-r--r-- 1 root root    1406  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_65/ninshou/S7H-20250108-ninshou.log.tar.gz
+-rw-r--r-- 1 root root 1444897  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_66/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     332  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_67/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     338  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_68/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     335  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_69/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     336  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_7/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     336  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_70/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     517  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_71/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     541  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_72/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root    2643  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_73/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root    1247  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_74/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     544  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_75/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root    1436  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_76/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root    1119  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_77/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     332  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_78/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     332  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_79/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     342  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_8/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     336  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_80/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     329  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_81/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     958  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_82/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     342  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_83/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     338  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_84/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     332  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_85/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     330  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_86/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     544  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_87/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     338  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_88/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root 1396093  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_89/operation/S7H-20250108-operate.log.tar.gz
+-rw-r--r-- 1 root root     342  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_9/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root   20350  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_90/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root     548  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_91/access/S7H-20250108-access.log.tar.gz
+-rw-r--r-- 1 root root    5549  1åé  9 16:21 /CDC_YI_M01/20250108/n0193202_92/access/S7H-20250108-access.log.tar.gz
+[root@n0194029 ~]#
+
+éÊìæÇ≈Ç´Ç»Ç©Ç¡ÇΩÉçÉO
+/data/infra/log/syslog/messages						S7H-YYYYMMDD-etc.log.gz
+/data/infra/log/syslog/secure						S7H-YYYYMMDD-etc.log.gz
+/data/ep-sfdc-cloud/log/salesforce/loginEventLog			S7H-YYYYMMDD-ninshou.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/loginAsEventLog			S7H-YYYYMMDD-ninshou.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/logoutEventLog			S7H-YYYYMMDD-ninshou.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/apiEventLog				S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/bulkApiEventLog			S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/contentDistributionEventLog		S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/contentDocumentLinkEventLog		S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/contentTransferEventLog		S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/documentAttachmentDownloadsEventLog	S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/knowledgeArticleViewEventLog		S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/lightningInteractionEventLog		S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/lightningPageViewEventLog		S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/metadataApiOperationEventLog		S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/platformEncryptionEventLog		S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/reportEventLog			S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/reportExportEventLog			S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/searchEventLog			S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/searchClickEventLog			S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/sitesEventLog			S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/visualforceRequestEventLog		S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/changeSetOperationEventLog		S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/apexRestApiEventLog			S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/apexSoapEventLog			S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/dashboardEventLog			S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/externalODataCalloutEventLog		S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/packageInstallEventLog		S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/operationLog				S7H-YYYYMMDD-operate.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/apexExecutionEventLog		S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/apexUnexpectedExceptionEventLog	S7H-YYYYMMDD-access.log.tar.gz
+/data/ep-sfdc-cloud/log/salesforce/uriEventLog				S7H-YYYYMMDD-access.log.tar.gz
+
+
