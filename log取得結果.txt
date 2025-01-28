@@ -1,0 +1,4 @@
+[root@n0194029 ~]# ll /CDC_YI_M01/20250127/*/*/*
+-rw-r--r-- 1 root root 20  1ŒŽ 28 10:51 /CDC_YI_M01/20250127/h3740046_1/etc/traffic_h1125037_vsys12-20250127.txt.gz
+-rw-r--r-- 1 root root 20  1ŒŽ 28 10:51 /CDC_YI_M01/20250127/h3740046_2/etc/traffic_h1125038_vsys12-20250127.txt.gz
+[root@n0194029 ~]#
