@@ -1,0 +1,23 @@
+mkdir /tmp/alog
+ls -l /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlpgc-`date +%Y%m%d -d "-1 day"`.txt /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlpgc-`date +%Y%m%d -d "-2 day"`.txt /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlpgc-`date +%Y%m%d -d "-3 day"`.txt /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlpgc-`date +%Y%m%d -d "-4 day"`.txt /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlpgc-`date +%Y%m%d -d "-5 day"`.txt /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlpgc-`date +%Y%m%d -d "-6 day"`.txt /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlpgc-`date +%Y%m%d -d "-7 day"`.txt /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlogs-`date +%Y%m%d -d "-1 day"`.txt /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlogs-`date +%Y%m%d -d "-2 day"`.txt /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlogs-`date +%Y%m%d -d "-3 day"`.txt /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlogs-`date +%Y%m%d -d "-4 day"`.txt /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlogs-`date +%Y%m%d -d "-5 day"`.txt /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlogs-`date +%Y%m%d -d "-6 day"`.txt /tmp/alog
+cp -p /togounyo/syslog/trace/yi/yilmlogs-`date +%Y%m%d -d "-7 day"`.txt /tmp/alog
+ls -l /tmp/alog
+
+cd /tmp
+tar -zcvf alog-`date +%Y%m%d`.tar alog/
+ls -l alog-`date +%Y%m%d`.tar
+
+rm -rf /tmp/alog /tmp/alog-20250221.tar
