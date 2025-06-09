@@ -1,9 +1,0 @@
-[root@n0194029 ~]# ll /CDC_YI_M01/20250608/*/*/*
--rw-r--r-- 1 root root 162033  6ŒŽ  9 11:32 /CDC_YI_M01/20250608/n0188089_1/access/xo-20250608-access_ApacheAccess.log.gz
--rw-r--r-- 1 root root     58  6ŒŽ  9 11:32 /CDC_YI_M01/20250608/n0188089_2/access/xo-20250608-access_OnlineDbaccess.log.gz
--rw-r--r-- 1 root root     59  6ŒŽ  9 11:32 /CDC_YI_M01/20250608/n0188089_3/ninshou/xo-20250608-ninshou_OnlineAuthlize.log.gz
-[root@n0194029 ~]# ll /CDC_YI_M01/20250604/*/*/*
--rw-r--r-- 1 root root 56  6ŒŽ  9 11:32 /CDC_YI_M01/20250604/n0188090_1/access/xo-20250604-access_ApacheAccess.log.gz
--rw-r--r-- 1 root root 58  6ŒŽ  9 11:32 /CDC_YI_M01/20250604/n0188090_2/access/xo-20250604-access_OnlineDbaccess.log.gz
--rw-r--r-- 1 root root 59  6ŒŽ  9 11:32 /CDC_YI_M01/20250604/n0188090_3/ninshou/xo-20250604-ninshou_OnlineAuthlize.log.gz
-[root@n0194029 ~]#
