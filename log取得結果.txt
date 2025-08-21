@@ -1,1 +1,1 @@
-psql -qtAX --field-separator '|' -U postgres -d yisdata -c "select hst_name,log_ctg_cd,ctg_dir,log_name from yisdttbl where log_name like '%202508%' order by ctg_dir asc;" > /tmp/test.txt
+https://link.idnet.co.jp/VUwGYXQMqG
