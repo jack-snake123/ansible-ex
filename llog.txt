@@ -1,0 +1,42 @@
+
+[pyyiz001@n0194029 ~]$ ftp 10.170.194.88
+Connected to 10.170.194.88 (10.170.194.88).
+220 FTP server ready.
+Name (10.170.194.88:pyyiz001): pyyiz001
+331 Password required for pyyiz001.
+Password:
+530 Login incorrect.
+Login failed.
+ftp> by
+221 Goodbye.
+[pyyiz001@n0194029 ~]$ ftp 10.170.194.89
+Connected to 10.170.194.89 (10.170.194.89).
+220 FTP server ready.
+Name (10.170.194.89:pyyiz001): pyyiz001
+331 Password required for pyyiz001.
+Password:
+530 Login incorrect.
+Login failed.
+ftp> by
+221 Goodbye.
+[pyyiz001@n0194029 ~]$ ftp 10.180.3.137
+Connected to 10.180.3.137 (10.180.3.137).
+220 FTP server ready.
+Name (10.180.3.137:pyyiz001): pyyiz001
+331 Password required for pyyiz001.
+Password:
+530 Login incorrect.
+Login failed.
+ftp> by
+221 Goodbye.
+[pyyiz001@n0194029 ~]$ ftp 10.170.188.238
+Connected to 10.170.188.238 (10.170.188.238).
+220 FTP server ready.
+Name (10.170.188.238:pyyiz001): pyyiz001
+331 Password required for pyyiz001.
+Password:
+530 Login incorrect.
+Login failed.
+ftp> by
+221 Goodbye.
+[pyyiz001@n0194029 ~]$ 
